@@ -1,0 +1,16 @@
+<carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [interval]="false"
+          [noWrap]="noWrap"
+          [showIndicators]="false">
+          <!--margin right !important-->
+  <slide style="margin-right: 0% !important; margin-left:1.5%" *ngFor="let slide of slides; let index=index">
+    
+    <img [src]="slide.image" alt="image slide" style="display: block; width: 90%;">
+    <h5 class="font-style" style="padding-top:5%; font-size: 24px ">Specials {{index+1}}</h5> <!--hard coded currently -->
+    <h6 class="font-style" style="font-size: 18px">New York | 321 Restaurant</h6> <!--hard coded currently -->
+    
+  </slide>
+
+</carousel>
+ 
