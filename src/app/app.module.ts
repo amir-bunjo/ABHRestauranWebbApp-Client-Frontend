@@ -15,6 +15,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CarouselGalleryComponent } from './home/home-gallery/carousel-gallery/carousel-gallery.component';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { CarouselModule } from 'ngx-bootstrap';
+import { FooterComponent } from './home/footer/footer.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CarouselModule } from 'ngx-bootstrap';
     HomeComponent,
     RatingComponent,
     HomeGalleryComponent,
-    CarouselGalleryComponent
+    CarouselGalleryComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,

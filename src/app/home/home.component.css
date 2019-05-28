@@ -58,4 +58,80 @@ header {
 
 .container{
     position: relative;
+    size: 100%
 }
+
+
+
+.bottom-center{
+    position:absolute;
+    width:100%;
+    bottom:0;
+    text-align:center;
+    font-size: 18px;
+    margin-bottom: 5%;
+    font-family: SourceSansPro-Semibold;
+    color: #FFFF;
+    cursor: pointer;
+}
+
+
+.carousel-title{
+
+    color: #FFFF;
+    text-align: center;
+    padding-top: 5%; 
+    padding-bottom:5%;
+    font-family: SourceSansPro-Light;
+    font-size: 30px;
+    font-weight: 5;
+}
+
+.carousel-text-bottom{
+    text-align: center; 
+    padding-top: 5%;
+    padding-bottom:5%;
+    font-size: 18px;
+    font-family: SourceSansPro-Semibold;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+/* Container holding the image and the text */
+
+  
+  /* Bottom left text */
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+  
+  /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+  
+  /* Top right text */
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+  
+  /* Bottom right text */
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+  }
+  
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
