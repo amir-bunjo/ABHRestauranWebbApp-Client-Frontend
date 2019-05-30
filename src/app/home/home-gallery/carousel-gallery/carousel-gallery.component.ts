@@ -15,8 +15,8 @@ export class CarouselGalleryComponent  {
   slides = [
     {image: '/assets/img/download-res.jpg'},
     {image: '/assets/img/image-pasta.jpg'},
-    {image: '/assets/img/download-res.jpg'},
-    {image: '/assets/img/download-res.jpg'},
+    {image: '/assets/img/background-specials.png'},
+    {image: '/assets/img/restaurant-food-salat-2.jpg'},
     {image: '/assets/img/download-res.jpg'},
     {image: '/assets/img/download-res.jpg'},
     {image: '/assets/img/download-res.jpg'},

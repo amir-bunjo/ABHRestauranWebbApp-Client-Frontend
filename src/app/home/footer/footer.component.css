@@ -1,0 +1,15 @@
+/* original font-size=16px, 14px looks better*/
+.font-family-semibold{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600 ;
+    font-size: 14px;
+    color: #ffff;
+}
+.opacity{
+
+    opacity: 0.4;
+}
+
+footer{
+    background: #131D24;
+}

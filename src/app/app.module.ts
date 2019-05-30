@@ -16,6 +16,9 @@ import { CarouselGalleryComponent } from './home/home-gallery/carousel-gallery/c
 import { SwiperModule } from 'angular2-useful-swiper';
 import { CarouselModule } from 'ngx-bootstrap';
 import { FooterComponent } from './home/footer/footer.component';
+import { PopularLocationComponent } from './home/popular-location/popular-location.component';
+import { SearchBarComponent } from './home/search-bar/search-bar.component';
+import { HeaderNavbarComponent } from './home/shared/header-navbar/header-navbar.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { FooterComponent } from './home/footer/footer.component';
     RatingComponent,
     HomeGalleryComponent,
     CarouselGalleryComponent,
-    FooterComponent
+    FooterComponent,
+    PopularLocationComponent,
+    SearchBarComponent,
+    HeaderNavbarComponent
   ],
   imports: [
     FormsModule,

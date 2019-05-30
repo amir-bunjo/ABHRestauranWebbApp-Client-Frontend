@@ -1,11 +1,48 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+  }
+  
+  .box div {
+      padding-left:15%;
+      padding-right:3%;
+      
+    width: 100%;
+    height: 100%;
+  }
+/* pogledati jos margine i ostaloo*/
+.search-bar{
+    margin-left: 16%;
+    padding-right: 5%;
+    margin-top:7%
+}
 
 
+.font-family{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600 !important;
+}
+/* for name ABH Restaurant */
+.font-size-20{
+    font-size: 20px;
+    font-weight: 600 !important;
+    
+}
 
+/* font 16px for nav-bar */
+.font-s-16{
+    padding: 0.5%;
+    font-size: 16px;
+ 
+}
 
+/* Header with backround image */
 header {
     background: url(/assets/img/Bitmap.png) no-repeat center center;
     width: 100%;
-    padding: 20px 10px 60px 10px;
     height: 100vh;
     overflow: hidden;
     background-size: cover;
@@ -14,9 +51,24 @@ header {
     -o-background-size: cover;
 }
 
+/* Paddings for nav-bar */
+.header-navbar{
+  padding-top: 3%;
+  padding-left: 15%;
+  padding-right: 11%;
+  color:#FFFFFF;
+  font-weight: 400;
+}
+
+/*  Make gap beetwen Restaurant|Login  links */
+.m-r-1{
+    margin-right: 5%;
+}
+
+
+/*  Background image for carousel gallery */
 .middle-gallery{
-
-    background: url(/assets/img/image-pasta.jpg) no-repeat center center;
+    background: url(/assets/img/background-specials.png) no-repeat center center;
     width: 100%;
     padding: 20px 10px 60px 10px;
     height: 100vh;
@@ -27,66 +79,88 @@ header {
     -o-background-size: cover;
 }
 
-
-.alert-custom {
-    color: #99004d;
-    background-color: #f169b4;
-    border-color: #800040;
-  }
-
- .centered {
-    position: absolute;
-    padding-top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 70%;
-  }
-.nav-text-color{
-    text-decoration-color: antiquewhite;
-}
-
-.header-info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-    right: 0;
-    margin-left: 0px;
-    margin-bottom: 12%;
-}
-
+/* style for container, check out later!!!!! */
 .container{
     position: relative;
     size: 100%
 }
 
+.green-square {
+    background-color: #3D9970;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+  }
 
+.proba{
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+}
 
-.bottom-center{
-    position:absolute;
-    width:100%;
-    bottom:0;
-    text-align:center;
-    font-size: 18px;
-    margin-bottom: 5%;
-    font-family: SourceSansPro-Semibold;
-    color: #FFFF;
-    cursor: pointer;
+/* styles for center-text in header*/
+.header-text-center{
+    text-align: center;
+    padding-top:10% ;
+    color:#FFFFFF;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* font size 48 */
+.font-size-48{
+    font-size: 48px;
+   
+}
+
+/*styles for popular component
+*/
+.popular-title{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center; 
+    margin-bottom: 10%
+
+}
+
+.popular-name{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+   
+    color:#131D24 100%;
+
+}
+.opacity{
+    opacity: 0.4;
 }
 
 
+
+
+.font-20{
+    font-size: 20px;
+}
+
+.font-18{
+    font-size: 18px;
+}
+
+
+/* style for title Specials */
 .carousel-title{
 
     color: #FFFF;
     text-align: center;
     padding-top: 5%; 
     padding-bottom:5%;
-    font-family: SourceSansPro-Light;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 30px;
     font-weight: 5;
 }
 
+/* style for carousel bottom text */
 .carousel-text-bottom{
     text-align: center; 
     padding-top: 5%;
@@ -97,41 +171,5 @@ header {
     font-weight: 900;
 }
 
-/* Container holding the image and the text */
 
   
-  /* Bottom left text */
-  .bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-  }
-  
-  /* Top left text */
-  .top-left {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-  }
-  
-  /* Top right text */
-  .top-right {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-  }
-  
-  /* Bottom right text */
-  .bottom-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-  }
-  
-  /* Centered text */
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
