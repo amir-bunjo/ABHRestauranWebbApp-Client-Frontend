@@ -19,6 +19,8 @@ import { FooterComponent } from './home/footer/footer.component';
 import { PopularLocationComponent } from './home/popular-location/popular-location.component';
 import { SearchBarComponent } from './home/search-bar/search-bar.component';
 import { HeaderNavbarComponent } from './home/shared/header-navbar/header-navbar.component';
+import { LoginComponent } from './home/login/login.component';
+import { RegisterComponent } from './home/register/register.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { HeaderNavbarComponent } from './home/shared/header-navbar/header-navbar
     FooterComponent,
     PopularLocationComponent,
     SearchBarComponent,
-    HeaderNavbarComponent
+    HeaderNavbarComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     FormsModule,
