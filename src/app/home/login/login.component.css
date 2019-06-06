@@ -17,35 +17,38 @@
     font-size: 24px;
 }
 
-button{
+.wide-red{
 
-    width: 100%;
-}
-
-.button-style{
-    
     background:#FD6F60 100% !important;
     border-color: #FD6F60 100%;
     border-radius: 0%;
     width: 100%;
     height: 120%;
     color: #ffff;
-
 }
-.m-bottom-2{
 
+.b-r-0{
+    border-radius: 0%;
+}
+
+.m-bottom-2{
     margin-bottom: 2%;
 }
-.m-bottom-4{
 
+.m-bottom-4{
     margin-bottom: 4%;
 }
-.container{
 
+.error-text{
+    color: red; 
+    font-size:12px
+}
+
+.container{
    padding-right: 25%;
    padding-left: 25%;
    padding-top: 10%;
-
+   padding-bottom: 13%;
 }
 
 .red-text{

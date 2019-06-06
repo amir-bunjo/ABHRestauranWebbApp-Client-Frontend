@@ -7,15 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeGalleryComponent implements OnInit {
 
-  pictureLink= '/assets/img/resImage_300x260.jpg' ;
-  pictureArray : string[]= [];
+  pictureLink= '/assets/img/resImage_300x260.jpg';// currently 
+  imageLinks : string[]= [];
 
   constructor() { }
 
   ngOnInit() {
-
     for(var i=0; i<9; i++)
-      this.pictureArray[i]= this.pictureLink;
+      this.imageLinks[i]= this.pictureLink;  // currently
   }
 
 }

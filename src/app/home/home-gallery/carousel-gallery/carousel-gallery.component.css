@@ -1,15 +1,43 @@
-img{
-
+.img-size{
     width: 100 px;
     height: 140px;
+    width: 90%;
 }
 
-
-.font-style{
+.spec-title{
     color: #FFFFFF;
     font-weight: 300;
+    padding-top:5%; 
+    font-size: 24px 
+}
+
+.city-title{
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 18px 
 }
 
 
+.margin-slide{
+    margin-right: 0% !important;
+    margin-left:1.5%;
+}
+
+.bottom-text{
+    color: #FFFFFF;
+    padding-top: 10%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.carousel-title{
+   padding-top: 5%; 
+   padding-bottom:10%;
+   text-align: center;
+   color: #FFFFFF;
+   font-family: 'Source Sans Pro', sans-serif;
+   font-size: 30px;
+   font-weight: 5;
+}
 
 

@@ -11,19 +11,20 @@
     
     <div class="p-2 red-text font-family font-18 font-semi-bold" (click)="createAccount()" >Create account</div>
   </div>  
-
   <div class="row">
     <div class="col-12 m-bottom-2">
-      <input formControlName="email" type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Email">
+      <input formControlName="email" type="text" class="form-control b-r-0" placeholder="Email">
     </div>
     <div class="col-12 m-bottom-4">
-      <input formControlName="password" type="text" class="form-control search-slt font-family" style="font-weight:400 !important" placeholder="Password">
-      <span *ngIf="invalidLogin" style="color: red; font-size:12px">Invalid email or password</span>
+      <input formControlName="password" type="text" class="form-control b-r-0"  placeholder="Password">
+      <span *ngIf="invalidLogin" class="error-text">Invalid email or password</span>
     </div>
     <div class="col-12 m-bottom-2">
-      <button type="button" class="btn  font-family button-style " (click)="checkLogin()">Login</button>
+      <button type="button" class="btn font-family wide-red" (click)="checkLogin()">Login</button>
     </div>
   </div>
 </div>
 </form>
 
+
+<app-footer></app-footer>

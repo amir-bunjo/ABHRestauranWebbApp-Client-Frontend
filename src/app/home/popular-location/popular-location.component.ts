@@ -15,7 +15,7 @@ export class PopularLocationComponent implements OnInit {
   ngOnInit() {
 
     for(var i=0;i<20;i++)
-    this.pictureArray[i] = this.pictureLink;
+    this.pictureArray[i] = this.pictureLink; //currently load no sense
 
   }
 

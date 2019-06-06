@@ -2,6 +2,10 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.b-r-0{
+    border-radius: 0;
+}
+
 .font-semi-bold{
     font-weight: 600 ;
 }
@@ -44,7 +48,8 @@ button{
 
    padding-right: 25%;
    padding-left: 25%;
-   padding-top: 2%;
+   padding-top: 10%;
+   padding-bottom: 5%;
 
 }
 

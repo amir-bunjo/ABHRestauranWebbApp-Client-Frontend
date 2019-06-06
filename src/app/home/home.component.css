@@ -1,35 +1,32 @@
+.header-text-color{
+    color: #ffff !important ;
+}
+
+.search-bar-paddings{
+    padding-right: 16%;
+    padding-left:16%;
+    padding-top:4%
+}
+
+.m-t-6{
+    margin-top: 6%;
+}
+
+.m-b-10{
+    margin-bottom: 10%;
+}
+
+/*need for commented search bar */
 .box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
-    
-  }
-  
-  .box div {
-      padding-left:15%;
-      padding-right:3%;
-      
-    width: 100%;
-    height: 100%;
-  }
-/* pogledati jos margine i ostaloo*/
-.search-bar{
-    margin-left: 16%;
-    padding-right: 5%;
-    margin-top:7%
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
 
-
-.font-family{
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 600 !important;
-}
 /* for name ABH Restaurant */
 .font-size-20{
     font-size: 20px;
-    font-weight: 600 !important;
-    
+    font-weight: 600 !important;   
 }
 
 /* font 16px for nav-bar */
@@ -51,21 +48,6 @@ header {
     -o-background-size: cover;
 }
 
-/* Paddings for nav-bar */
-.header-navbar{
-  padding-top: 3%;
-  padding-left: 15%;
-  padding-right: 11%;
-  color:#FFFFFF;
-  font-weight: 400;
-}
-
-/*  Make gap beetwen Restaurant|Login  links */
-.m-r-1{
-    margin-right: 5%;
-}
-
-
 /*  Background image for carousel gallery */
 .middle-gallery{
     background: url(/assets/img/background-specials.png) no-repeat center center;
@@ -85,21 +67,6 @@ header {
     size: 100%
 }
 
-.green-square {
-    background-color: #3D9970;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    left: 50%;
-    margin-left: -50px;
-  }
-
-.proba{
-    position: absolute;
-    left: 50%;
-    margin-left: -50px;
-}
-
 /* styles for center-text in header*/
 .header-text-center{
     text-align: center;
@@ -114,8 +81,7 @@ header {
    
 }
 
-/*styles for popular component
-*/
+/* styles for popular component */
 .popular-title{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
@@ -125,51 +91,11 @@ header {
 
 }
 
-.popular-name{
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 400;
-   
-    color:#131D24 100%;
-
-}
-.opacity{
-    opacity: 0.4;
-}
 
 
 
 
-.font-20{
-    font-size: 20px;
-}
 
-.font-18{
-    font-size: 18px;
-}
-
-
-/* style for title Specials */
-.carousel-title{
-
-    color: #FFFF;
-    text-align: center;
-    padding-top: 5%; 
-    padding-bottom:5%;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 30px;
-    font-weight: 5;
-}
-
-/* style for carousel bottom text */
-.carousel-text-bottom{
-    text-align: center; 
-    padding-top: 5%;
-    padding-bottom:5%;
-    font-size: 18px;
-    font-family: SourceSansPro-Semibold;
-    cursor: pointer;
-    font-weight: 900;
-}
 
 
   

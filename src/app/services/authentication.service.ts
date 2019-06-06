@@ -21,6 +21,7 @@ export class AuthenticationService {
      map(
        userData => {
         sessionStorage.setItem('username',username);
+        sessionStorage.setItem('password',password);
         return userData;
        }
      )
@@ -31,12 +32,13 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
+    console.log("da li je user null  " + !(user === null))
     return !(user === null)
   }
 
   logOut() {
-    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('password')
   }
   
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import { RestaurantService } from 'src/app/services/restaurant.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -14,10 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private router: Router, private http: HttpClient,private resService: RestaurantService) { 
-
-    
-  }
+  constructor(private router: Router, private http: HttpClient,private userService: UserService) {}
 
   ngOnInit() {
 
@@ -40,9 +37,7 @@ export class RegisterComponent implements OnInit {
       'password': new FormControl(),
       'phone': new FormControl(null),
       'accountrole': new FormControl(null)
-     
     });
-
   }
 
   createAccount(){
@@ -53,12 +48,12 @@ export class RegisterComponent implements OnInit {
 
     let stringFormValue= JSON.stringify(rawFormValue);
 
-    //console.log(stringFormValue);
+    console.log(stringFormValue);
  
-   this.resService.getAllUsers().subscribe(res => console.log(res)); // testing get operation
-    //this.resService.deleteUser(15).subscribe(res => console.log(res)); // testing delete operation
+    this.userService.getAllUsers().subscribe(res => console.log(res)); // testing get operation
+    // this.userService.deleteUser(20).subscribe(res => console.log(res)); // testing delete operation
 
-    this.resService.saveUser(JSON.parse(stringFormValue)).subscribe(res => console.log(res));
+    //this.userService.saveUser(JSON.parse(stringFormValue)).subscribe(res => console.log(res));
   }
 
 

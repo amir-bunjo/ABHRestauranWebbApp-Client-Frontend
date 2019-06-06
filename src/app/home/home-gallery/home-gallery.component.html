@@ -2,24 +2,19 @@
 <div style="padding-left: 10%; padding-right:10%">
   <div class="container">
     <div class="row" >
-
-        <div class="col-lg-4 col-md-6 col-xs-12 " *ngFor="let links of pictureArray">
-            <img class="gallery_product" src="{{links}}" >
+        <div class="col-lg-4 col-md-6 col-xs-12 " *ngFor="let imageLink of imageLinks">
+            <img class="img-size" src="{{imageLink}}" >
             <br>
-             <span class="res-name-style">Restaurant Name</span>
+             <span class="res-name">Restaurant Name</span>
              <br>
-            <span><app-rating></app-rating>    (1745) $$$$</span> 
+            <span><app-rating></app-rating>(1745) $$$$</span> 
             <hr>
-            <span class="res-type-style">Italian | International | Mediteran  </span>
+            <span class="res-type">Italian | International | Mediteran  </span>
             <br>
             <br>
-            <button class="button button_reserve">Reserve now</button>
-            
-
+            <button class="button wide-grey">Reserve now</button>
         </div>
-
     </div>
-
   </div>
 </div>
 

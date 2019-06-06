@@ -4,7 +4,7 @@
 <header >
 
 <!--NAV BAR-->  
-    <app-header-navbar style="color: #ffff !important"></app-header-navbar>
+    <app-header-navbar class="header-text-color"></app-header-navbar>
 
 <!--CENTER TEXT-->                         
     <div class="container header-text-center" >
@@ -24,7 +24,7 @@
 
  
 
-    <div style="padding-right: 16%;padding-left:16%;padding-top:4%">
+    <div class="search-bar-paddings">
     <app-search-bar  ></app-search-bar>
     </div>
 
@@ -33,37 +33,33 @@
 
 <!--GALLERY  style="text-align: center ;color: rgb(14, 14, 105);font-size: 30px; font-family:  font-weight: 400"-->
 
-<div style="margin-top: 6%">
+<div class="m-t-6">
     <h1 class="popular-title">Popular for Lunch today</h1>
 </div>
-<div style="margin-bottom: 10%">
+<div class="m-b-10">
     <app-home-gallery></app-home-gallery>
 </div>
 
 <!--CAROUSEL GALLERY WITH BACKGROUND IMAGE-->
 <div class="middle-gallery">
  
-    <p class="carousel-title">Specials</p>
 <div style="padding-left: 5%;padding-right:5%">
     <app-carousel-gallery style="left: 30%;right:30%" ></app-carousel-gallery>
 </div>
-    <p class="carousel-text-bottom"> See all specials</p>
-
+    
 </div>
-
-
 <br>
 <br>
 
 
 <!--POPULAR LOCATION-->
 <h2 class="popular-title" > Popular Locations</h2>
-<div style="padding-right:9%;padding-left:9%;padding-bottom: 10%;" >
+<div>
     <app-popular-location></app-popular-location>
 </div>
 
 
 <!--FOOTER-->
-<div style="height: 1px">
+<div>
     <app-footer  ></app-footer>
 </div>
