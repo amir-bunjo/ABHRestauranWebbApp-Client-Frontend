@@ -11,23 +11,23 @@
       
       <div class="p-2 red-text font-family font-18 font-semi-bold" (click)="login()" >Login</div>
     </div>  
-  
+<form [formGroup]="registerForm">
     <div class="row">
       <div class="col-12 m-bottom-2 p-0">
-        <input type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="First Name">
+        <input formControlName="firstname" type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="First Name">
       </div>
       <div class="col-12 m-bottom-2 p-0">
-        <input type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Last Name">
+        <input formControlName="lastname" type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Last Name">
       </div>
       <div class="col-12 m-bottom-2 p-0">
-        <input type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Email">
+        <input formControlName="email" type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Email">
       </div>
       <div class="col-12 m-bottom-2 p-0">
-        <input type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Phone Number">
+        <input formControlName="phone" type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Phone Number">
       </div>
 
       <div class="col-6 m-bottom-2 p-0">
-        <select class="form-control search-slt font-family" id="exampleFormControlSelect1">
+        <select formControlName="country" class="form-control search-slt font-family" id="exampleFormControlSelect1">
             <option>Bosnia and Herzegovina</option>
             <option>Example option one</option>
             <option>Example option two</option>
@@ -35,7 +35,7 @@
       </div>
 
       <div class="col-6 m-bottom-2 p-0">
-        <select class="form-control search-slt font-family" id="exampleFormControlSelect1">
+        <select formControlName="city" class="form-control search-slt font-family" id="exampleFormControlSelect1">
             <option>Sarajevo</option>
             <option>Example option one</option>
             <option>Example option two</option>
@@ -44,14 +44,14 @@
 
      
       <div class="col-12 m-bottom-2 p-0">
-        <input type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Password">
+        <input formControlName="password" type="text" class="form-control search-slt font-family" style="font-weight:400 !important; border-radius: 0" placeholder="Password">
       </div>
       <div class="col-12 m-bottom-4 p-0">
-        <input type="text" class="form-control search-slt font-family" style="font-weight:400 !important" placeholder="Confirm Password">
+        <input formControlName="accountrole" type="text" class="form-control search-slt font-family" style="font-weight:400 !important" placeholder="Confirm Password">
       </div>
       <div class="col-12 m-bottom-2 p-0">
-        <button type="button" class="btn  font-family button-style " >Create Account</button>
+        <button type="button" class="btn  font-family button-style " (click)="createAccount()">Create Account</button>
       </div>
     </div>
+</form>
   </div>
-  

@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import {AlertModule, ButtonsModule} from 'ngx-bootstrap';
 import { RatingComponent } from './rating/rating.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeGalleryComponent } from './home/home-gallery/home-gallery.component';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,8 @@ import { SearchBarComponent } from './home/search-bar/search-bar.component';
 import { HeaderNavbarComponent } from './home/shared/header-navbar/header-navbar.component';
 import { LoginComponent } from './home/login/login.component';
 import { RegisterComponent } from './home/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 
 
 @NgModule({
@@ -35,7 +37,10 @@ import { RegisterComponent } from './home/register/register.component';
     SearchBarComponent,
     HeaderNavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RestaurantListComponent,
+    
+   
   ],
   imports: [
     FormsModule,
@@ -47,7 +52,10 @@ import { RegisterComponent } from './home/register/register.component';
     MatButtonModule,
     BrowserAnimationsModule,
     NgbModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
