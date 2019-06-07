@@ -3,28 +3,28 @@
 <app-header-navbar></app-header-navbar>
 </div>
 
-
-<form [formGroup]="loginForm">
-<div class="container">
-  <div class="d-flex" >
-    <div class="mr-auto p-2 font-family font-24 font-regular">Login</div>
-    
-    <div class="p-2 red-text font-family font-18 font-semi-bold" (click)="createAccount()" >Create account</div>
-  </div>  
-  <div class="row">
-    <div class="col-12 m-bottom-2">
-      <input formControlName="email" type="text" class="form-control b-r-0" placeholder="Email">
-    </div>
-    <div class="col-12 m-bottom-4">
-      <input formControlName="password" type="text" class="form-control b-r-0"  placeholder="Password">
-      <span *ngIf="invalidLogin" class="error-text">Invalid email or password</span>
-    </div>
-    <div class="col-12 m-bottom-2">
-      <button type="button" class="btn font-family wide-red" (click)="checkLogin()">Login</button>
+<div class="grey-back">
+  <form [formGroup]="loginForm">
+  <div class="container">
+    <div class="d-flex m-bottom-4" >
+      <div class="mr-auto font-family font-24 font-regular">Login</div>
+      
+      <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="createAccount()" >Create account</div>
+    </div>  
+    <div class="row">
+      <div class="col-12 m-bottom-6">
+        <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Email">
+      </div>
+      <div class="col-12 m-bottom-10">
+        <input formControlName="password" type="password" class="form-control font-family input-frame"  placeholder="Password">
+        <span *ngIf="invalidLogin" class="error-text">Invalid email or password</span>
+      </div>
+      <div class="col-12 ">
+        <button type="button" class="btn font-family wide-red" (click)="checkLogin()">Login</button>
+      </div>
     </div>
   </div>
+  </form>
 </div>
-</form>
-
 
 <app-footer></app-footer>

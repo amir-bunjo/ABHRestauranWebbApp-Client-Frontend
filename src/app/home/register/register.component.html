@@ -1,50 +1,54 @@
 <div style="background-color: #ffff ">
   <app-header-navbar></app-header-navbar>
   </div>
-  <div class="container">
-    <div class="d-flex" >
-      <div class="mr-auto p-2 font-family font-24 font-regular">Create Account</div>
-      <div class="p-2 red-text font-family font-18 font-semi-bold" (click)="login()" >Login</div>
-    </div>  
-<form [formGroup]="registerForm">
-    <div class="row">
-      <div class="col-12 m-bottom-2 p-0">
-        <input formControlName="firstname" type="text" class="form-control font-family b-r-0" placeholder="First Name">
-      </div>
-      <div class="col-12 m-bottom-2 p-0">
-        <input formControlName="lastname" type="text" class="form-control font-family b-r-0" placeholder="Last Name">
-      </div>
-      <div class="col-12 m-bottom-2 p-0">
-        <input formControlName="email" type="text" class="form-control font-family b-r-0 " placeholder="Email">
-      </div>
-      <div class="col-12 m-bottom-2 p-0">
-        <input formControlName="phone" type="text" class="form-control  font-family b-r-0" placeholder="Phone Number">
-      </div>
-      <div class="col-6 m-bottom-2 p-0">
-        <select formControlName="country" class="form-control font-family b-r-0" id="exampleFormControlSelect1">
-            <option>Bosnia and Herzegovina</option>
-            <option>Example option one</option>
-            <option>Example option two</option>
-        </select>
-      </div>
-      <div class="col-6 m-bottom-2 p-0">
-        <select formControlName="city" class="form-control  font-family b-r-0" id="exampleFormControlSelect1">
-            <option>Sarajevo</option>
-            <option>Example option one</option>
-            <option>Example option two</option>
-        </select>
-      </div>
-      <div class="col-12 m-bottom-2 p-0">
-        <input formControlName="password" type="text" class="form-control font-family b-r-0"  placeholder="Password">
-      </div>
-      <div class="col-12 m-bottom-4 p-0">
-        <input formControlName="accountrole" type="text" class="form-control font-family b-r-0" placeholder="Confirm Password">
-      </div>
-      <div class="col-12 m-bottom-2 p-0">
-        <button type="button" class="btn  font-family button-style " (click)="createAccount()">Create Account</button>
-      </div>
+  
+<div class="grey-back">
+    <form [formGroup]="registerForm">
+    <div class="container">
+      <div class="d-flex m-bottom-4" >
+        <div class="mr-auto font-family font-24 font-regular">Create account</div>
+        
+        <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="login()" >Login</div>
+      </div>  
+      <div class="row">
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="firstname" type="text" class="form-control font-family input-frame"  placeholder="First Name">
+          </div>
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="lastname" type="text" class="form-control font-family input-frame"  placeholder="Last Name">
+          </div>
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="email" type="text" class="form-control font-family input-frame"  placeholder="Email">
+          </div>
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="phone" type="text" class="form-control font-family input-frame"  placeholder="Phone Number">
+          </div>
+          <div class="col-6 m-bottom-8 select-padd-left ">
+            <select formControlName="country" class="form-control font-family select-frame width-select-left" id="exampleFormControlSelect1">
+                <option>Bosnia and Herzegovina</option>
+                <option>Example option one</option>
+                <option>Example option two</option>
+            </select>
+          </div>
+          <div class="col-6 m-bottom-8 select-padd-right">
+            <select formControlName="city" class="form-control font-family select-frame" id="exampleFormControlSelect1">
+                <option>Sarajevo</option>
+                <option>Example option one</option>
+                <option>Example option two</option>
+            </select>
+          </div>
+          <!-- change style later for select-->
+          <div class="col-12 m-bottom-6">
+            <input formControlName="password" type="text" class="form-control font-family input-frame"   placeholder="Password">
+          </div>
+          <div class="col-12 m-bottom-10">
+            <input formControlName="accountrole" type="text" class="form-control font-family input-frame"  placeholder="Confirm Password">
+          </div>
+          <div class="col-12 ">
+            <button type="button" class="btn font-family wide-red" (click)="createAccount()">Create Account</button>
+          </div>
+        </div>
     </div>
-</form>
+    </form>
   </div>
-
   <app-footer></app-footer>
