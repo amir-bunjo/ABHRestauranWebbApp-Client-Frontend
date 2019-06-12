@@ -16,14 +16,14 @@ export class UserService {
   getAllUsers(){
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
-    const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + password) });
+    const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + btoa(password)) });
     return this.http.get('http://localhost:8080/api/user',{headers});
   }
 
   deleteUser(id: number){
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
-    const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + password) });
+    const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + btoa(password)) });
     return this.http.delete('http://localhost:8080/api/user/'+ id,{headers}); 
   }
 }

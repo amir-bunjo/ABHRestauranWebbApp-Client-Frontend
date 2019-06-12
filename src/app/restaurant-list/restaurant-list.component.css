@@ -1,3 +1,236 @@
-.header-text-color{
+.header-text-color {
     color: black;
 }
+
+.grey-back {
+
+    background-color: #F7F7F7;
+
+    
+}
+
+.paginator{
+
+    padding-right: 2%;
+}
+
+.number-box {
+    width: 30px;
+    height: 30px;
+    background: #ffffff;
+    font-size: 14px;
+    border-style: solid;
+    border-color: rgb(214, 210, 210);
+    border-width: 0.5px;
+    border-radius: 5%;
+    cursor: pointer;
+    
+}
+
+.active{
+
+    background: #FD6F60 100% !important;
+    color: #ffffff;
+    border: none !important;
+    width: 32px;
+    height: 32px;
+}
+.number {
+
+    padding-top: 16%;
+    text-align: center;
+    margin: auto;
+}
+
+.pag-font {
+
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    opacity: 0.4;
+    cursor: pointer;
+
+}
+
+/* gallery styles */
+.img-size{
+   
+    width: 100%;
+    height: 260px;
+    position: relative;
+    cursor: pointer;
+}
+
+.container {
+   /* position: relative; maybe need later*/ 
+}
+
+.hr-pos {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.wide-grey {
+    background-color: #F9F9F9;
+    color: black;
+    border: 2px solid #e7e7e7;
+    width: 100%;
+    font-weight: 500;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    position: relative;
+  }
+
+
+  
+.res-name{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 24px;
+    color: #131D24;
+}
+
+.res-type{
+    opacity: 0.4;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    color: #131D24;
+}
+
+/*                          SEARCH BAR                            */
+
+.font-family{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600 ;
+    font-size: 16px;
+
+}
+.icon-pos {
+  position: absolute; 
+  top: 30%;
+  right:10%; 
+  font-size: 15px; 
+  bottom: 0
+}
+
+.search-icon { 
+  right: none;
+  left: 5%;
+  top: 25% !important;
+}
+
+.search-slt{
+    
+  /*  width: 100%; */
+  
+    color: #131D24;
+    background-color: #ffff;
+    background-image :#ffff;
+    border-radius: 0;
+    border: 0;
+    height: calc(3rem + 2px) !important; 
+    border-radius: 0;
+    appearance:         none; 
+    font-family: Arial !important
+}
+
+.pad-left{
+  padding-left: 13%;
+}
+
+.find-search{
+    background:#FD6F60 100% !important;
+    border-color: #FD6F60 100%;
+    border-radius: 0%;
+    width: 100%;
+    height: calc(3rem + 2px) !important; 
+    color: #ffff;
+}
+
+.bac {
+    background: #ffffff !important; 
+}
+
+
+/* FILTER BOX */
+.filter-padding {
+    padding-left:5%;
+    padding-top:5%
+}
+
+
+.filter-box {
+    position: absolute !important;
+    width: 20%;
+    height: 13%;
+    background: #ffff;
+    top:2.8%;
+    left:60%;
+    border-radius: 1%;
+    
+    -moz-box-shadow:    inset 0 0 2px grey;
+    -webkit-box-shadow: inset 0 0 2px grey;
+    box-shadow:         inset 0 0 2px grey;
+}
+
+.cousine {
+
+    font-family: 'Source Sans Pro', sans-serif; 
+    font-weight: 600; 
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.font-light {
+
+    opacity: 0.4;
+}
+
+.red-text {
+    color: #FD6F60;
+}
+
+.light-mark {
+    color: #000000;
+    opacity:0.3;
+    cursor: pointer;
+    padding-right: 5%;
+}
+
+.red-mark {
+    color: #FD6F60 ;
+    opacity: 100
+}
+
+.dolar-sign {
+    font-family: 'Source Sans Pro', sans-serif; 
+    font-size: 17px;
+    font-weight: 600;
+
+}
+
+
+
+
+
+  /* POPULAR LOCATIONS*/
+  .popular-title{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center; 
+    padding-bottom: 10%;
+    padding-top: 5%;
+    
+
+}
+
+.triangle {
+    color:  #ffff;
+    font-size: 19px; 
+    position: absolute;
+    top: 2.2%; 
+    left: 68%; 
+   
+    
+}
+

@@ -16,7 +16,11 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   authenticate(username, password) {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+
+    console.log('username  ' + username + '  password ' + password);
+    console.log('cryped pass:  ' + btoa(password));
+    let cryptedPass = btoa(password);
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + cryptedPass) });
     return this.http.get<Login>('http://localhost:8080/api/validateLogins',{headers}).pipe(
      map(
        userData => {
@@ -28,7 +32,6 @@ export class AuthenticationService {
 
     );
   }
-
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')

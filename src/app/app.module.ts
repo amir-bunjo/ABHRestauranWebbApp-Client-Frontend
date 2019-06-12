@@ -23,6 +23,7 @@ import { LoginComponent } from './home/login/login.component';
 import { RegisterComponent } from './home/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
     LoginComponent,
     RegisterComponent,
     RestaurantListComponent,
+    RestaurantComponent,
     
    
   ],
@@ -54,7 +56,8 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
     NgbModule,
     CarouselModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
     
   ],
   providers: [],
