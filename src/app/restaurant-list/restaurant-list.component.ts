@@ -120,7 +120,6 @@ export class RestaurantListComponent implements OnInit {
       return true;
     else
       return false  
-
   }
     
   navigateRestaurantSinglePage(id: number) {

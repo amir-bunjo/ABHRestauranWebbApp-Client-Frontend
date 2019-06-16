@@ -1,3 +1,276 @@
-<p>
-  restaurant works!
-</p>
+
+<!--HEADER WITH 50% BACKGROUND PHOTO-->
+<div class="background">
+  
+  <div class="header">
+    <app-header-navbar ></app-header-navbar>
+  </div>
+  
+  <div class="row restaurant-info " style="color: white">
+    <div class="col-12 " > <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p></div>
+    <div class="col-12">
+        
+      <span class="fa fa-star light-mark " id="star1" [class.red-mark]="isStarRed(1)" (click)="restaurantRating = 1" ></span>
+      <span class="fa fa-star light-mark" id="star2" [class.red-mark]="isStarRed(2)" (click)="restaurantRating = 2" ></span>
+      <span class="fa fa-star light-mark" id="star3" [class.red-mark]="isStarRed(3)" (click)="restaurantRating = 3" ></span>
+      <span class="fa fa-star light-mark" id="star4" [class.red-mark]="isStarRed(4)" (click)="restaurantRating = 4" ></span>
+      <span class="fa fa-star light-mark" id="star5" [class.red-mark]="isStarRed(5)" (click)="restaurantRating = 5" ></span>
+      
+      <span class="p-r-l-1 light-mark" >(1754)</span>
+
+      <span class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) " (click)="restaurantPriceFilter = 1" >$</span>
+        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) " (click)="restaurantPriceFilter = 2" >$</span>
+        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) " (click)="restaurantPriceFilter = 3">$</span>
+        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) " (click)="restaurantPriceFilter = 4">$</span>
+      <span class="p-r-l-1 light-mark">Italian | International | Mediterannean  </span>
+
+      <!-- maybe should restyle code  RATE PLACE BUTTON-->
+      <button type="button" class="btn font-family button-rate" style="width: 20%; margin-left: 5%"  >
+        <div class="row">
+          <div class="col-1">
+              <span  class="fa fa-star red-mark "  ></span>
+          </div>
+            <div class="col-9">
+                <span >Rate this place</span> 
+            </div>
+        </div>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!--      RESTAURANT PHOTO                -->
+<div class="photo-box">
+
+    <img *ngIf="restaurantData" src="{{restaurantData.promophoto}}" style="width:100%; height:100%">
+  
+</div>
+
+
+<div style="padding-bottom:5px">
+<div class="grey-back" >
+  <div class="font-family" style="position:absolute;padding-top:8%;padding-left:16%">
+      <p>Reservation</p>
+      <p>About</p>
+      <p>Menu</p>
+      <p>Photo</p>
+  </div>
+
+  <div class="panels-padding ">
+    
+    <div class="container" >
+  <!--      RESERVATION    PANEL                -->  
+        <div class="panel"  >
+          <div class="row pan-text-padd" > 
+            <div class="col-6">
+                <p  class="font-family pan-title" >Make a free reservation</p>
+            </div>
+
+            <div class="col-6">
+              <p class="font-family float-right pan-info"  >Booked 72 times today</p>
+            </div>
+ 
+          </div>
+        
+          <div class="form" style="padding-left:8%; padding-right: 8%;padding-bottom: 5%">
+              <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+              <div class="row">
+                <div class="col-3 p-0">
+                    <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                  <select type="button" class=" font-family border-select-start select-size" > 
+                    <option >2 people</option>
+                    <option >3 people</option>
+                    <option >4 people</option>
+                  </select>
+                </div>
+                <div class="col-3 p-0">
+                    <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                    <select type="button" class=" font-family border-select-middle select-size" > 
+                      <option >Apr 29,2016</option>
+                    </select>
+                </div>
+                <div class="col-3 p-0">
+                    <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                    <select type="button" class=" font-family border-select-middle select-size" > 
+                      <option >7:00 PM</option>
+                    </select>
+                </div>
+                <div class="col-3 p-0">
+                    <button type="button" class="btn font-family find-btn-red"  >Find a table</button>
+                   </div>
+              </div>
+
+          </div>
+
+        </div>
+<!--       PANEL INFO WITH MAP AND DESCRIPTION                -->
+        <div class="panel" style="margin-top: 5%" >
+
+            <p *ngIf="restaurantData" class="font-family pan-title  pan-text-padd" style="" >About Restaurant {{restaurantData.name}}</p>
+
+
+            <div style="padding-top:1%;">
+              <app-leaflet-map></app-leaflet-map>
+            </div>
+            <p  class="font-family pan-title  pan-text-padd" style="" >Description:</p>
+            <p class="font-family" style="padding: 5%;padding-top: 0"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+
+<!--      MENU PANEL                -->
+        <div class="panel" style=" margin-top: 5%" >
+          
+            <div class="row font-family" style="padding-top:3%;padding-left: 5%; padding-right: 5%">
+              <div class="col-3 menu-title " >
+                Menu:
+              </div>
+              
+              <div class="col-2 "  >
+                 <p class="menu-types " (click)="setMenuType(1)" [class.active-menu]="isMenuTypeActive(1)" >Breakfast</p> 
+              </div>
+              <div class="col-2"  >
+                  <p class="menu-types" (click)="setMenuType(2)" [class.active-menu]="isMenuTypeActive(2)" >Lunch</p> 
+              </div>
+              <div class="col-2" >
+                <p class="menu-types" (click)="setMenuType(3)" [class.active-menu]="isMenuTypeActive(3)" >Dinner</p> 
+
+              </div>
+            </div>
+             <hr> 
+             <p class="font-family" style="padding-left: 4.5%">APPETIZERS</p>
+             <div class="row font-family" style="padding-top:0%;padding-left: 7%">
+                <div class="col-10  p-0 ">
+                  <div class="menu-product font-family"> Brocoli</div>
+                  <p class="product-info" >With grilled saussage,olive..</p>
+                </div>
+                <div class="col-2 ">
+                    <div >$ 8.95</div>
+                </div>
+                <div class="col-10 p-0 ">
+                  <div class="menu-product"> Garlic Bread</div>
+                  <p></p>
+                </div>
+                <div class="col-2 ">
+                      <div >$ 8.95</div>
+                </div>
+          
+                <div class="col-10  p-0 ">
+                    <div class="menu-product"> Fried Cari</div>
+                    <p class="product-info">With cheese</p>
+                </div>
+                <div class="col-2 ">
+                      <div >  $ 8.95</div>
+                </div>
+                <div class="col-10 p-0   ">
+                  <div class="menu-product"> Fried Zuchini</div>
+                  <p class="product-info">With grilled saussage,olive..</p>
+              </div>
+              <div class="col-2 ">
+                    <div > $ 8.95</div>
+              </div>
+          
+            </div>
+            
+
+            <div class="row " style="padding-right:5%">
+              <div class="col">
+                  <div class="col-5 font-family" style="padding-left: 4.5%;padding-bottom:-10%">SALADS</div>
+                  <div class="float-right price-type" >small</div>
+                  <div class="float-right price-type" >large </div>
+              </div>
+            </div>
+
+            <div class="row font-family" style="padding-top:0%;padding-left: 7%; color: #1A1A1A 100% !important;padding-right: 3%">
+                
+              <div class="col-9 p-0 padd-bott">
+                <div class="menu-product font-family" > Russian salad</div>
+              </div>
+              <div class="col-1 p-0"  style="margin-left: 3%" >
+                  <div class="multiple-price" >$ 8.95</div>
+              </div>
+              <div class="col-1 p-0" style="margin-left: 2%">
+                <div >$ 8.95</div>
+              </div>
+
+              <div class="col-9 p-0 padd-bott " >
+                <div class="menu-product font-family" style="opacity: 0.2" > Bosnian salad</div>
+              </div>
+              <div class="col-1 p-0"  style="margin-left: 3%">
+                  <div class="multiple-price"  style="opacity: 0.2"  >$ 8.95</div>
+              </div>
+              <div class="col-1 p-0" style="margin-left: 2%" >
+                <div style="opacity: 0.2" >$ 8.95</div>
+              </div>
+
+              <div class="col-9 p-0 padd-bott " >
+                <div class="menu-product font-family" style="opacity: 0.05" > Cesar</div>
+              </div>
+              <div class="col-1 p-0"  style="margin-left: 3%">
+                  <div class="multiple-price"  style="opacity: 0.05"  >$ 8.95</div>
+              </div>
+              <div class="col-1 p-0" style="margin-left: 2%" >
+                <div style="opacity: 0.05" >$ 8.95</div>
+              </div>
+
+            </div>
+
+              <p class="font-family expand-pan" style="text-align: center; font-size: 15px; color: #FD6F60;padding-top: 0">See full menu</p>
+
+
+          </div>
+<!--   PANEL WITH RESTAURANTS PHOTO     -->
+          <div class="panel font-family" style=" margin-top: 5%;margin-bottom: 10%" >
+            <div class="row">
+              <div class="col"> 
+                 <p  class="float-left  pan-title " style="font-size: 22px !important; padding-top:6%;padding-left: 6%" >Restaurants photo</p>
+              </div>
+            <div class="col">
+                <p class="float-right  " style="padding-top:9%;padding-right: 8%; font-size: 14px"> See all photo(54)</p>
+            </div>
+            </div>
+                <div class="row" style="padding-left:3% !important; padding-right: 3% !important">
+                  <div class="col-6 p-1">
+                      <img src="/assets/img/restaurants.png" style="height: 100%; width:100%">
+                  </div>
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-6 p-1"> 
+                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                      </div>
+                      <div class="col-6 p-1"> 
+                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                      </div>
+                      <div class="col-6 p-1"> 
+                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                      </div>
+                      <div class="col-6 p-1"> 
+                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                      </div>
+                      <div class="col-6 p-1"> 
+                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                      </div>
+                      <div class="col-6 p-1"> 
+                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+             
+      
+      
+            </div>
+    </div>
+
+ 
+  </div>
+</div>
+</div>
+  
+ <!-- FOOTER  -->
+    <app-footer></app-footer> 
+ 
+ 
+

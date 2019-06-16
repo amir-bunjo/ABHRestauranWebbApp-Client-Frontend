@@ -24,6 +24,7 @@ import { RegisterComponent } from './home/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     RegisterComponent,
     RestaurantListComponent,
     RestaurantComponent,
+    LeafletMapComponent,
     
    
   ],
