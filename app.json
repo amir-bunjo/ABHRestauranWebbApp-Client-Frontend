@@ -1,0 +1,15 @@
+{
+  "name": "ABHRestaurant-frontend",
+  "description": "Client web app for ABHRestaurant ",
+  "repository": "https://github.com/amir-bunjo/ABHRestauranWebbApp-Client-Frontend.git",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["angular", "nodejs","client"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-pgbouncer"
+    },    
+   {
+      "url": "heroku/nodejs"
+    }
+  ] 
+}
