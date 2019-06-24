@@ -1,6 +1,6 @@
 
 <!--HEADER WITH 50% BACKGROUND PHOTO-->
-<div class="background">
+<div #reservation  class="background">
   
   <div class="header">
     <app-header-navbar ></app-header-navbar>
@@ -25,14 +25,12 @@
       <span class="p-r-l-1 light-mark">Italian | International | Mediterannean  </span>
 
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button type="button" class="btn font-family button-rate" style="width: 20%; margin-left: 5%"  >
+      <button (click)="rateRestaurant()" type="button" class="btn font-family button-rate" style="width: 20%; margin-left: 5%"  >
         <div class="row">
-          <div class="col-1">
-              <span  class="fa fa-star red-mark "  ></span>
+          <div  class="col-12">
+              <span  class="fa fa-star red-mark " style="padding-right:5%"  ></span> <span >Rate this place</span> 
           </div>
-            <div class="col-9">
-                <span >Rate this place</span> 
-            </div>
+         
         </div>
       </button>
 
@@ -48,16 +46,16 @@
 </div>
 
 
-<div style="padding-bottom:5px">
-<div class="grey-back" >
-  <div class="font-family" style="position:absolute;padding-top:8%;padding-left:16%">
-      <p>Reservation</p>
-      <p>About</p>
-      <p>Menu</p>
-      <p>Photo</p>
+<div >
+<div class="grey-back"  >
+  <div class="font-family" style="position: absolute; top:64%;padding-left:16%">
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(reservation)">Reservation</p>
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(about)" >About</p>
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(menu)" >Menu</p>
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(photo)" >Photo</p>
   </div>
 
-  <div class="panels-padding ">
+  <div  class="panels-padding ">
     
     <div class="container" >
   <!--      RESERVATION    PANEL                -->  
@@ -73,44 +71,83 @@
  
           </div>
         
-          <div class="form" style="padding-left:8%; padding-right: 8%;padding-bottom: 5%">
-              <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+          <div class="form" [formGroup]="myForm" style="padding-left:8%; padding-right: 8%;padding-bottom: 5%">
+              <span  class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true" (click)="time-picker.toggle()">  </i> </span>
               <div class="row">
                 <div class="col-3 p-0">
-                    <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
-                  <select type="button" class=" font-family border-select-start select-size" > 
-                    <option >2 people</option>
-                    <option >3 people</option>
-                    <option >4 people</option>
-                  </select>
+                    <div (click)="dropdownActive=!dropdownActive" class="dropdown">
+                      <input placeholder="Select seats" class="select-size" style="border: 1px solid #E3E3E3; border-right: none" formControlName="guest"  (window:mouseup)="autoCloseForDropdownCars($event)"  />
+                      <div class="dropdown-content" [class.dropdown-active]="dropdownActive">
+                        <a (click)="setGuestNumber(2)">2 people</a>
+                        <a (click)="setGuestNumber(3)">3 people</a>
+                        <a (click)="setGuestNumber(4)">4 people</a>
+                      </div>
+                    </div>
+                    <span (click)="dropdownActive=!dropdownActive"  class="icon-pos"> <i class="fa fa-angle-down"  aria-hidden="true">  </i> </span>
                 </div>
                 <div class="col-3 p-0">
-                    <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
-                    <select type="button" class=" font-family border-select-middle select-size" > 
-                      <option >Apr 29,2016</option>
-                    </select>
+                  
+                    <span (click)="d.toggle()"  class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                    <input [disabled]="findClicked" type="text"  placeholder="yyyy-mm-dd" style="background:#ffff !important; width: 100% !important;border: 1px solid #E3E3E3;border-right: none !important;"
+                    formControlName="date" ngbDatepicker #d="ngbDatepicker"  (click)="d.toggle()" (dateSelect)="onDateSelect($event)"  class="font-family select-size" /> 
+                  
                 </div>
                 <div class="col-3 p-0">
-                    <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
-                    <select type="button" class=" font-family border-select-middle select-size" > 
-                      <option >7:00 PM</option>
-                    </select>
+                    <span atp-time-picker  (click)="openTimePicker($event)" class="icon-pos"> <i class="fa fa-angle-down"  aria-hidden="true">  </i> </span>
+                    <input atp-time-picker  style="border: 1px solid #E3E3E3;"  class="font-family select-size" placeholder="HH-MM" formControlName="time"  />
                 </div>
                 <div class="col-3 p-0">
-                    <button type="button" class="btn font-family find-btn-red"  >Find a table</button>
+                    <button (click)="findAvailableTable()" type="button" class="btn font-family find-btn-red"  >Find a table</button>
                    </div>
               </div>
 
           </div>
 
+          <div *ngIf="true " class="font-family" style="padding-right:6%;padding-left:6%; padding-bottom: 4%" >
+
+            <h5 class="p-0">Availibilty on {{date}} arround {{time}} for {{guestNumber}} people </h5>
+            <div class="row" style="font-size: 14px !important;padding-left:2% " >
+              <div class="col-md-auto p-0"  > 
+                <div class="row">
+                    <div class="col-1 ">
+                        <i class="material-icons info-icon">info</i> 
+                    </div>
+                    <div class="col-md-auto" style="opacity:0.4">
+                        {{availableTableNumber}} tables left
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-auto p-0 "> 
+                  <div class="row "   >
+                      <div class="col-1">
+                          <i class="material-icons info-icon" style="color: green">check_circle</i> 
+                      </div>
+                      <div class="col-md-auto"style="opacity:0.4" >
+                          {{reservationToday}} reservations today
+                      </div>
+                  </div>
+               </div>
+             </div>
+             <div class="row">
+            <p style="font-size: 18px; font-weight:400; padding-left: 1%; padding-top:3%">Select the best time that fits you</p>
+             </div>
+            <div class="row" style="">
+              <div class="col-2 p-r-l-1" *ngFor="let available of availableList"   >
+                <button (click)="reserveTable(available.tableId,available.time)" class="btn find-btn-red" style="border-radius: 3px !important ">{{available.tableId}}. {{available.time}}  </button>
+            </div>
+            </div>
+
+        
+          </div>
+
         </div>
 <!--       PANEL INFO WITH MAP AND DESCRIPTION                -->
-        <div class="panel" style="margin-top: 5%" >
+        <div #about  class="panel" style="margin-top: 5%" >
 
-            <p *ngIf="restaurantData" class="font-family pan-title  pan-text-padd" style="" >About Restaurant {{restaurantData.name}}</p>
+            <p *ngIf="restaurantData" class="font-family pan-title  pan-text-padd"  >About Restaurant {{restaurantData.name}}</p>
 
 
-            <div style="padding-top:1%;">
+            <div  style="padding-top:1%;">
               <app-leaflet-map></app-leaflet-map>
             </div>
             <p  class="font-family pan-title  pan-text-padd" style="" >Description:</p>
@@ -120,7 +157,7 @@
           </div>
 
 <!--      MENU PANEL                -->
-        <div class="panel" style=" margin-top: 5%" >
+        <div #menu  class="panel" style=" margin-top: 5%" >
           
             <div class="row font-family" style="padding-top:3%;padding-left: 5%; padding-right: 5%">
               <div class="col-3 menu-title " >
@@ -221,7 +258,7 @@
 
           </div>
 <!--   PANEL WITH RESTAURANTS PHOTO     -->
-          <div class="panel font-family" style=" margin-top: 5%;margin-bottom: 10%" >
+          <div #photo class="panel font-family" style=" margin-top: 5%;margin-bottom: 10%" >
             <div class="row">
               <div class="col"> 
                  <p  class="float-left  pan-title " style="font-size: 22px !important; padding-top:6%;padding-left: 6%" >Restaurants photo</p>
@@ -268,9 +305,35 @@
   </div>
 </div>
 </div>
-  
+
+
  <!-- FOOTER  -->
-    <app-footer></app-footer> 
+<app-footer></app-footer> 
  
- 
+ <!--
+<form class="form-inline">
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<div>
+
+  
+<ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+
+
+<input />
+<button (click)="d.toggle()">Toggle</button>
+
+</div>
+-->
 

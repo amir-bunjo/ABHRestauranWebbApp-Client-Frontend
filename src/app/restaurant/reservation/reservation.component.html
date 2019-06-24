@@ -1,0 +1,105 @@
+<div style="background-color: #ffff ">
+  <app-header-navbar></app-header-navbar>
+  </div>
+
+  
+<div class="grey-back">
+  <h2 class="text-center font-family title-padd">Complete your Reservation</h2>
+
+  <div class="container" style="padding-right: 10%;padding-left:10%;padding-bottom: 5%">
+    <div class="panel ">
+      <div class="container">
+        <span class="float-left panel-title" > Reservation Details</span>
+        <span class="float-right red-back">You have a 2:34min to complete your resercation</span>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-12">
+          <img height="100%" width="100%" style="padding-top:10%;padding-left: 15%;padding-bottom: 25%;padding-right: 0 !important" src="/assets/img/restaurants.png">
+        </div>
+        <div class="col-lg-7 col-md-8 col-xs-12" style="padding-top:2%;padding-bottom:3%">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-12 col-xs-12 light-font "> RESTAURANT </div>
+            <div style="padding-bottom: 3%" class="col-lg-12 col-md-12 col-md-12 col-xs-12 red-text">{{reservationModel.restaurant.name}}</div>
+
+            <div class="col-lg-4 col-md-4 col-xs-4 light-font">GUESTS</div>
+            <div class="col-lg-4 col-md-4 col-xs-4 light-font">DATE</div>
+            <div class="col-lg-4 col-md-4 col-xs-4 light-font">TIME</div>
+
+            <div class="col-lg-4 col-md-4 col-xs-4 black-font">{{reservationModel.guest}} people</div>
+            <div class="col-lg-4 col-md-4 col-xs-4 black-font" >{{reservationModel.date}}</div>
+            <div class="col-lg-4 col-md-4 col-xs-4 black-font">{{reservationModel.time}}</div>
+          
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    <form *ngIf="!isUserLoggedIn()" [formGroup]="reservationForm"  >
+      <div class="container" style="padding-right:10%; padding-left:10%" >
+        
+        <div style="margin-left:-1%">
+          <span class="font-family">Already a member? </span>
+          <span class="red-text font-family"> Sign in</span>
+        </div>
+       
+      <div class="row">
+          <div class="col-6 p-1">
+            <input formControlName="firstname" type="text" class="form-control font-family input-frame"  placeholder="First Name">
+          </div>
+          <div class="col-6  p-1">
+            <input formControlName="lastname" type="text" class="form-control font-family input-frame"  placeholder="Last Name">
+          </div>
+          <div class="col-4  p-1"style="padding-right:0 !important">
+            <input formControlName="phone" type="text" class="form-control font-family input-frame"  placeholder="Phone Number">
+          </div>
+          <div class="col-2  p-1" style="padding-left:0 !important">
+            <div class="box" style="position: relative;" >
+              <span class="icon-pos">   <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+              <select  class="font-family form-control " style=" height: calc(3rem + 2px); border-left: none  " formControlName="numbertype" >   
+                <option>Mobile</option>
+                <option>Example option one</option>
+                <option>Example option two</option>
+            </select>
+            </div>            
+        </div>
+
+          <div class="col-6  p-1">
+              <div class="box" style="position: relative;" >
+                <span class="icon-pos">   <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                <select  class="font-family form-control " style="height: calc(3rem + 2px); " formControlName="country" >   
+                  <option>Bosnia and Herzegovina(+387)</option>
+                  <option>Example option one</option>
+                  <option>Example option two</option>
+              </select>
+              </div>            
+          </div>
+          <!-- change style later for select-->
+          <div class="col-6 m-bottom-6 p-1">
+            <input formControlName="email" type="text" class="form-control font-family input-frame"  placeholder="Email">
+          </div>
+
+          <div class="col-6 m-bottom-6 p-1">
+            <input formControlName="specrequest" type="text" class="form-control font-family input-frame"  placeholder="Add a special request(Optional)" />
+          </div>
+        </div>
+    </div>
+    </form>
+
+    <div style="padding-right: 40%;padding-left:40%; padding-top:5%">
+        <div class="col-12 "  >
+          
+            <button style="width: 100%" type="button" class="btn font-family wide-red"  (click)="complete()"><span>Complete Reservation</span></button>
+        </div>
+
+    </div>
+
+    <div class="text-center" style="padding-top:3%; padding-bottom:10%">
+        <p class="text-bottom">By clicking "Complete Reservation" you agree to the <span class="red-text">ABH Restaurants Terms of use</span> and <span class="red-text">Privacy policy</span></p>
+   </div>
+  </div>
+  <app-footer></app-footer>
+

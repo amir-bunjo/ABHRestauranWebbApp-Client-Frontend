@@ -1,0 +1,63 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestaurantService } from 'src/app/services/restaurant.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+
+@Component({
+  selector: 'app-reservation',
+  templateUrl: './reservation.component.html',
+  styleUrls: ['./reservation.component.css']
+})
+export class ReservationComponent implements OnInit {
+
+ 
+  reservationModel: any;
+  reservationForm:FormGroup;
+
+  constructor(private route: ActivatedRoute, private router: Router, private restaurantService:RestaurantService, private auth: AuthenticationService) {
+    this.getRouterData();
+  }
+  ngOnInit() {
+
+    this.createReservationForm()
+  }
+  isUserLoggedIn(){
+    return this.auth.isUserLoggedIn();
+  }
+
+  complete() {
+    console.log('complete reservation clicked');
+    console.log(this.reservationModel.time)
+    this.restaurantService.saveReservation(this.reservationModel).subscribe(
+      res => console.log(res)
+    );
+  }
+
+  createReservationForm() {
+
+    this.reservationForm = new FormGroup({
+      'firstname': new FormControl(null,Validators.required),
+      'lastname': new FormControl(null,Validators.required),
+      'country': new FormControl(null,Validators.required),
+      'phone': new FormControl(null,Validators.required),
+      'numbertype': new FormControl(null,Validators.required),
+      'email': new FormControl(null,Validators.required),
+      'specrequest': new FormControl(null)
+    });
+  }
+  
+  getRouterData(){
+
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.reservationModel = this.router.getCurrentNavigation().extras.state;
+      }
+    });
+
+  }
+
+  
+
+  
+}

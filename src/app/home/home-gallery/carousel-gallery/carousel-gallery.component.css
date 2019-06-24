@@ -2,6 +2,7 @@
     width: 100 px;
     height: 140px;
     width: 90%;
+    transition: .5s ease;
 }
 
 .spec-title{
@@ -38,6 +39,12 @@
    font-family: 'Source Sans Pro', sans-serif;
    font-size: 30px;
    font-weight: 5;
+}
+
+.icon-font {
+    color: #FFFFFF ; 
+    font-size: 20px;
+    padding-top:5%
 }
 
 

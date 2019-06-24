@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeGalleryComponent } from './home/home-gallery/home-gallery.component';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbCalendar, NgbCalendarGregorian} from '@ng-bootstrap/ng-bootstrap';
 import { CarouselGalleryComponent } from './home/home-gallery/carousel-gallery/carousel-gallery.component';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { CarouselModule } from 'ngx-bootstrap';
@@ -25,6 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component';
+import { RateDialogComponent } from './restaurant/rate-dialog/rate-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ReservationComponent } from './restaurant/reservation/reservation.component';
+import { AmazingTimePickerModule } from 'amazing-time-picker'; 
 
 
 @NgModule({
@@ -43,11 +47,14 @@ import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component'
     RestaurantListComponent,
     RestaurantComponent,
     LeafletMapComponent,
+    RateDialogComponent,
+    ReservationComponent
     
    
   ],
   imports: [
     FormsModule,
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     AlertModule,
@@ -59,10 +66,15 @@ import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component'
     CarouselModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    AmazingTimePickerModule
+   
+   
     
     
   ],
-  providers: [],
+
+  entryComponents: [RateDialogComponent],
+  providers: [{provide: NgbCalendar, useClass: NgbCalendarGregorian}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

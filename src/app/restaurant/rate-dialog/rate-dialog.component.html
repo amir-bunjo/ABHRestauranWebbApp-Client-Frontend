@@ -1,0 +1,22 @@
+
+<div class="text-center">
+  <h3 class="font-family text-padd">Rate this place</h3>
+
+  <span class="fa fa-star light-mark " id="star1" [class.red-mark]="isStarRed(1)" (click)="restaurantRating = 1" ></span>
+  <span class="fa fa-star light-mark" id="star2" [class.red-mark]="isStarRed(2)" (click)="restaurantRating = 2" ></span>
+  <span class="fa fa-star light-mark" id="star3" [class.red-mark]="isStarRed(3)" (click)="restaurantRating = 3" ></span>
+  <span class="fa fa-star light-mark" id="star4" [class.red-mark]="isStarRed(4)" (click)="restaurantRating = 4" ></span>
+  <span class="fa fa-star light-mark" id="star5" [class.red-mark]="isStarRed(5)" (click)="restaurantRating = 5" ></span>
+</div>
+
+
+<div style="padding-left:24%;padding-right: 24%">
+
+  <textarea class="review-size" placeholder="Write a review"></textarea>
+
+</div>
+
+<div style="margin-right:16.5%;margin-left:18.5%;padding:5%;padding-top:5%">
+  <button class="btn button-red" style="background-color:#FD6F60 100% !important">  Save</button>
+</div>
+
