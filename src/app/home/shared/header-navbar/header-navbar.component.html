@@ -1,0 +1,8 @@
+
+<div class="d-flex font-family header-padding" >
+  <div class="mr-auto p-2 font-size-20">ABH Restaurants</div>
+  <div class="p-2" (click)="home()">Home</div>
+  <div class="p-2" (click)="restaurants()">Restaurants</div>
+  <div class="p-2" *ngIf="!isLoggedIn" (click)="login()">Login </div>
+  <div class="p-2" *ngIf="isLoggedIn" (click)="logOut()">Log out</div>
+</div>

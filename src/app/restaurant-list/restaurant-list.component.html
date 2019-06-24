@@ -1,0 +1,139 @@
+
+<app-header-navbar class="header-text-color"></app-header-navbar>
+
+<div class="grey-back" style="position: relative">
+
+  <div class="container" style="padding-top:2%; padding-bottom: 3%; padding-left: 6.5%; padding-right: 6.5%">
+
+    <div style="padding-bottom: 3%" >
+
+        <form [formGroup]="searchForm" action="#" method="post" novalidate="novalidate"  >
+            <div class="row">
+              <div class="col-lg-12 ">
+                <div class="row ">
+                    <div class="col-lg-8 col-md-3 col-sm-6 col-xs-6 p-0">
+                     <span class="icon-pos search-icon"><i class="fa fa-search" aria-hidden="true"></i></span>   
+                      <input formControlName="name" type="text" class="form-control search-slt font-family pad-left" style="font-weight:400 !important" placeholder="Location, Restaurant or Cousine">
+                     </div>
+        
+                      <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6  p-0">
+                          <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+     
+                          <select type="button" class="form-control search-slt font-family" id="exampleFormControlSelect1" value="Filter by" (click)="isCollapsedFilterBox = !isCollapsedFilterBox"
+                          [attr.aria-expanded]="!isCollapsedFilterBox" aria-controls="collapseFilterBox"> 
+                             <option style="display: none">Filter by</option>
+                          </select>
+
+                        </div>
+                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 p-0">
+                     <button type="button" class="btn font-family find-search" (click)="search()" >Search</button>
+                    </div>
+               </div>
+             </div>
+           </div>
+          </form>
+    </div>
+
+ </div>
+
+
+ <!-- GALLERY -->
+ <div style="padding-right: 15%; padding-left: 15%">
+ 
+  <div class="container">
+ 
+    <div class="row" >
+        <div class="col-lg-4 col-md-6 col-xs-12 img-width" *ngFor="let restaurant of restaurantsFromDB; let i=index">
+          <div class="row"  >
+
+            <div class="col-12">
+                <img  class="img-size"  src="{{restaurant.promophoto}}" (click)= "navigateRestaurantSinglePage(restaurant.id)" >
+                <span class="res-name">{{restaurant.name}}</span>
+            </div>
+
+            <div class="col-12">
+                <span><app-rating></app-rating>(1745) $$$$</span> 
+                <hr class="hr-pos">
+            </div>
+            <div class="col-12">
+                <span class="res-type">Italian | International | Mediteran  </span>
+            </div>
+            <div class="col-12">
+                <button class="button wide-grey">Reserve now</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+ 
+
+<!--FILTER BOX-->
+<span *ngIf="!isCollapsedFilterBox" class="triangle" style=" text-shadow: 0 0 1px black;top: 2.2% !important;font-size: 18px !important" >▲</span>
+<div id="collapseFilterBox" [ngbCollapse]="isCollapsedFilterBox" class="filter-box">
+  
+    <div class="row filter-padding">
+       
+        <div  class="col-6 cousine font-light" (click)="restaurantPriceFilter = 0">
+            PRICE
+        </div>
+        <div class="col-6 cousine font-light" (click)="restaurantRating = 0">
+            RATING
+        </div>
+      <div class="col-6">
+          <span class="light-mark dolar-sign " [class.red-mark]="isPriceFilterRed(1) " (click)="restaurantPriceFilter = 1" >$</span>
+          <span class="light-mark dolar-sign" [class.red-mark]="isPriceFilterRed(2) " (click)="restaurantPriceFilter = 2" >$</span>
+          <span class="light-mark dolar-sign" [class.red-mark]="isPriceFilterRed(3) " (click)="restaurantPriceFilter = 3">$</span>
+          <span class="light-mark dolar-sign" [class.red-mark]="isPriceFilterRed(4) " (click)="restaurantPriceFilter = 4">$</span>
+      </div>
+
+      <div class="col-6 ">
+        <span class="fa fa-star light-mark " id="star1" [class.red-mark]="isStarRed(1)" (click)="restaurantRating = 1" ></span>
+        <span class="fa fa-star light-mark" id="star2" [class.red-mark]="isStarRed(2)" (click)="restaurantRating = 2" ></span>
+        <span class="fa fa-star light-mark" id="star3" [class.red-mark]="isStarRed(3)" (click)="restaurantRating = 3" ></span>
+        <span class="fa fa-star light-mark" id="star4" [class.red-mark]="isStarRed(4)" (click)="restaurantRating = 4" ></span>
+        <span class="fa fa-star light-mark" id="star5" [class.red-mark]="isStarRed(5)" (click)="restaurantRating = 5" ></span>
+      </div>
+    </div>
+    <hr style="width: 100%; left: 0% !important">
+    <div class="row" style="padding-left:5%">
+      <div class="col-12 cousine font-light" style="padding-bottom: 3%" >
+          COUSINE
+      </div>
+      <div class="col-6 cousine" *ngFor="let cousine of cousines" (click)="clickCousine(cousine)" [class.red-text]="selectedCousines.includes(cousine)"  >
+          {{cousine}}
+      </div>
+    </div>
+
+  </div>
+ 
+  <span *ngIf="!isCollapsedFilterBox" class="triangle" >▲</span>
+
+<!--PAGINATION -->
+
+<div class="container" style="padding-top:5%; padding-bottom: 5%" class="d-flex justify-content-center">
+        <div class="row">
+            <a class="pag-font" style="padding-right: 10%;padding-top:5px" (click)="previousPage()" >PREVIOUS</a>
+                <div class="paginator"  *ngFor="let page of pages; let i=index" id="box">   
+                <div class="number-box" [class.active]="selectedPageIndex === page"
+                (click)="setPageIndex(page)" > 
+                    <div class="number" > 
+                    {{page}}
+                </div>
+                </div>
+            </div> 
+           <a class="pag-font" style="padding-left: 10%; padding-top:5px; " (click)="nextPage()" >NEXT</a>
+           
+        </div>
+</div>
+
+<h2 class="popular-title" > Popular Locations</h2>
+<div>
+    <app-popular-location></app-popular-location>
+</div>
+
+
+  <!--FOOTER-->  
+<app-footer></app-footer>
+
+

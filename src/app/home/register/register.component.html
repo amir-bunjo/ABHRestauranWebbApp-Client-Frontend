@@ -1,0 +1,64 @@
+<div style="background-color: #ffff ">
+  <app-header-navbar></app-header-navbar>
+  </div>
+  
+<div class="grey-back">
+    <form [formGroup]="registerForm">
+    <div class="container">
+      <div class="d-flex m-bottom-4" >
+        <div class="mr-auto font-family font-24 font-regular">Create account</div>
+        
+        <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="login()" >Login</div>
+      </div>  
+      <div class="row">
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="firstname" type="text" class="form-control font-family input-frame"  placeholder="First Name">
+          </div>
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="lastname" type="text" class="form-control font-family input-frame"  placeholder="Last Name">
+          </div>
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="email" type="text" class="form-control font-family input-frame"  placeholder="Email">
+          </div>
+          <div class="col-12 m-bottom-6 ">
+            <input formControlName="phone" type="text" class="form-control font-family input-frame"  placeholder="Phone Number">
+          </div>
+          <div class="col-6 m-bottom-2 select-padd-left ">
+              <div class="box" style="position: relative;" >
+                <span class="icon-pos">   <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                <select  class="font-family form-control  " style="height: 100%;" formControlName="city">   
+                  <option>Bosna i Hercegovina</option>
+                  <option>Example option one</option>
+                  <option>Example option two</option>
+              </select>
+              </div>    
+          </div>
+          <div class="col-6 m-bottom-2 select-padd-right">
+              <div class="box" style="position: relative;" >
+                <span class="icon-pos">   <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
+                <select  class="font-family form-control " style="height: 100%; " formControlName="country" >   
+                  <option>Sarajevo</option>
+                  <option>Example option one</option>
+                  <option>Example option two</option>
+              </select>
+              </div>            
+          </div>
+          <!-- change style later for select-->
+          <div class="col-12 m-bottom-6">
+            <input formControlName="password" type="password" class="form-control font-family input-frame"   placeholder="Password">
+          </div>
+          <div class="col-12 m-bottom-3">
+            <input formControlName="confirmpass" type="password" class="form-control font-family input-frame"  placeholder="Confirm Password">
+          </div>
+          <div class="col-12 m-bottom-6">
+            <span *ngIf="checkPassword()" class="error-text">Invalid confirmation password</span>
+            <span *ngIf="!checkPassword() && isConfirmNull()" class="succes-text">Valid password</span>
+          </div>
+          <div class="col-12 ">
+            <button type="button" class="btn font-family wide-red" [disabled]="!registerForm.valid || checkPassword()" (click)="createAccount()">Create Account</button>
+          </div>
+        </div>
+    </div>
+    </form>
+  </div>
+  <app-footer></app-footer>

@@ -1,0 +1,19 @@
+
+ <h1 class="carousel-title">Specials</h1>
+<carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [interval]="false"
+          [noWrap]="noWrap"
+          [showIndicators]="false">
+          
+          <!--margin right !important-->
+  <slide class="margin-slide" *ngFor="let slide of slides; let index=index">
+    
+    <img  class="img-size" [src]="slide.image" alt="image slide" >
+    <h5 class="spec-title">Specials {{index+1}}</h5> <!--hard coded currently -->
+    <h6 class="city-title">New York | 321 Restaurant</h6> <!--hard coded currently -->
+    
+  </slide>
+
+</carousel>
+<p class="bottom-text" >See all specials</p>
