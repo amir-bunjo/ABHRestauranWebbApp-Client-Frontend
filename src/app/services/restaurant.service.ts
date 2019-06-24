@@ -12,7 +12,7 @@ export class RestaurantService {
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + btoa(password)) });
-    return this.http.get('http://localhost:8080/api/restaurant',{headers});
+    return this.http.get('http://localhost:8080/api/allrestaurant',{headers});
   }
 
   getRestaurantsWithStartIndex(startIndex: number){
@@ -36,5 +36,13 @@ export class RestaurantService {
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + btoa(password)) });
     return this.http.get('http://localhost:8080/api/restaurant/matchpatern/' +patern, {headers});
+  }
+
+  getRestaurantById(id:number) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic '+ btoa(username + ':' + btoa(password)) });
+    return this.http.get('http://localhost:8080/api/restaurant/'+id ,{headers});
+
   }
 }

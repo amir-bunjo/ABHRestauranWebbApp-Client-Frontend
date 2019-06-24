@@ -12,7 +12,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'restaurantlist', component: RestaurantListComponent,canActivate:[AuthguardService]},
-    {path: 'restaurant/:id', component: RestaurantComponent}
+    {path: 'restaurant/:id', component: RestaurantComponent,canActivate:[AuthguardService]}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

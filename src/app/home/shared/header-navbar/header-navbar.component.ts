@@ -17,6 +17,8 @@ export class HeaderNavbarComponent implements OnInit {
     this.isLoggedIn = this.loginService.isUserLoggedIn();
   }
 
+
+
   login(){
     console.log('login clicked');
     this.router.navigate(['/login']);
