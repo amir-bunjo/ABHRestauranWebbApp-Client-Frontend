@@ -7,35 +7,38 @@
   <h2 class="text-center font-family title-padd">Complete your Reservation</h2>
 
   <div class="container" style="padding-right: 10%;padding-left:10%;padding-bottom: 5%">
-    <div class="panel ">
-      <div class="container">
-        <span class="float-left panel-title" > Reservation Details</span>
-        <span class="float-right red-back">You have a 2:34min to complete your resercation</span>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-2 col-md-2 col-xs-12">
-          <img height="100%" width="100%" style="padding-top:10%;padding-left: 15%;padding-bottom: 25%;padding-right: 0 !important" src="/assets/img/restaurants.png">
-        </div>
-        <div class="col-lg-7 col-md-8 col-xs-12" style="padding-top:2%;padding-bottom:3%">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-md-12 col-xs-12 light-font "> RESTAURANT </div>
-            <div style="padding-bottom: 3%" class="col-lg-12 col-md-12 col-md-12 col-xs-12 red-text">{{reservationModel.restaurant.name}}</div>
 
-            <div class="col-lg-4 col-md-4 col-xs-4 light-font">GUESTS</div>
-            <div class="col-lg-4 col-md-4 col-xs-4 light-font">DATE</div>
-            <div class="col-lg-4 col-md-4 col-xs-4 light-font">TIME</div>
-
-            <div class="col-lg-4 col-md-4 col-xs-4 black-font">{{reservationModel.guest}} people</div>
-            <div class="col-lg-4 col-md-4 col-xs-4 black-font" >{{reservationModel.date}}</div>
-            <div class="col-lg-4 col-md-4 col-xs-4 black-font">{{reservationModel.time}}</div>
-          
+      <div class="panel">
+        <div class="row p-3" >
+          <div class="col-7 panel-title ">
+            <div >Reservation Details</div>
+          </div>
+          <div [hidden]="true" class="col-ml-auto ">
+             <div class="text-right "><p class="red-back">You have a 2:34min to complete your reservation</p></div> 
           </div>
         </div>
-
+        <div class="row">
+        <div class="col-3">
+            <img height="100%" width="100%" style="padding:3%;padding-top:1% !important" src="{{reservationModel.restaurant.promophoto}}">
+        </div>
+        <div class="col-6">
+          <div class="row">
+           <div class="col-12 light-font">RESTAURANT</div>
+           <div class="col-12 red-text">{{reservationModel.restaurant.name}}</div>
+           <br>
+           <br>
+           <div class="col-4 light-font" >GUESTS</div>
+           <div class="col-4 light-font" >Date</div>
+           <div class="col-4 light-font" >TIME</div>
+           <div class="col-4 black-font " >{{reservationModel.guest}} people </div>
+           <div class="col-4 black-font " >{{reservationModel.date}} </div>
+           <div class="col-4 black-font" >{{reservationModel.time}} </div>
+  
+          </div>
+        </div>
+        </div>
       </div>
     </div>
-  </div>
 
 
     <form *ngIf="!isUserLoggedIn()" [formGroup]="reservationForm"  >
@@ -92,7 +95,7 @@
     <div style="padding-right: 40%;padding-left:40%; padding-top:5%">
         <div class="col-12 "  >
           
-            <button style="width: 100%" type="button" class="btn font-family wide-red"  (click)="complete()"><span>Complete Reservation</span></button>
+            <button style="width: 100%" type="button" class="btn font-family wide-red"  (click)="completeReservation()"><span>Complete Reservation</span></button>
         </div>
 
     </div>
@@ -103,3 +106,5 @@
   </div>
   <app-footer></app-footer>
 
+
+  

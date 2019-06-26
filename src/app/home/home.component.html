@@ -24,8 +24,8 @@
 
  
 
-    <div class="search-bar-paddings">
-    <app-search-bar  ></app-search-bar>
+    <div class="search-bar-paddings" style="margin-bottom: 5% !important">
+    <app-search-bar (valueChange)="searchMatchedRestaurant($event)" ></app-search-bar>
     </div>
 
 </header>
@@ -37,7 +37,28 @@
         <h1 class="popular-title">Popular for Lunch today</h1>
     </div>
     <div class="m-b-10">
-        <app-home-gallery></app-home-gallery>
+        
+        <div >
+            <div class="container">
+              <div class="row" >
+                  <div class="col-lg-4 col-md-6 col-xs-12 " *ngFor="let restaurant of restaurantsFromDB; let i=index">
+                      <img (click)= "navigateRestaurantSinglePage(restaurant.id)" class="img-size" src="{{restaurant.promophoto}}" >
+                      <br>
+                       <span class="res-name">{{restaurant.name}}</span>
+                       <br>
+                      <span [hidden]="false"><app-rating></app-rating>(1745) $$$$</span> 
+                      <hr>
+                      <span class="res-type">Italian | International | Mediteran  </span>
+                      <br>
+                      <br>
+                      <button (click)= "navigateRestaurantSinglePage(restaurant.id)" class="button wide-grey">Reserve now</button>
+                      
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
     </div>
 </div>
 
@@ -53,12 +74,12 @@
 <br>
 
 
-<!--POPULAR LOCATION-->
+<!--POPULAR LOCATION
 <h2 class="popular-title" > Popular Locations</h2>
 <div>
     <app-popular-location></app-popular-location>
 </div>
-
+-->
 
 <!--FOOTER-->
 <div >

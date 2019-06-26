@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'restaurantlist', component: RestaurantListComponent,canActivate:[AuthguardService]},
-    {path: 'restaurant/:id', component: RestaurantComponent,canActivate:[AuthguardService]},
+    {path: 'restaurantlist', component: RestaurantListComponent},
+    {path: 'restaurant/:id', component: RestaurantComponent},
     {path: 'reservation/:id', component: ReservationComponent}
 ];
 @NgModule({

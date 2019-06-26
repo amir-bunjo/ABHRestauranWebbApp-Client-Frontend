@@ -28,7 +28,8 @@ import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component'
 import { RateDialogComponent } from './restaurant/rate-dialog/rate-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ReservationComponent } from './restaurant/reservation/reservation.component';
-import { AmazingTimePickerModule } from 'amazing-time-picker'; 
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component'; 
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
     RestaurantComponent,
     LeafletMapComponent,
     RateDialogComponent,
-    ReservationComponent
+    ReservationComponent,
+    SuccesModalComponent
     
    
   ],
@@ -73,7 +75,7 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
     
   ],
 
-  entryComponents: [RateDialogComponent],
+  entryComponents: [RateDialogComponent,SuccesModalComponent],
   providers: [{provide: NgbCalendar, useClass: NgbCalendarGregorian}],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MatDialog } from '@angular/material';
+import { SuccesModalComponent } from './succes-modal/succes-modal.component';
 
 @Component({
   selector: 'app-reservation',
@@ -15,7 +17,7 @@ export class ReservationComponent implements OnInit {
   reservationModel: any;
   reservationForm:FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router, private restaurantService:RestaurantService, private auth: AuthenticationService) {
+  constructor(private dialog: MatDialog,private route: ActivatedRoute, private router: Router, private restaurantService:RestaurantService, private auth: AuthenticationService) {
     this.getRouterData();
   }
   ngOnInit() {
@@ -26,11 +28,11 @@ export class ReservationComponent implements OnInit {
     return this.auth.isUserLoggedIn();
   }
 
-  complete() {
-    console.log('complete reservation clicked');
+  saveReservation() {
     console.log(this.reservationModel.time)
     this.restaurantService.saveReservation(this.reservationModel).subscribe(
       res => console.log(res)
+      
     );
   }
 
@@ -57,6 +59,19 @@ export class ReservationComponent implements OnInit {
 
   }
 
+  navigateRestaurantSinglePage(id: number) {
+
+    this.router.navigate(['/restaurant/'+id]);
+  }
+
+
+  completeReservation() {
+    this.saveReservation();
+    let dialogRef = this.dialog.open(SuccesModalComponent, {
+      height: '150px',
+      width: '400px',
+    });
+  }
   
 
   

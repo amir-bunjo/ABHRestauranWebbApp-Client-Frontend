@@ -35,7 +35,6 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    console.log("is user logged in " + user + '  ' + !(user === null))
     return !(user === null)
   }
 

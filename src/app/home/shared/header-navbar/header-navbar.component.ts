@@ -30,10 +30,9 @@ export class HeaderNavbarComponent implements OnInit {
   }
 
   restaurants(){
-    if(this.isLoggedIn)
+   
       this.router.navigate(['/restaurantlist']);
-     else
-      this.router.navigate(['/login']); 
+  
   }
 
   logOut(){

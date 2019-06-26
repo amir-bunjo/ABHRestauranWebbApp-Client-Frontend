@@ -13,7 +13,7 @@
                 <div class="row ">
                     <div class="col-lg-8 col-md-3 col-sm-6 col-xs-6 p-0">
                      <span class="icon-pos search-icon"><i class="fa fa-search" aria-hidden="true"></i></span>   
-                      <input formControlName="name" type="text" class="form-control search-slt font-family pad-left" style="font-weight:400 !important" placeholder="Location, Restaurant or Cousine">
+                      <input formControlName="name" type="text" class="form-control search-slt font-family pad-left" style="font-weight:400 !important" placeholder="Search by restaurant name">
                      </div>
         
                       <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6  p-0">
@@ -59,7 +59,7 @@
                 <span class="res-type">Italian | International | Mediteran  </span>
             </div>
             <div class="col-12">
-                <button class="button wide-grey">Reserve now</button>
+                <button (click)= "navigateRestaurantSinglePage(restaurant.id)" class="button wide-grey">Reserve now</button>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
 
 <!--FILTER BOX-->
 <span *ngIf="!isCollapsedFilterBox" class="triangle" style=" text-shadow: 0 0 1px black;top: 2.2% !important;font-size: 18px !important" >▲</span>
-<div id="collapseFilterBox" [ngbCollapse]="isCollapsedFilterBox" class="filter-box">
+<div  id="collapseFilterBox" [ngbCollapse]="isCollapsedFilterBox" class="filter-box">
   
     <div class="row filter-padding">
        
@@ -126,12 +126,12 @@
            
         </div>
 </div>
-
+<!--POPULAR LOCATION
 <h2 class="popular-title" > Popular Locations</h2>
 <div>
     <app-popular-location></app-popular-location>
 </div>
-
+-->
 
   <!--FOOTER-->  
 <app-footer></app-footer>

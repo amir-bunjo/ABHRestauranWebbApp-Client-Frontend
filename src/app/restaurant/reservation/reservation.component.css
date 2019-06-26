@@ -19,12 +19,12 @@
 
 .black-font {
     color: #131D24;
-    font-size: 1.5vw;
+    font-size: 20px;
 }
 
 .light-font {
     opacity: 0.4;
-    font-size: 0.8vw;
+    font-size: 14px;
     color: #171717;
     letter-spacing: 0;
 }
@@ -35,11 +35,11 @@
 .red-back {
     background: #FD6F60;
     color: grey;
-    font-size: 1vw;
+
 }
 
 .panel-title {
-    font-size: 2.3vh;
+    font-size: 20px;
     color: rgba(19,29,36,0.40);
 }
 
@@ -222,4 +222,5 @@
 .red-text{
     color: #FD6F60 ;
     cursor: pointer;
+    font-size:20px;
 }

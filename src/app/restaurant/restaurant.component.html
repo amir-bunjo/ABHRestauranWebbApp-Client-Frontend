@@ -1,4 +1,12 @@
 
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+ integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+ crossorigin=""/>
+
+ <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+ integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+ crossorigin=""></script>
+
 <!--HEADER WITH 50% BACKGROUND PHOTO-->
 <div #reservation  class="background">
   
@@ -25,9 +33,9 @@
       <span class="p-r-l-1 light-mark">Italian | International | Mediterannean  </span>
 
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button (click)="rateRestaurant()" type="button" class="btn font-family button-rate" style="width: 20%; margin-left: 5%"  >
-        <div class="row">
-          <div  class="col-12">
+      <button *ngIf="isUserLoggedIn()" (click)="rateRestaurant()" type="button" class="btn font-family button-rate" style="width: 20%; margin-left: 5%"  >
+        <div  class="row">
+          <div   class="col-12">
               <span  class="fa fa-star red-mark " style="padding-right:5%"  ></span> <span >Rate this place</span> 
           </div>
          
@@ -103,7 +111,7 @@
 
           </div>
 
-          <div *ngIf="true " class="font-family" style="padding-right:6%;padding-left:6%; padding-bottom: 4%" >
+          <div *ngIf="findClicked " class="font-family" style="padding-right:6%;padding-left:6%; padding-bottom: 4%" >
 
             <h5 class="p-0">Availibilty on {{date}} arround {{time}} for {{guestNumber}} people </h5>
             <div class="row" style="font-size: 14px !important;padding-left:2% " >
@@ -144,15 +152,15 @@
 <!--       PANEL INFO WITH MAP AND DESCRIPTION                -->
         <div #about  class="panel" style="margin-top: 5%" >
 
-            <p *ngIf="restaurantData" class="font-family pan-title  pan-text-padd"  >About Restaurant {{restaurantData.name}}</p>
+            <p *ngIf="restaurantData " class="font-family pan-title  pan-text-padd"  >About Restaurant {{restaurantData.name}}</p>
 
 
-            <div  style="padding-top:1%;">
-              <app-leaflet-map></app-leaflet-map>
-            </div>
+            <div   style="padding-top:1%;">
+              <div class="map-size" id="map">
+  
+              </div>            </div>
             <p  class="font-family pan-title  pan-text-padd" style="" >Description:</p>
-            <p class="font-family" style="padding: 5%;padding-top: 0"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <p class="font-family" style="padding: 5%;padding-top: 0"> {{restaurantData.description}}
             </p>
           </div>
 

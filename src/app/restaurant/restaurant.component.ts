@@ -7,8 +7,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { fillProperties } from '@angular/core/src/util/property';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import 'node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
+import { AuthenticationService } from '../services/authentication.service';
 
-
+declare let L;
 
 @Component({
   selector: 'app-restaurant',
@@ -42,7 +44,7 @@ export class RestaurantComponent implements OnInit {
   openAt = '10:00:00';
   closeAt = '23:00:00';
 
-  constructor(private atp: AmazingTimePickerService ,private router: Router ,private activatedRoute: ActivatedRoute, private restaurantService: RestaurantService,private dialog: MatDialog) { 
+  constructor(private auth: AuthenticationService,private atp: AmazingTimePickerService ,private router: Router ,private activatedRoute: ActivatedRoute, private restaurantService: RestaurantService,private dialog: MatDialog) { 
   
   }
 
@@ -60,6 +62,10 @@ export class RestaurantComponent implements OnInit {
 
   }, 1000);
 
+  }
+
+  isUserLoggedIn(){
+    return this.auth.isUserLoggedIn();
   }
 
   getAvailableTable() {
@@ -172,7 +178,8 @@ findAvailableTable() {
 
     this.restaurantService.getRestaurantById(id).subscribe( data => {
       this.restaurantData = data;
-      console.log(this.restaurantData)
+     this.loadMap(43.8616156,18.417399);
+      console.log(this.restaurantData.latitude,this.restaurantData.longitude)
     })
   }
 
@@ -352,6 +359,27 @@ findAvailableTable() {
       return estimatedTime.toLocaleTimeString().substr(0,5);
     }
 
+  }
+
+  loadMap(latitude,longitude) {
+    var icon = {
+      icon: L.icon({
+        iconSize: [ 25, 41 ],
+        iconAnchor: [ 13, 0 ],
+        // specify the path here
+        iconUrl: './node_modules/leaflet/dist/images/marker-icon.png',
+        shadowUrl: './node_modules/leaflet/dist/images/marker-shadow.png'
+     })
+  };
+    const map = new L.map('map').setView([latitude,longitude], 16);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    const marker = L.marker([latitude,longitude ], icon).addTo(map);
+   // var marker1 = L.marker([latitude, latitude]).addTo(map);
+    marker.bindPopup("<b>Here is location of restaurant!</b>").openPopup();
+    
   }
 
 }
