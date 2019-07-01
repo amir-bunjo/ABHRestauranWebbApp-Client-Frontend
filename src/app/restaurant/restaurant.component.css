@@ -1,4 +1,9 @@
 /*  c'S STYLES  */
+.nav-bar {
+    position: absolute; 
+    top:64%;
+    padding-left:16%
+}
 
 .fa {
     cursor: pointer;
@@ -6,32 +11,25 @@
 
 /*   HEADER'S STYLES  */
 .background {
-
     background: url(/assets/img/Bitmap.png) no-repeat;
     background-size: cover;
     width: 100%;
     height: 50%;
     position: relative;
-  
-
 }
 
 .button-rate {
-
     background:#ffff 100% !important;
     border-color: #ffff 100%;
     border-radius: 2px;
-  
-
+    width: 20%;
+    margin-left: 5%
 }
 
 .map-size {
-
     height: 250px;
     width: 100%;
 }
-
-
 
 .header {
     padding-top: 1%;
@@ -40,11 +38,10 @@
 
 .restaurant-info {
     position: absolute;
-
+    color: white;
     left: 30%;
     bottom: 10%;
     margin-left: 5%;
-
 }
 
 .p-r-l-1 {
@@ -52,12 +49,46 @@
     padding-left: 1%;
 }
 
+.p-r-5 {
+    padding-right: 5%;
+}
+
+.b-r-none {
+    border-right: none !important
+}
+
+.extra-info {
+    font-size: 14px !important;
+    padding-left:2%
+}
+
+.extra-info-text {
+    font-size: 18px;
+    font-weight:400; 
+    padding-left: 2%; 
+    padding-top:3%
+}
+
+.b-radius-3 {
+    border-radius: 3px !important;
+}
+
+.info {
+    padding-right:6%;
+    padding-left:6%; 
+    padding-bottom: 4%
+}
+
 .light-mark {
     color: #FFFFFF;
     opacity:0.4;
     cursor: pointer;
+    
 }
 
+.light-font {
+    opacity: 0.4;
+}
 
 .red-mark {
     color: #FD6F60 ;
@@ -71,21 +102,13 @@
 
 .dolar-sign {
     font-family: 'Source Sans Pro', sans-serif; 
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 400;
 }
 .font-30 {
     font-size: 30px !important;
     font-weight: 300 !important;
 }
-
-.font-family {
-
-    font-family: 'Source Sans Pro', sans-serif; 
-   
-    font-weight: 300;
-}
-
 
 /* GRAY BACKGROUND */
 .grey-back{
@@ -109,10 +132,13 @@
     box-shadow:         outside 0 0 10px black;
 }
 
-.panels-padding {
+.photo-box img {
+    height: 100%;
+    width:100%
+}
 
-   padding-left: 35%;
-    
+.panels-padding {
+   padding-left: 35%;   
 }
 
 .pan-title {
@@ -133,26 +159,29 @@
 }
 
 .panel {
-
     background: #ffffff;  
     height: 100%; 
     width: 75%;
     border-radius: 2px; 
     box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
-    
 }
 .container {
-
-    
     padding-top:5%; 
-
 }
+
 .form-position {
     top: 50%;
     left: 50%
-    
 }
 
+.input-date {
+    background:#ffff !important;
+    width: 100% !important;
+}
+
+.input-border {
+    border: 1px solid #E3E3E3;
+}
 
 /*                          SEARCH BAR                            */
 
@@ -176,42 +205,6 @@
   top: 25% !important;
 }
 
-.search-slt{
-    
-  /*  width: 100%; */
-    color: #131D24;
-    background-color: #ffff;
-    background-image :#ffff;
-    height: 100% !important; 
-    font-family: Arial !important;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 1px;
-    border-bottom-left-radius: 1px;
-}
-
-
-
-.border-select-middle {
-    border-top-right-radius: 0 ;
-    border-bottom-right-radius: 0 ;
-    border-top-left-radius: 0 ;
-    border-bottom-left-radius: 0 ;
-    border: 1px solid #E3E3E3 100% ;
-    border-left: 1px solid #E3E3E3 100% ;
-    border-right: none;
-    border-color: #E3E3E3 ; 
-}
-
-.border-select-start {
-    border-top-right-radius: 0 ;
-    border-bottom-right-radius: 0 ;
-    border-bottom-left-radius: 2px ;
-    border-top-left-radius: 2px ;
-    border-color: #E3E3E3;
-    border-right: none;
-}
-
 .select-size {
     width: 100%; 
     height: calc(3rem + 2px) !important; 
@@ -219,13 +212,7 @@
     padding-left: 10% 
 }
 
-
-
-.pad-left{
-  padding-left: 13%;
-}
-
-.find-btn-red{
+.find-btn-red {
     background:#FD6F60 100% !important;
     border-color: #FD6F60 100%;
     border-radius: 0%;
@@ -236,13 +223,13 @@
     color: #ffff;
     font-size: 15px
 }
-
-.bac {
-    background: #ffffff !important; 
-}
-
 /* MENU STYLES */
-
+.menu-salad {
+    padding-top:0%;
+    padding-left: 7%; 
+    color: #1A1A1A 100% !important;
+    padding-right: 3%
+}
 .menu-product {
     display: flex;
     flex-direction: row;
@@ -257,18 +244,8 @@
     opacity: 0.4;
     margin-bottom: 1.2%;
     margin-left: 1%;
-    
 }
-
-.product-info {
-    font-size:12px !important;
-    opacity: 0.4;
-}
-
-
-
 .padd-bott {
-
     padding-bottom: 2% !important;
 }
 
@@ -276,7 +253,6 @@
     display: flex;
     flex-direction: row;
     width: 120%
-
 }
 
 .multiple-price::after {
@@ -286,7 +262,6 @@
     opacity: 0.4;
     margin-bottom: 1.2%;
     margin-left: 1%;
-    
 }
 
 .price-padd {
@@ -296,18 +271,13 @@
 .price-type {
     font-size: 13px;
     opacity: 0.4;
-
-  
     margin-left: 6%
 }
 
 .active-menu {
-
     color: #FFFFFF !important;
     background: #FD6F60;
-  
     border-radius: 2px;
-    
 }
 
 .menu-types {
@@ -318,26 +288,11 @@
 }
 
 .menu-title {
-
     font-size: 20px;
     opacity: 0.4;
 
 }
-
-.padding-prouct {
-
-}
-
-.p-1 {
-    padding: 1%
-}
-
-
-
-
-
-
-/* Style The Dropdown Button --reestyled */
+/* DROPDOWN SELECT GUEST*/
 .dropbtn {
     -webkit-appearance: none;
     background-color: #FFFFFF;
@@ -347,13 +302,7 @@
     padding-top: 4%;
     width: 100% !important;
     height: calc(3rem + 2px);
-  }
-  
-  /* The container <div> - needed to position the dropdown content -- maybe nothing add */
-  .dropdown {
-     
-  }
-  
+  }  
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
@@ -370,17 +319,7 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  /* Show the dropdown menu on hover 
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  */
-  
+  }  
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
@@ -393,3 +332,5 @@
   .info-icon {
       font-size: 18px;
   }
+
+  

@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class SuccesModalComponent implements OnInit {
 
-  constructor(@Optional() public dialogRef: MatDialogRef<SuccesModalComponent>,private router: Router) { }
+  constructor(@Optional() public dialogRef: MatDialogRef<SuccesModalComponent>, private router: Router) { }
 
   ngOnInit() {
     this.dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.navigateRestaurantsList();
-      
+
     });
   }
 
@@ -24,7 +24,7 @@ export class SuccesModalComponent implements OnInit {
   }
 
   navigateRestaurantsList() {
-
-    this.router.navigate(['/restaurantlist']);  }
+    this.router.navigate(['/restaurantlist']);
+  }
 
 }

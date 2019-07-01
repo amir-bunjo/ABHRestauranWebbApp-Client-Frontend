@@ -1,31 +1,31 @@
-
 <div style="background-color: #ffff ">
-<app-header-navbar></app-header-navbar>
+  <app-header-navbar></app-header-navbar>
 </div>
 
 <div class="grey-back">
   <form [formGroup]="loginForm">
-  <div class="container">
-    <div class="d-flex m-bottom-4" >
-      <div class="mr-auto font-family font-24 font-regular">Login</div>
-      
-      <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="createAccount()" >Create account</div>
-    </div>  
-    <div class="row">
-      <div class="col-12 m-bottom-6">
-        <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Email">
+    <div class="container">
+      <div class="d-flex m-bottom-4">
+        <div class="mr-auto font-family font-24 font-regular">Login</div>
+
+        <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="createAccount()">Create account</div>
       </div>
-      <div class="col-12 " >
-        <input formControlName="password" type="password" class="form-control font-family input-frame"  placeholder="Password">
-      </div>
-      <div class="col-12 m-top-4 ">
-        <span *ngIf="invalidLogin" class="error-text">Invalid email or password</span>
-      </div>
-      <div class="col-12 m-top-6">
-        <button type="button" class="btn font-family wide-red" (click)="checkLogin()">Login</button>
+      <div class="row">
+        <div class="col-12 m-bottom-6">
+          <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Email">
+        </div>
+        <div class="col-12 ">
+          <input formControlName="password" type="password" class="form-control font-family input-frame"
+            placeholder="Password">
+        </div>
+        <div class="col-12 m-top-4 ">
+          <span *ngIf="invalidLogin" class="error-text">Invalid email or password</span>
+        </div>
+        <div class="col-12 m-top-6">
+          <button type="button" class="btn font-family wide-red" (click)="checkLogin()">Login</button>
+        </div>
       </div>
     </div>
-  </div>
   </form>
 </div>
 

@@ -1,3 +1,31 @@
-.star-color{
-    color: #FD6F60
-}
+
+  .score {
+    display: block;
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .score-wrap {
+    display: inline-block;
+    position: relative;
+    height: 19px;
+  }
+  
+  .score .stars-active {
+    color: #FD6F60;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .score .stars-inactive {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block
+    /* overflow: hidden; */
+  }

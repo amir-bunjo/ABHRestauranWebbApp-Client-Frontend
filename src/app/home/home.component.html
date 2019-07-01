@@ -12,32 +12,18 @@
         <p class="font-size-20" >Choose your table from 757 restaurants near you</p>
     </div>
 
-    
- 
-<!--SEARCH BAR koji radi na zadovoljavajuci nacin
-    <div class="box " style="margin-bottom:10% !important; position: absolute;align-content: center">
-      <div> <app-search-bar  ></app-search-bar></div>
-    </div>
--->
-
-<!--SEARCH DOSTA BOLJI-->
-
- 
-
-    <div class="search-bar-paddings" style="margin-bottom: 5% !important">
-    <app-search-bar (valueChange)="searchMatchedRestaurant($event)" ></app-search-bar>
+<!--SEARCH BAR-->
+    <div class="search-bar-paddings" >
+        <app-search-bar (valueChange)="searchMatchedRestaurant($event)" ></app-search-bar>
     </div>
 
 </header>
-
-
 <!--GALLERY  style="text-align: center ;color: rgb(14, 14, 105);font-size: 30px; font-family:  font-weight: 400"-->
 <div class="home-gall-padd">
     <div class="m-t-6">
         <h1 class="popular-title">Popular for Lunch today</h1>
     </div>
     <div class="m-b-10">
-        
         <div >
             <div class="container">
               <div class="row" >
@@ -46,7 +32,7 @@
                       <br>
                        <span class="res-name">{{restaurant.name}}</span>
                        <br>
-                      <span [hidden]="false"><app-rating></app-rating>(1745) $$$$</span> 
+                      <span [hidden]="false"><app-rating [rate]="restaurant.mark"></app-rating>(1745) $$$$</span> 
                       <hr>
                       <span class="res-type">Italian | International | Mediteran  </span>
                       <br>
@@ -57,23 +43,17 @@
               </div>
             </div>
           </div>
-
-
     </div>
 </div>
 
 <!--CAROUSEL GALLERY WITH BACKGROUND IMAGE-->
 <div class="middle-gallery">
- 
-<div style="padding-left: 5%;padding-right:5%">
-    <app-carousel-gallery  ></app-carousel-gallery>
-</div>
-    
+    <div class="carrousel-padd">
+        <app-carousel-gallery  ></app-carousel-gallery>
+    </div>
 </div>
 <br>
 <br>
-
-
 <!--POPULAR LOCATION
 <h2 class="popular-title" > Popular Locations</h2>
 <div>

@@ -35,6 +35,7 @@ hr{
     color: #131D24;
 }
 /* END OF HOME GALLERY STYLES */
+
 .header-text-color{
     color: #ffff !important ;
 }
@@ -42,7 +43,12 @@ hr{
 .search-bar-paddings{
     padding-right: 16%;
     padding-left:16%;
-    padding-top:4%
+    padding-top:4%;
+    margin-bottom: 5% !important;
+}
+.carrousel-padd {
+    padding-left: 5%;
+    padding-right:5%
 }
 
 .m-t-6{
@@ -53,24 +59,10 @@ hr{
     margin-bottom: 10%;
 }
 
-/*need for commented search bar */
-.box {
- display: flex;
- align-items: center;
- justify-content: center;
-}
-
 /* for name ABH Restaurant */
 .font-size-20{
     font-size: 20px;
     font-weight: 600 !important;   
-}
-
-/* font 16px for nav-bar */
-.font-s-16{
-    padding: 0.5%;
-    font-size: 16px;
- 
 }
 
 /* Header with backround image */

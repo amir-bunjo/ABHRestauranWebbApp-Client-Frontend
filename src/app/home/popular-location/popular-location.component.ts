@@ -7,16 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopularLocationComponent implements OnInit {
 
-  pictureLink= '/assets/img/download-res.jpg' ;
-  pictureArray : string[]= [];
+  pictureLink = '/assets/img/download-res.jpg';
+  pictureArray: string[] = [];
 
   constructor() { }
 
   ngOnInit() {
-
-    for(var i=0;i<20;i++)
-    this.pictureArray[i] = this.pictureLink; //currently load no sense
-
+    for (var i = 0; i < 20; i++)
+      this.pictureArray[i] = this.pictureLink; //currently load no sense
   }
 
 }

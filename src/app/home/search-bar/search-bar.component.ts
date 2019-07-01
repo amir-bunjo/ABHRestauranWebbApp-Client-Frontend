@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SearchBarComponent implements OnInit {
   @Output() valueChange = new EventEmitter();
-  counter=0;
+  counter = 0;
   searchForm: FormGroup;
 
   constructor() { }
@@ -22,8 +22,8 @@ export class SearchBarComponent implements OnInit {
     this.counter = this.counter + 1;
     this.valueChange.emit(name);
   }
-  
-  createSearchForm(){
+
+  createSearchForm() {
     this.searchForm = new FormGroup({
       'name': new FormControl(null),
     })

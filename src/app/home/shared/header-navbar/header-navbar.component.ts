@@ -10,34 +10,28 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderNavbarComponent implements OnInit {
 
   isLoggedIn: boolean;
-  
-  constructor(private router: Router,private loginService: AuthenticationService) { }
+
+  constructor(private router: Router, private loginService: AuthenticationService) { }
 
   ngOnInit() {
     this.isLoggedIn = this.loginService.isUserLoggedIn();
   }
-
-
-
-  login(){
-    console.log('login clicked');
+  
+  login() {
     this.router.navigate(['/login']);
   }
 
-  home(){
-    console.log('home clicked');
+  home() {
     this.router.navigate(['']);
   }
 
-  restaurants(){
-   
-      this.router.navigate(['/restaurantlist']);
-  
+  restaurants() {
+    this.router.navigate(['/restaurantlist']);
   }
 
-  logOut(){
+  logOut() {
     this.loginService.logOut();
     this.router.navigate([""]);
   }
-  
+
 }

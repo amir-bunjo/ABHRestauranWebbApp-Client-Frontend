@@ -12,46 +12,39 @@ import { error } from 'util';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  invalidLogin:boolean;
+  invalidLogin: boolean;
 
-  constructor(private router: Router,private loginService: AuthenticationService) { }
+  constructor(private router: Router, private loginService: AuthenticationService) { }
 
   ngOnInit() {
-
     this.createLoginForm();
   }
-  createLoginForm(){
-    
+
+  createLoginForm() {
     this.loginForm = new FormGroup({
       "email": new FormControl(null),
       "password": new FormControl(null)
     })
   }
-  createAccount(){
 
-    console.log('clicked create account');
-
+  createAccount() {
     this.router.navigate(['/register']);
   }
 
-    checkLogin() {
-      let email = this.loginForm.value.email;
-      let pass = this.loginForm.value.password;
-      (this.loginService.authenticate(email,pass).subscribe(
-        data => {
-          this.router.navigate(['/restaurantlist'])
-          this.invalidLogin = false
-        },
-        error => {
-          this.invalidLogin = true
-          console.log("error")
-        }
-      )
-      );
-  
-    }
-    
-
-  
+  checkLogin() {
+    let email = this.loginForm.value.email;
+    let pass = this.loginForm.value.password;
+    (this.loginService.authenticate(email, pass).subscribe(
+      data => {
+        this.router.navigate(['/restaurantlist'])
+        this.invalidLogin = false
+      },
+      error => {
+        this.invalidLogin = true
+        console.log("error")
+      }
+    )
+    );
+  }
 
 }

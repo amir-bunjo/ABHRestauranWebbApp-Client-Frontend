@@ -13,55 +13,54 @@ import { SuccesModalComponent } from './succes-modal/succes-modal.component';
 })
 export class ReservationComponent implements OnInit {
 
- 
-  reservationModel: any;
-  reservationForm:FormGroup;
 
-  constructor(private dialog: MatDialog,private route: ActivatedRoute, private router: Router, private restaurantService:RestaurantService, private auth: AuthenticationService) {
+  reservationModel: any;
+  reservationForm: FormGroup;
+
+  constructor(private dialog: MatDialog, private route: ActivatedRoute, private router: Router, private restaurantService: RestaurantService, private auth: AuthenticationService) {
     this.getRouterData();
+    this.createReservationForm()
+
   }
   ngOnInit() {
-
-    this.createReservationForm()
   }
-  isUserLoggedIn(){
+
+  isUserLoggedIn() {
     return this.auth.isUserLoggedIn();
   }
 
   saveReservation() {
     console.log(this.reservationModel.time)
     this.restaurantService.saveReservation(this.reservationModel).subscribe(
-      res => console.log(res)
-      
-    );
+      res => console.log('succesfull'),
+      error => console.log('error')
+    )
   }
 
-  createReservationForm() {
 
+
+  createReservationForm() {
     this.reservationForm = new FormGroup({
-      'firstname': new FormControl(null,Validators.required),
-      'lastname': new FormControl(null,Validators.required),
-      'country': new FormControl(null,Validators.required),
-      'phone': new FormControl(null,Validators.required),
-      'numbertype': new FormControl(null,Validators.required),
-      'email': new FormControl(null,Validators.required),
+      'firstname': new FormControl(null, Validators.required),
+      'lastname': new FormControl(null, Validators.required),
+      'country': new FormControl(null, Validators.required),
+      'phone': new FormControl(null, Validators.required),
+      'numbertype': new FormControl(null, Validators.required),
+      'email': new FormControl(null, Validators.required),
       'specrequest': new FormControl(null)
     });
   }
-  
-  getRouterData(){
 
+  getRouterData() {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.reservationModel = this.router.getCurrentNavigation().extras.state;
       }
     });
-
   }
 
   navigateRestaurantSinglePage(id: number) {
-
-    this.router.navigate(['/restaurant/'+id]);
+    this.router.navigate(['/restaurant/' + id]);
   }
 
 
@@ -72,7 +71,7 @@ export class ReservationComponent implements OnInit {
       width: '400px',
     });
   }
-  
 
-  
+
+
 }

@@ -1,19 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import {AlertModule, ButtonsModule} from 'ngx-bootstrap';
+import { AlertModule, ButtonsModule } from 'ngx-bootstrap';
 import { RatingComponent } from './rating/rating.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeGalleryComponent } from './home/home-gallery/home-gallery.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NgbModule, NgbCalendar, NgbCalendarGregorian} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbCalendar, NgbCalendarGregorian } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselGalleryComponent } from './home/home-gallery/carousel-gallery/carousel-gallery.component';
-import { SwiperModule } from 'angular2-useful-swiper';
 import { CarouselModule } from 'ngx-bootstrap';
 import { FooterComponent } from './home/footer/footer.component';
 import { PopularLocationComponent } from './home/popular-location/popular-location.component';
@@ -26,10 +24,10 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component';
 import { RateDialogComponent } from './restaurant/rate-dialog/rate-dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ReservationComponent } from './restaurant/reservation/reservation.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
-import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component'; 
+import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component';
 
 
 @NgModule({
@@ -51,9 +49,8 @@ import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succ
     RateDialogComponent,
     ReservationComponent,
     SuccesModalComponent
-    
-   
   ],
+
   imports: [
     FormsModule,
     MatDialogModule,
@@ -69,14 +66,11 @@ import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succ
     ReactiveFormsModule,
     HttpClientModule,
     AmazingTimePickerModule
-   
-   
-    
-    
   ],
 
-  entryComponents: [RateDialogComponent,SuccesModalComponent],
-  providers: [{provide: NgbCalendar, useClass: NgbCalendarGregorian}],
+  entryComponents: [RateDialogComponent, SuccesModalComponent],
+  providers: [{ provide: NgbCalendar, useClass: NgbCalendarGregorian }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

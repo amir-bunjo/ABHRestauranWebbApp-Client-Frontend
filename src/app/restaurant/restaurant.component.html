@@ -1,347 +1,291 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
 
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
- integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
- crossorigin=""/>
-
- <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
- integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
- crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+  crossorigin=""></script>
 
 <!--HEADER WITH 50% BACKGROUND PHOTO-->
-<div #reservation  class="background">
-  
-  <div class="header">
-    <app-header-navbar ></app-header-navbar>
-  </div>
-  
-  <div class="row restaurant-info " style="color: white">
-    <div class="col-12 " > <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p></div>
-    <div class="col-12">
-        
-      <span class="fa fa-star light-mark " id="star1" [class.red-mark]="isStarRed(1)" (click)="restaurantRating = 1" ></span>
-      <span class="fa fa-star light-mark" id="star2" [class.red-mark]="isStarRed(2)" (click)="restaurantRating = 2" ></span>
-      <span class="fa fa-star light-mark" id="star3" [class.red-mark]="isStarRed(3)" (click)="restaurantRating = 3" ></span>
-      <span class="fa fa-star light-mark" id="star4" [class.red-mark]="isStarRed(4)" (click)="restaurantRating = 4" ></span>
-      <span class="fa fa-star light-mark" id="star5" [class.red-mark]="isStarRed(5)" (click)="restaurantRating = 5" ></span>
-      
-      <span class="p-r-l-1 light-mark" >(1754)</span>
+<div #reservation class="background">
 
-      <span class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) " (click)="restaurantPriceFilter = 1" >$</span>
-        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) " (click)="restaurantPriceFilter = 2" >$</span>
-        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) " (click)="restaurantPriceFilter = 3">$</span>
-        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) " (click)="restaurantPriceFilter = 4">$</span>
-      <span class="p-r-l-1 light-mark">Italian | International | Mediterannean  </span>
+  <div class="header">
+    <app-header-navbar></app-header-navbar>
+  </div>
+
+  <div class="row restaurant-info ">
+    <div class="col-12 ">
+      <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p>
+    </div>
+    <div class="col-md-auto " style="font-size: 40px !important">
+      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark"></app-rating>
+    </div>
+    <div class="col-10 p-0" style="font-size: 18px">
+      
+      <span class="light-mark p-r-l-1">(1754)</span>
+      <span class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
+        (click)="restaurantPriceFilter = 1">$</span>
+      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) "
+        (click)="restaurantPriceFilter = 2">$</span>
+      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) "
+        (click)="restaurantPriceFilter = 3">$</span>
+      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) "
+        (click)="restaurantPriceFilter = 4">$</span>
+      <span class="p-r-l-1 light-mark">Italian | International | Mediterannean </span>
 
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button *ngIf="isUserLoggedIn()" (click)="rateRestaurant()" type="button" class="btn font-family button-rate" style="width: 20%; margin-left: 5%"  >
-        <div  class="row">
-          <div   class="col-12">
-              <span  class="fa fa-star red-mark " style="padding-right:5%"  ></span> <span >Rate this place</span> 
+      <button *ngIf="isUserLoggedIn()" (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
+        <div class="row">
+          <div class="col-12">
+            <span class="fa fa-star red-mark p-r-5"></span> <span>Rate this place</span>
           </div>
-         
         </div>
       </button>
-
     </div>
   </div>
 </div>
-
 <!--      RESTAURANT PHOTO                -->
 <div class="photo-box">
-
-    <img *ngIf="restaurantData" src="{{restaurantData.promophoto}}" style="width:100%; height:100%">
-  
+  <img *ngIf="restaurantData" src="{{restaurantData.promophoto}}">
 </div>
-
-
-<div >
-<div class="grey-back"  >
-  <div class="font-family" style="position: absolute; top:64%;padding-left:16%">
+<div>
+  <div class="grey-back">
+    <div class="font-family nav-bar">
       <p style="cursor: pointer" role="button" (click)="scrollToElement(reservation)">Reservation</p>
-      <p style="cursor: pointer" role="button" (click)="scrollToElement(about)" >About</p>
-      <p style="cursor: pointer" role="button" (click)="scrollToElement(menu)" >Menu</p>
-      <p style="cursor: pointer" role="button" (click)="scrollToElement(photo)" >Photo</p>
-  </div>
-
-  <div  class="panels-padding ">
-    
-    <div class="container" >
-  <!--      RESERVATION    PANEL                -->  
-        <div class="panel"  >
-          <div class="row pan-text-padd" > 
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(about)">About</p>
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(menu)">Menu</p>
+      <p style="cursor: pointer" role="button" (click)="scrollToElement(photo)">Photo</p>
+    </div>
+    <div class="panels-padding ">
+      <div class="container">
+        <!--      RESERVATION    PANEL                -->
+        <div class="panel">
+          <div class="row pan-text-padd">
             <div class="col-6">
-                <p  class="font-family pan-title" >Make a free reservation</p>
+              <p class="font-family pan-title">Make a free reservation</p>
             </div>
-
             <div class="col-6">
-              <p class="font-family float-right pan-info"  >Booked 72 times today</p>
+              <p class="font-family float-right pan-info">Booked 72 times today</p>
             </div>
- 
           </div>
-        
           <div class="form" [formGroup]="myForm" style="padding-left:8%; padding-right: 8%;padding-bottom: 5%">
-              <span  class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true" (click)="time-picker.toggle()">  </i> </span>
-              <div class="row">
-                <div class="col-3 p-0">
-                    <div (click)="dropdownActive=!dropdownActive" class="dropdown">
-                      <input placeholder="Select seats" class="select-size" style="border: 1px solid #E3E3E3; border-right: none" formControlName="guest"  (window:mouseup)="autoCloseForDropdownCars($event)"  />
-                      <div class="dropdown-content" [class.dropdown-active]="dropdownActive">
-                        <a (click)="setGuestNumber(2)">2 people</a>
-                        <a (click)="setGuestNumber(3)">3 people</a>
-                        <a (click)="setGuestNumber(4)">4 people</a>
-                      </div>
-                    </div>
-                    <span (click)="dropdownActive=!dropdownActive"  class="icon-pos"> <i class="fa fa-angle-down"  aria-hidden="true">  </i> </span>
-                </div>
-                <div class="col-3 p-0">
-                  
-                    <span (click)="d.toggle()"  class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
-                    <input [disabled]="findClicked" type="text"  placeholder="yyyy-mm-dd" style="background:#ffff !important; width: 100% !important;border: 1px solid #E3E3E3;border-right: none !important;"
-                    formControlName="date" ngbDatepicker #d="ngbDatepicker"  (click)="d.toggle()" (dateSelect)="onDateSelect($event)"  class="font-family select-size" /> 
-                  
-                </div>
-                <div class="col-3 p-0">
-                    <span atp-time-picker  (click)="openTimePicker($event)" class="icon-pos"> <i class="fa fa-angle-down"  aria-hidden="true">  </i> </span>
-                    <input atp-time-picker  style="border: 1px solid #E3E3E3;"  class="font-family select-size" placeholder="HH-MM" formControlName="time"  />
-                </div>
-                <div class="col-3 p-0">
-                    <button (click)="findAvailableTable()" type="button" class="btn font-family find-btn-red"  >Find a table</button>
-                   </div>
-              </div>
-
-          </div>
-
-          <div *ngIf="findClicked " class="font-family" style="padding-right:6%;padding-left:6%; padding-bottom: 4%" >
-
-            <h5 class="p-0">Availibilty on {{date}} arround {{time}} for {{guestNumber}} people </h5>
-            <div class="row" style="font-size: 14px !important;padding-left:2% " >
-              <div class="col-md-auto p-0"  > 
-                <div class="row">
-                    <div class="col-1 ">
-                        <i class="material-icons info-icon">info</i> 
-                    </div>
-                    <div class="col-md-auto" style="opacity:0.4">
-                        {{availableTableNumber}} tables left
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-auto p-0 "> 
-                  <div class="row "   >
-                      <div class="col-1">
-                          <i class="material-icons info-icon" style="color: green">check_circle</i> 
-                      </div>
-                      <div class="col-md-auto"style="opacity:0.4" >
-                          {{reservationToday}} reservations today
-                      </div>
+            <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true" (click)="time-picker.toggle()"> </i>
+            </span>
+            <div class="row">
+              <div class="col-3 p-0">
+                <div (click)="dropdownActive=!dropdownActive" class="dropdown">
+                  <input placeholder="Select seats" class="select-size input-border b-r-none" formControlName="guest"
+                    (window:mouseup)="autoCloseForDropdown($event)" />
+                  <div class="dropdown-content" [class.dropdown-active]="dropdownActive">
+                    <a (click)="setGuestNumber(2)">2 people</a>
+                    <a (click)="setGuestNumber(3)">3 people</a>
+                    <a (click)="setGuestNumber(4)">4 people</a>
                   </div>
-               </div>
-             </div>
-             <div class="row">
-            <p style="font-size: 18px; font-weight:400; padding-left: 1%; padding-top:3%">Select the best time that fits you</p>
-             </div>
-            <div class="row" style="">
-              <div class="col-2 p-r-l-1" *ngFor="let available of availableList"   >
-                <button (click)="reserveTable(available.tableId,available.time)" class="btn find-btn-red" style="border-radius: 3px !important ">{{available.tableId}}. {{available.time}}  </button>
+                </div>
+                <span (click)="dropdownActive=!dropdownActive" class="icon-pos"> <i class="fa fa-angle-down"
+                    aria-hidden="true"> </i> </span>
+              </div>
+              <div class="col-3 p-0">
+                <span (click)="d.toggle()" class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i>
+                </span>
+                <input type="text" placeholder="yyyy-mm-dd" formControlName="date"
+                  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (dateSelect)="onDateSelect($event)"
+                  class="font-family input-border select-size b-r-none" />
+              </div>
+              <div class="col-3 p-0">
+                <span atp-time-picker (click)="openTimePicker($event)" class="icon-pos"> <i class="fa fa-angle-down"
+                    aria-hidden="true"> </i> </span>
+                <input atp-time-picker class="font-family select-size input-time input-border b-r-none"
+                  placeholder="HH-MM" formControlName="time" />
+              </div>
+              <div class="col-3 p-0">
+                <button (click)="findAvailableTable()" type="button" class="btn font-family find-btn-red">Find a
+                  table</button>
+              </div>
             </div>
+          </div>
+          <div *ngIf="findClicked " class="font-family dropdown-table info">
+            <h5 class="p-0">Availibilty on {{date}} arround {{time}} for {{guestNumber}} people </h5>
+            <div class="row extra-info">
+              <div class="col-md-auto p-0">
+                <div class="row">
+                  <div class="col-1 ">
+                    <i class="material-icons info-icon">info</i>
+                  </div>
+                  <div class="col-md-auto" style="opacity:0.4">
+                    {{availableTableNumber}} tables left
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-auto p-0 ">
+                <div class="row ">
+                  <div class="col-1">
+                    <i class="material-icons info-icon" style="color: green">check_circle</i>
+                  </div>
+                  <div class="col-md-auto light-font">
+                    {{reservationToday}} reservations today
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <p class="extra-info-text">Select the best time that fits you</p>
+            </div>
+            <div class="row">
+              <div class="col-2 p-r-l-1" *ngFor="let available of availableList">
+                <button (click)="reserveTable(available.tableId,available.time)"
+                  class="btn find-btn-red b-radius-3">{{available.time}} </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--       PANEL INFO WITH MAP AND DESCRIPTION                -->
+        <div #about class="panel" style="margin-top: 5%">
+          <p *ngIf="restaurantData " class="font-family pan-title  pan-text-padd">About Restaurant {{restaurantData.name}}</p>
+          <div style="padding-top:1%;">
+            <div class="map-size" id="map"></div>
+          </div>
+          <p class="font-family pan-title  pan-text-padd" style="">Description:</p>
+          <p *ngIf="restaurantData!==undefined" class="font-family" style="padding: 5%;padding-top: 0"> {{restaurantData.description}}
+          </p>
+        </div>
+        <!--      MENU PANEL                -->
+        <!--later should add better logic for menu and remove inline style-->
+        <div #menu class="panel" style=" margin-top: 5%">
+
+          <div class="row font-family" style="padding-top:3%;padding-left: 5%; padding-right: 5%">
+            <div class="col-3 menu-title ">
+              Menu:
+            </div>
+            <div class="col-2 ">
+              <p class="menu-types " (click)="setMenuType(1)" [class.active-menu]="isMenuTypeActive(1)">Breakfast</p>
+            </div>
+            <div class="col-2">
+              <p class="menu-types" (click)="setMenuType(2)" [class.active-menu]="isMenuTypeActive(2)">Lunch</p>
+            </div>
+            <div class="col-2">
+              <p class="menu-types" (click)="setMenuType(3)" [class.active-menu]="isMenuTypeActive(3)">Dinner</p>
+            </div>
+          </div>
+          <hr>
+          <p class="font-family" style="padding-left: 4.5%">APPETIZERS</p>
+          <div class="row font-family" style="padding-top:0%;padding-left: 7%">
+            <div class="col-10  p-0 ">
+              <div class="menu-product font-family"> Brocoli</div>
+              <p class="product-info">With grilled saussage,olive..</p>
+            </div>
+            <div class="col-2 ">
+              <div>$ 8.95</div>
+            </div>
+            <div class="col-10 p-0 ">
+              <div class="menu-product"> Garlic Bread</div>
+              <p></p>
+            </div>
+            <div class="col-2 ">
+              <div>$ 8.95</div>
+            </div>
+            <div class="col-10  p-0 ">
+              <div class="menu-product"> Fried Cari</div>
+              <p class="product-info">With cheese</p>
+            </div>
+            <div class="col-2 ">
+              <div> $ 8.95</div>
+            </div>
+            <div class="col-10 p-0   ">
+              <div class="menu-product"> Fried Zuchini</div>
+              <p class="product-info">With grilled saussage,olive..</p>
+            </div>
+            <div class="col-2 ">
+              <div> $ 8.95</div>
+            </div>
+          </div>
+          <div class="row p-r-5 ">
+            <div class="col">
+              <div class="col-5 font-family" style="padding-left: 4.5%;padding-bottom:-10%">SALADS</div>
+              <div class="float-right price-type">small</div>
+              <div class="float-right price-type">large </div>
+            </div>
+          </div>
+          <div class="row font-family menu-salad">
+            <div class="col-9 p-0 padd-bott">
+              <div class="menu-product font-family"> Russian salad</div>
+            </div>
+            <div class="col-1 p-0" style="margin-left: 3%">
+              <div class="multiple-price">$ 8.95</div>
+            </div>
+            <div class="col-1 p-0" style="margin-left: 2%">
+              <div>$ 8.95</div>
+            </div>
+            <div class="col-9 p-0 padd-bott ">
+              <div class="menu-product font-family" style="opacity: 0.2"> Bosnian salad</div>
+            </div>
+            <div class="col-1 p-0" style="margin-left: 3%">
+              <div class="multiple-price" style="opacity: 0.2">$ 8.95</div>
+            </div>
+            <div class="col-1 p-0" style="margin-left: 2%">
+              <div style="opacity: 0.2">$ 8.95</div>
             </div>
 
-        
+            <div class="col-9 p-0 padd-bott ">
+              <div class="menu-product font-family" style="opacity: 0.05"> Cesar</div>
+            </div>
+            <div class="col-1 p-0" style="margin-left: 3%">
+              <div class="multiple-price" style="opacity: 0.05">$ 8.95</div>
+            </div>
+            <div class="col-1 p-0" style="margin-left: 2%">
+              <div style="opacity: 0.05">$ 8.95</div>
+            </div>
+
           </div>
+          <!--See all menu, later should be implemented-->
+          <p class="font-family expand-pan" style="text-align: center; font-size: 15px; color: #FD6F60;padding-top: 0">
+            See full menu</p>
 
         </div>
-<!--       PANEL INFO WITH MAP AND DESCRIPTION                -->
-        <div #about  class="panel" style="margin-top: 5%" >
-
-            <p *ngIf="restaurantData " class="font-family pan-title  pan-text-padd"  >About Restaurant {{restaurantData.name}}</p>
-
-
-            <div   style="padding-top:1%;">
-              <div class="map-size" id="map">
-  
-              </div>            </div>
-            <p  class="font-family pan-title  pan-text-padd" style="" >Description:</p>
-            <p class="font-family" style="padding: 5%;padding-top: 0"> {{restaurantData.description}}
-            </p>
-          </div>
-
-<!--      MENU PANEL                -->
-        <div #menu  class="panel" style=" margin-top: 5%" >
-          
-            <div class="row font-family" style="padding-top:3%;padding-left: 5%; padding-right: 5%">
-              <div class="col-3 menu-title " >
-                Menu:
-              </div>
-              
-              <div class="col-2 "  >
-                 <p class="menu-types " (click)="setMenuType(1)" [class.active-menu]="isMenuTypeActive(1)" >Breakfast</p> 
-              </div>
-              <div class="col-2"  >
-                  <p class="menu-types" (click)="setMenuType(2)" [class.active-menu]="isMenuTypeActive(2)" >Lunch</p> 
-              </div>
-              <div class="col-2" >
-                <p class="menu-types" (click)="setMenuType(3)" [class.active-menu]="isMenuTypeActive(3)" >Dinner</p> 
-
-              </div>
-            </div>
-             <hr> 
-             <p class="font-family" style="padding-left: 4.5%">APPETIZERS</p>
-             <div class="row font-family" style="padding-top:0%;padding-left: 7%">
-                <div class="col-10  p-0 ">
-                  <div class="menu-product font-family"> Brocoli</div>
-                  <p class="product-info" >With grilled saussage,olive..</p>
-                </div>
-                <div class="col-2 ">
-                    <div >$ 8.95</div>
-                </div>
-                <div class="col-10 p-0 ">
-                  <div class="menu-product"> Garlic Bread</div>
-                  <p></p>
-                </div>
-                <div class="col-2 ">
-                      <div >$ 8.95</div>
-                </div>
-          
-                <div class="col-10  p-0 ">
-                    <div class="menu-product"> Fried Cari</div>
-                    <p class="product-info">With cheese</p>
-                </div>
-                <div class="col-2 ">
-                      <div >  $ 8.95</div>
-                </div>
-                <div class="col-10 p-0   ">
-                  <div class="menu-product"> Fried Zuchini</div>
-                  <p class="product-info">With grilled saussage,olive..</p>
-              </div>
-              <div class="col-2 ">
-                    <div > $ 8.95</div>
-              </div>
-          
-            </div>
-            
-
-            <div class="row " style="padding-right:5%">
-              <div class="col">
-                  <div class="col-5 font-family" style="padding-left: 4.5%;padding-bottom:-10%">SALADS</div>
-                  <div class="float-right price-type" >small</div>
-                  <div class="float-right price-type" >large </div>
-              </div>
-            </div>
-
-            <div class="row font-family" style="padding-top:0%;padding-left: 7%; color: #1A1A1A 100% !important;padding-right: 3%">
-                
-              <div class="col-9 p-0 padd-bott">
-                <div class="menu-product font-family" > Russian salad</div>
-              </div>
-              <div class="col-1 p-0"  style="margin-left: 3%" >
-                  <div class="multiple-price" >$ 8.95</div>
-              </div>
-              <div class="col-1 p-0" style="margin-left: 2%">
-                <div >$ 8.95</div>
-              </div>
-
-              <div class="col-9 p-0 padd-bott " >
-                <div class="menu-product font-family" style="opacity: 0.2" > Bosnian salad</div>
-              </div>
-              <div class="col-1 p-0"  style="margin-left: 3%">
-                  <div class="multiple-price"  style="opacity: 0.2"  >$ 8.95</div>
-              </div>
-              <div class="col-1 p-0" style="margin-left: 2%" >
-                <div style="opacity: 0.2" >$ 8.95</div>
-              </div>
-
-              <div class="col-9 p-0 padd-bott " >
-                <div class="menu-product font-family" style="opacity: 0.05" > Cesar</div>
-              </div>
-              <div class="col-1 p-0"  style="margin-left: 3%">
-                  <div class="multiple-price"  style="opacity: 0.05"  >$ 8.95</div>
-              </div>
-              <div class="col-1 p-0" style="margin-left: 2%" >
-                <div style="opacity: 0.05" >$ 8.95</div>
-              </div>
-
-            </div>
-
-              <p class="font-family expand-pan" style="text-align: center; font-size: 15px; color: #FD6F60;padding-top: 0">See full menu</p>
-
-
-          </div>
-<!--   PANEL WITH RESTAURANTS PHOTO     -->
-          <div #photo class="panel font-family" style=" margin-top: 5%;margin-bottom: 10%" >
-            <div class="row">
-              <div class="col"> 
-                 <p  class="float-left  pan-title " style="font-size: 22px !important; padding-top:6%;padding-left: 6%" >Restaurants photo</p>
-              </div>
+        <!--   PANEL WITH RESTAURANTS PHOTO     -->
+        <div #photo class="panel font-family" style=" margin-top: 5%;margin-bottom: 10%">
+          <div class="row">
             <div class="col">
-                <p class="float-right  " style="padding-top:9%;padding-right: 8%; font-size: 14px"> See all photo(54)</p>
+              <p class="float-left  pan-title " style="font-size: 22px !important; padding-top:6%;padding-left: 6%">
+                Restaurants photo</p>
             </div>
+            <div class="col">
+              <p class="float-right  " style="padding-top:9%;padding-right: 8%; font-size: 14px"> See all photo(54)</p>
             </div>
-                <div class="row" style="padding-left:3% !important; padding-right: 3% !important">
-                  <div class="col-6 p-1">
-                      <img src="/assets/img/restaurants.png" style="height: 100%; width:100%">
-                  </div>
-                  <div class="col-6">
-                    <div class="row">
-                      <div class="col-6 p-1"> 
-                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
-                      </div>
-                      <div class="col-6 p-1"> 
-                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
-                      </div>
-                      <div class="col-6 p-1"> 
-                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
-                      </div>
-                      <div class="col-6 p-1"> 
-                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
-                      </div>
-                      <div class="col-6 p-1"> 
-                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
-                      </div>
-                      <div class="col-6 p-1"> 
-                          <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
-                      </div>
-
-                    </div>
-                  </div>
+          </div>
+          <div class="row" style="padding-left:3% !important; padding-right: 3% !important">
+            <div class="col-6 p-1">
+              <img src="/assets/img/restaurants.png" style="height: 100%; width:100%">
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-6 p-1">
+                  <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
                 </div>
-             
-      
-      
+                <div class="col-6 p-1">
+                  <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                </div>
+                <div class="col-6 p-1">
+                  <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                </div>
+                <div class="col-6 p-1">
+                  <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                </div>
+                <div class="col-6 p-1">
+                  <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                </div>
+                <div class="col-6 p-1">
+                  <img src="/assets/img/restaurants.png" style="height: 100%;width:100%">
+                </div>
+              </div>
             </div>
-    </div>
-
- 
-  </div>
-</div>
-</div>
-
-
- <!-- FOOTER  -->
-<app-footer></app-footer> 
- 
- <!--
-<form class="form-inline">
-  <div class="form-group">
-    <div class="input-group">
-      <input class="form-control" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</form>
-
-
-
-<div>
-
-  
-<ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
-
-
-<input />
-<button (click)="d.toggle()">Toggle</button>
-
 </div>
--->
 
+
+<!-- FOOTER [style.width.%]="30" -->
+<app-footer></app-footer>

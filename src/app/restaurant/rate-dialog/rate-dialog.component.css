@@ -1,3 +1,8 @@
+.p-r-l-24 {
+    padding-left:24%;
+    padding-right: 24%
+}
+
 .light-mark {
     color: black;
     opacity:0.4;
@@ -45,6 +50,13 @@
     height: 100% !important; 
     color: #ffff;
     font-size: 15px
+}
+
+.padding-button {
+    margin-right:16.5%;
+    margin-left:18.5%;
+    padding:5%;
+    padding-top:5%
 }
 
 
