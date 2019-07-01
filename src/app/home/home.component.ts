@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchMatchedRestaurant(name) {
-    this.restaurantService.getMatchedRestaurants(name).subscribe(data =>
+    this.restaurantService.getMatchedRestaurants(name,0).subscribe(data =>
       this.restaurantsFromDB = data
     );
   }

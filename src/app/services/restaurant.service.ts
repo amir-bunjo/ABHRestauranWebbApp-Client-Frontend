@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { post } from 'selenium-webdriver/http';
 
 var user = 3
 
@@ -53,12 +54,12 @@ export class RestaurantService {
     return this.http.get('http://localhost:8080/api/restaurant/length', { headers });
   }
 
-  getMatchedRestaurants(patern: String) {
+  getMatchedRestaurants(patern: String,mark: number) {
 
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
-    return this.http.get('http://localhost:8080/api/restaurant/matchpatern/' + patern, { headers });
+    return this.http.get('http://localhost:8080/api/restaurant/matchpatern/' + patern + '/' + mark, { headers });
   }
 
   getRestaurantById(id: number) {
@@ -98,6 +99,29 @@ export class RestaurantService {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
     return this.http.get(`http://localhost:8080/api/table/restaurant/seats/${restaurantId}/${seats}/${date}/${time}`, { headers });
 
+  }
+
+  updateRestaurant(restaurantModel) {
+
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.put(`http://localhost:8080/api/update/restaurant`, restaurantModel, { headers });
+
+  }
+
+  saveReview(reviewModel) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/save/review/${username}`, reviewModel, { headers });
+  }
+
+  getReviewMark(restaurantId) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/reviews/${restaurantId}/${username}`, { headers });
   }
 
 

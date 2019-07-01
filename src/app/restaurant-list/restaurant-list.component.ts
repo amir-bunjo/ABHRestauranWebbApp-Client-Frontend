@@ -47,7 +47,7 @@ export class RestaurantListComponent implements OnInit {
   }
 
   search() {
-    this.restaurantService.getMatchedRestaurants(this.searchForm.value.name).subscribe(data =>
+    this.restaurantService.getMatchedRestaurants(this.searchForm.value.name,this.restaurantRating).subscribe(data =>
       this.restaurantsFromDB = data
     );
   }

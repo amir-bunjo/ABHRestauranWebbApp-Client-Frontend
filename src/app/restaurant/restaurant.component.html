@@ -14,13 +14,13 @@
   </div>
 
   <div class="row restaurant-info ">
-    <div class="col-12 ">
+    <div class="col-12  ">
       <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p>
     </div>
-    <div class="col-md-auto " style="font-size: 40px !important">
-      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark"></app-rating>
+    <div class="col-md-auto " >
+      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="22"></app-rating>
     </div>
-    <div class="col-10 p-0" style="font-size: 18px">
+    <div class="col-10 p-0 middle-info"  >
       
       <span class="light-mark p-r-l-1">(1754)</span>
       <span class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
@@ -34,13 +34,16 @@
       <span class="p-r-l-1 light-mark">Italian | International | Mediterannean </span>
 
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button *ngIf="isUserLoggedIn()" (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
+      <button  matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()&& !isRated" (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
         <div class="row">
           <div class="col-12">
             <span class="fa fa-star red-mark p-r-5"></span> <span>Rate this place</span>
           </div>
         </div>
       </button>
+    </div>
+    <div [hidden]="!isRated" class="col-md-auto "> 
+      You've already rated this restaurant with {{rate}} stars !
     </div>
   </div>
 </div>

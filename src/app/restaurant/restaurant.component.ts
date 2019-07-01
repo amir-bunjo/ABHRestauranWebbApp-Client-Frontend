@@ -19,6 +19,7 @@ declare let L;
 })
 export class RestaurantComponent implements OnInit {
   model;
+
   restaurantId: number;
   restaurantData: any;
   restaurantPriceFilter: number = 3;
@@ -29,7 +30,8 @@ export class RestaurantComponent implements OnInit {
   myForm: FormGroup;
   guestNumber: number;
   dropdownActive: boolean = false;
-
+  isRated: boolean = false;
+  rate;
   findClicked = false;
 
   reservationToday;
@@ -56,6 +58,22 @@ export class RestaurantComponent implements OnInit {
       this.onChanges();
     }, 1000);
 
+    this.getReviewIfExist();
+
+  
+  }
+
+  getReviewIfExist() {
+    this.restaurantService.getReviewMark(this.restaurantId).subscribe(res => {
+      if(res!==null)
+        {
+          console.log('nije null');
+          this.isRated = true;
+          this.rate = res;
+          return res;
+        }
+    });
+   
   }
 
   isUserLoggedIn() {
@@ -134,7 +152,13 @@ export class RestaurantComponent implements OnInit {
     let dialogRef = this.dialog.open(RateDialogComponent, {
       height: '500px',
       width: '600px',
+      data: {restaurant:this.restaurantData}
     });
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('closed');
+      this.getReviewIfExist();
+      
+    })
   }
 
   getRestaurantData(id: number) {
@@ -287,6 +311,12 @@ export class RestaurantComponent implements OnInit {
     }).addTo(map);
     const marker = L.marker([latitude, longitude], icon).addTo(map);
     marker.bindPopup("<b>Here is location of restaurant!</b>").openPopup();
+  }
+
+  tooltipText() {
+    if(this.isRated)
+      return "You've alredy rated";
+    return "Rate and leave comment " 
   }
 }
 

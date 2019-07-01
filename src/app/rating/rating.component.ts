@@ -9,6 +9,7 @@ export class RatingComponent implements OnInit {
 
   max: number = 5;
   @Input() rate: number=0;
+  @Input() fontSize: number = 18;
   isReadonly: boolean = true;
 
 

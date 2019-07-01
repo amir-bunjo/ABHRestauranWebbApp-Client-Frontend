@@ -1,7 +1,7 @@
 
   .score {
     display: block;
-    font-size: 18px;
+    font-size: 23px;
     position: relative;
     overflow: hidden;
   }
@@ -9,7 +9,7 @@
   .score-wrap {
     display: inline-block;
     position: relative;
-    height: 19px;
+    height: 20px;
   }
   
   .score .stars-active {

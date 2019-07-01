@@ -8,10 +8,10 @@
   <span class="fa fa-star light-mark" id="star5" [class.red-mark]="isStarRed(5)" (click)="restaurantRating = 5"></span>
 </div>
 
-<div class="p-r-l-24">
-  <textarea class="review-size" placeholder="Write a review"></textarea>
+<div class="p-r-l-24" [formGroup]="rateForm">
+  <textarea class="review-size" formControlName="comment" placeholder="Write a review"></textarea>
 </div>
 
 <div class="padding-button">
-  <button class="btn button-red" style="background-color:#FD6F60 100% !important"> Save</button>
+  <button (click)="save()" class="btn button-red" style="background-color:#FD6F60 100% !important"> Save</button>
 </div>

@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReservationComponent } from './restaurant/reservation/reservation.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component';
+import { MatTooltipModule } from '@angular/material';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succ
     CarouselModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
-    AmazingTimePickerModule
+    AmazingTimePickerModule,
+    MatTooltipModule
   ],
 
   entryComponents: [RateDialogComponent, SuccesModalComponent],
