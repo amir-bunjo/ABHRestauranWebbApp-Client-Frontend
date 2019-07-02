@@ -25,7 +25,7 @@ export class RestaurantListComponent implements OnInit {
   isCollapsedFilterBox: boolean = true;
   restaurantRating: number = 0;
   restaurantPriceFilter: number = 0;
-  cousines: String[] = ['American', 'Mexican', 'Japannese', 'Greek', 'Cuban', 'Italian', 'Kontinental',
+  cousines: String[] = ['American', 'Bosnian', 'Vegeterian', 'Halal', 'Mexican', 'Japannese', 'Greek', 'Cuban', 'Italian', 'Kontinental',
     'Korean', 'Indian', 'Indonesian', 'Singapore', 'French', 'Spanish'];
   selectedCousines: String[] = [];
 
@@ -40,6 +40,21 @@ export class RestaurantListComponent implements OnInit {
     this.createSearchForm();
   }
 
+  isPriceActive(priceRange,index){
+    if(index > priceRange)
+      return true;
+    return false;
+
+  }
+
+  autoCloseForDropdown(event) {
+    var target = event.target;
+    if (!target.closest(".dropdown")) {
+      if (!this.isCollapsedFilterBox)
+        this.isCollapsedFilterBox = true;
+    }
+  }
+
   createSearchForm() {
     this.searchForm = new FormGroup({
       'name': new FormControl(null),
@@ -47,7 +62,12 @@ export class RestaurantListComponent implements OnInit {
   }
 
   search() {
-    this.restaurantService.getMatchedRestaurants(this.searchForm.value.name,this.restaurantRating).subscribe(data =>
+    for(let s of this.selectedCousines)
+      console.log(s);
+    var name = this.searchForm.value.name!==null && this.searchForm.value.name!==''  ? this.searchForm.value.name: '-';
+    var rating = this.restaurantRating !== 0 ? this.restaurantRating: 5;
+    var price = this.restaurantPriceFilter !== 0 ? this.restaurantPriceFilter : 4;
+    this.restaurantService.getMatchedRestaurants(name,rating,price,this.selectedCousines).subscribe(data =>
       this.restaurantsFromDB = data
     );
   }

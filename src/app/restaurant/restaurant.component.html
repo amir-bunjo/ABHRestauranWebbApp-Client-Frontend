@@ -14,16 +14,16 @@
   </div>
 
   <div class="row restaurant-info ">
-    <div class="col-12  ">
+    <div class="col-12  " style="margin-bottom: -1%">
       <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p>
     </div>
-    <div class="col-md-auto " >
-      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="22"></app-rating>
+    <div  [style.margin-top.%]="!isRated ? 0.8:0" class="col-md-auto   " >
+      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="16"></app-rating>
     </div>
-    <div class="col-10 p-0 middle-info"  >
-      
-      <span class="light-mark p-r-l-1">(1754)</span>
-      <span class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
+    <div class="col-10 p-0">
+<p>
+      <span class="light-mark ">(1754)</span>
+      <span style="padding-left:4px" class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
         (click)="restaurantPriceFilter = 1">$</span>
       <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) "
         (click)="restaurantPriceFilter = 2">$</span>
@@ -31,18 +31,16 @@
         (click)="restaurantPriceFilter = 3">$</span>
       <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) "
         (click)="restaurantPriceFilter = 4">$</span>
-      <span class="p-r-l-1 light-mark">Italian | International | Mediterannean </span>
-
+      <span class=" light-mark">Italian | International | Mediterannean </span>
+   
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button  matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()&& !isRated" (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
-        <div class="row">
-          <div class="col-12">
-            <span class="fa fa-star red-mark p-r-5"></span> <span>Rate this place</span>
-          </div>
-        </div>
+      <button matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()&& !isRated"
+        (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
+        <span class="fa fa-star red-mark p-r-5" style="font-size: 14px"></span> <span>Rate this place</span>
       </button>
+    </p>
     </div>
-    <div [hidden]="!isRated" class="col-md-auto "> 
+    <div [hidden]="!isRated" class="col-md-auto ">
       You've already rated this restaurant with {{rate}} stars !
     </div>
   </div>
@@ -91,8 +89,8 @@
               <div class="col-3 p-0">
                 <span (click)="d.toggle()" class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i>
                 </span>
-                <input type="text" placeholder="yyyy-mm-dd" formControlName="date"
-                  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (dateSelect)="onDateSelect($event)"
+                <input type="text" placeholder="yyyy-mm-dd" formControlName="date" ngbDatepicker #d="ngbDatepicker"
+                  (click)="d.toggle()" (dateSelect)="onDateSelect($event)"
                   class="font-family input-border select-size b-r-none" />
               </div>
               <div class="col-3 p-0">
@@ -144,12 +142,14 @@
         </div>
         <!--       PANEL INFO WITH MAP AND DESCRIPTION                -->
         <div #about class="panel" style="margin-top: 5%">
-          <p *ngIf="restaurantData " class="font-family pan-title  pan-text-padd">About Restaurant {{restaurantData.name}}</p>
+          <p *ngIf="restaurantData " class="font-family pan-title  pan-text-padd">About Restaurant
+            {{restaurantData.name}}</p>
           <div style="padding-top:1%;">
             <div class="map-size" id="map"></div>
           </div>
           <p class="font-family pan-title  pan-text-padd" style="">Description:</p>
-          <p *ngIf="restaurantData!==undefined" class="font-family" style="padding: 5%;padding-top: 0"> {{restaurantData.description}}
+          <p *ngIf="restaurantData!==undefined" class="font-family" style="padding: 5%;padding-top: 0">
+            {{restaurantData.description}}
           </p>
         </div>
         <!--      MENU PANEL                -->
@@ -292,3 +292,32 @@
 
 <!-- FOOTER [style.width.%]="30" -->
 <app-footer></app-footer>
+
+
+<div class="container">
+  <div class="row">
+    <div *ngIf="restaurantData" class="col-12">
+      {{restaurantData.name}}
+    </div>
+
+    <div class="col-2">
+      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="22"></app-rating>
+    </div>
+
+    <div class="col-md-auto">
+      <p>
+      <span class=" light-mark" style="color: brown">
+      Italian | International | Mediterannean 
+      </span>
+    </p>
+    </div>
+
+    <div class="col-2">
+      <button>
+        Rate this restaurant
+      </button>
+
+    </div>
+  </div>
+
+</div>

@@ -23,7 +23,8 @@
     border-color: #ffff 100%;
     border-radius: 2px;
     width: 20%;
-    margin-left: 5%
+    margin-left: 5%;
+    font-size: 15px !important
 }
 
 .map-size {
@@ -102,12 +103,15 @@
 
 .dolar-sign {
     font-family: 'Source Sans Pro', sans-serif; 
-    font-size: 18px;
+    font-size: 10px;
     font-weight: 400;
+    padding-left: 1.5px;
+    padding-right: 2px;
+    
 }
 .font-30 {
-    font-size: 30px !important;
-    font-weight: 300 !important;
+    font-size: 28px !important;
+    font-weight: 400 !important;
 }
 
 /* GRAY BACKGROUND */

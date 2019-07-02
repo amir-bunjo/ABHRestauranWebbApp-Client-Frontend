@@ -10,6 +10,10 @@
     display: inline-block;
     position: relative;
     height: 20px;
+    
+  }
+  .fa {
+  
   }
   
   .score .stars-active {

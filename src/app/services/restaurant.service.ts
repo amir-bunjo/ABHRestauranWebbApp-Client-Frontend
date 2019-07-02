@@ -54,12 +54,12 @@ export class RestaurantService {
     return this.http.get('http://localhost:8080/api/restaurant/length', { headers });
   }
 
-  getMatchedRestaurants(patern: String,mark: number) {
+  getMatchedRestaurants(patern: String,mark: number, price:number, cousines) {
 
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
-    return this.http.get('http://localhost:8080/api/restaurant/matchpatern/' + patern + '/' + mark, { headers });
+    return this.http.post(`http://localhost:8080/api/restaurant/matchpatern/${patern}/${mark}/${price}`, cousines ,{ headers });
   }
 
   getRestaurantById(id: number) {

@@ -14,11 +14,11 @@
                 class="form-control search-element font-family pad-left f-w-300"
                 placeholder="Search by restaurant name">
             </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6  p-0">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6  p-0" >
               <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-              <select type="button" class="form-control search-element font-family" id="exampleFormControlSelect1"
+              <select type="button" class="form-control search-element font-family" 
                 value="Filter by" (click)="isCollapsedFilterBox = !isCollapsedFilterBox"
-                [attr.aria-expanded]="!isCollapsedFilterBox" aria-controls="collapseFilterBox">
+                [attr.aria-expanded]="!isCollapsedFilterBox" aria-controls="collapseFilterBox" >
                 <option style="display: none">Filter by</option>
               </select>
             </div>
@@ -44,12 +44,16 @@
           </div>
           <div class="col-6 p-0 " >
             <div style="padding-left:3% !important "> <!--temporarly-->
-              (1745) $$$$
+              <span>(1745) </span>
+              <span  class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,1)">$</span>
+              <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,2)" >$</span>
+              <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,3)" >$</span>
+              <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,4)" >$</span>
             </div>
           </div>
           <div class="col-12">
             <hr class="hr-pos">
-            <span class="res-type">Italian | International | Mediteran </span>
+            <span class="res-type">{{restaurant.foodTypes}} </span>
           </div>
           <div class="col-12">
             <button (click)="navigateRestaurantSinglePage(restaurant.id)" class="button wide-grey">Reserve
@@ -61,7 +65,7 @@
   </div>
   <!--FILTER BOX  should be styled better then remove inline styles-->
   <span *ngIf="!isCollapsedFilterBox" class="triangle triangle-border">▲</span>
-  <div id="collapseFilterBox" [ngbCollapse]="isCollapsedFilterBox" class="filter-box">
+  <div  id="collapseFilterBox" [ngbCollapse]="isCollapsedFilterBox" class="filter-box">
     <div class="row filter-padding">
       <div class="col-6 cousine font-light" (click)="restaurantPriceFilter = 0">
         PRICE
