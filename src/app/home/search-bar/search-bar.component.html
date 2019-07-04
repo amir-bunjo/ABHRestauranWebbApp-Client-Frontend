@@ -9,25 +9,28 @@
         </div>
         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6  p-0" style="padding-right: 2px">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <select disabled class="form-control search-slt " id="exampleFormControlSelect1">
-            <option>2 people</option>
+          <select formControlName="guest" class="form-control search-slt " id="exampleFormControlSelect1">
+            <option value="2">2 people</option>
+            <option value="3">3 people</option>
+            <option value="4">4 people</option>
             <option>Example option one</option>
             <option>Example option two</option>
           </select>
         </div>
         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6  p-0">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <select disabled class="form-control search-slt font-family" id="exampleFormControlSelect1">
-            <option>Apr 29,2016</option>
+          <select formControlName="date" class="form-control search-slt font-family" id="exampleFormControlSelect1">
+            <option value="2019-06-06">Jun, 6, 2019</option>
+            <option value="2019-06-22">Jun, 22, 2019</option>
             <option>Example option one</option>
             <option>Example option two</option>
           </select>
         </div>
         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6  p-0">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <select disabled class="form-control search-slt font-family" id="exampleFormControlSelect1">
-            <option>7:00 PM </option>
-            <option>Example option one</option>
+          <select formControlName="time"  class="form-control search-slt font-family" id="exampleFormControlSelect1">
+            <option value="07:00:00">7:00 PM </option>
+            <option value="16:00:00">04:00 PM</option>
             <option>Example option two</option>
           </select>
         </div>

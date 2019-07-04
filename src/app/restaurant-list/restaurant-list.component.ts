@@ -35,13 +35,16 @@ export class RestaurantListComponent implements OnInit {
   constructor(private loginService: AuthenticationService, private router: Router, private restaurantService: RestaurantService) { }
 
   ngOnInit() {
-    this.loadRestaurantsData(0);
-    this.setMaxPageNumber();
+
+
     this.createSearchForm();
+    this.getRestaurantData();
+
+   
   }
 
-  isPriceActive(priceRange,index){
-    if(index > priceRange)
+  isPriceActive(priceRange, index) {
+    if (index > priceRange)
       return true;
     return false;
 
@@ -61,29 +64,26 @@ export class RestaurantListComponent implements OnInit {
     })
   }
 
-  search() {
-    for(let s of this.selectedCousines)
-      console.log(s);
-    var name = this.searchForm.value.name!==null && this.searchForm.value.name!==''  ? this.searchForm.value.name: '-';
-    var rating = this.restaurantRating !== 0 ? this.restaurantRating: 5;
+  getRestaurantData() {
+    let startIndex = (this.selectedPageIndex - 1) * 9;
+    var name = this.searchForm.value.name !== null && this.searchForm.value.name !== '' ? this.searchForm.value.name : '-';
+    var rating = this.restaurantRating !== 0 ? this.restaurantRating : 5;
     var price = this.restaurantPriceFilter !== 0 ? this.restaurantPriceFilter : 4;
-    this.restaurantService.getMatchedRestaurants(name,rating,price,this.selectedCousines).subscribe(data =>
-      this.restaurantsFromDB = data
-    );
+    this.restaurantService.getMatchedRestaurants(name, rating, price, this.selectedCousines, startIndex).subscribe(data => {
+      this.restaurantsFromDB = data;
+      this.restaurantService.getCountMatchedRestaurants(name, rating, price, this.selectedCousines, startIndex).subscribe(res => {
+        let size = res;
+        console.log('duzina je ' + size)
+        this.maxPageNumber = Math.ceil((<number>size) / 9);
+        this.loadNumberOfPages();
+      });
+    });
   }
 
   loadNumberOfPages() {
+    this.pages = [];
     for (var i = 0; i < this.maxPageNumber; i++)
       this.pages[i] = i + 1;
-  }
-
-  loadRestaurantsData(startIndex: number) {
-    this.restaurantService.getRestaurantsWithStartIndex(startIndex).subscribe(data => {
-      console.log(data);
-      this.restaurantsFromDB = data;
-      //this.loadRestaurantsOnpage();
-      //this.loadNumberOfPages();  
-    });
   }
 
   setMaxPageNumber() {
@@ -100,7 +100,7 @@ export class RestaurantListComponent implements OnInit {
 
   setPageIndex(i) {
     this.selectedPageIndex = i;
-    this.loadRestaurantsData((i - 1) * 9);
+    this.getRestaurantData();
   }
 
   nextPage() {

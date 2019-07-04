@@ -14,6 +14,8 @@ export class RateDialogComponent implements OnInit {
   restaurantData:any;
   rateForm: FormGroup;
   userName= sessionStorage.getItem('username');
+  userReview;
+  comment: string;
 
   constructor(@Optional() public dialogRef: MatDialogRef<RateDialogComponent>, private activatedRoute: ActivatedRoute,
   @Inject(MAT_DIALOG_DATA) public data:any, private restaurantService: RestaurantService ) { }
@@ -21,6 +23,10 @@ export class RateDialogComponent implements OnInit {
   ngOnInit() {
     this.restaurantId = this.activatedRoute.snapshot.params['id'];
     this.restaurantData = this.data ? this.data.restaurant: null;
+    this.userReview = this.data && this.data.review ? this.data.review : null;
+    this.restaurantRating = this.data  && this.data.review ? this.data.review.mark: 0;  
+    this.comment = this.data  && this.data.review ? this.data.review.comment : null;
+    console.log(this.restaurantRating)
     console.log(this.data.restaurant)
    this.createRateForm();
     
@@ -28,7 +34,7 @@ export class RateDialogComponent implements OnInit {
 
   createRateForm () {
     this.rateForm = new FormGroup({
-      'comment': new FormControl(null)
+      'comment': new FormControl(this.comment)
    })
   }
 
@@ -41,13 +47,20 @@ export class RateDialogComponent implements OnInit {
   }
 
   save() {
-    console.log(this.restaurantRating)
-    this.data.restaurant.votes++;
+    console.log('iz review') 
+    console.log(this.data.review)
+    if(this.data.review !== null){
+     this.data.restaurant.votes++;
+     console.log('nije rejtano')
+    }
+
+
     console.log('rate before: '+  this.data.restaurant.mark )
     this.data.restaurant.mark = (this.data.restaurant.mark * (this.data.restaurant.votes-1) + this.restaurantRating)/this.data.restaurant.votes ;
     console.log('comment: '+  this.rateForm.value.comment + " of user " + this.userName )
     //this.restaurantService.updateRestaurant(this.data.restaurant).subscribe(res => console.log(res));
     var review: Review = new Review();
+    review.id = this.data && this.data.review ? this.data.review.id : undefined ;
     review.comment= this.rateForm.value.comment;
     review.restaurantId = this.restaurantData.id;
     review.mark = this.restaurantRating; 
@@ -65,6 +78,7 @@ export class RateDialogComponent implements OnInit {
 }
 
 export class Review {
+  id: number
   comment: number;
   restaurantId: number;
   mark: number

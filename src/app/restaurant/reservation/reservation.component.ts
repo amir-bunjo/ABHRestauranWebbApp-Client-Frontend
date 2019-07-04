@@ -55,6 +55,7 @@ export class ReservationComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.reservationModel = this.router.getCurrentNavigation().extras.state;
+        console.log(this.reservationModel);
       }
     });
   }

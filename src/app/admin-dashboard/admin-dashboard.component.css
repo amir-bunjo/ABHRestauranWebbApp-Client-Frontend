@@ -1,0 +1,65 @@
+.font-family{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.grey-back{
+    background-color: #F7F7F7;
+    height: 100%;
+    background-size: cover;
+    width: 100%
+}
+
+.pt-10 {
+    padding-top : 10% !important
+}
+
+.panel {
+    background: #ffffff;  
+    width: auto;
+    border-radius: 2px; 
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+}
+
+.light-font {
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.red-font {
+    color: #FD6F60 !important;
+    opacity: 100 !important;
+}
+
+.col-4 .panel {
+    text-align: center;
+    position: relative;
+}
+
+.col-4 .panel button {
+    position: absolute; 
+    left:25%; 
+    top:95%; 
+    right:25%; 
+    width:50%;
+    background: #FD6F60 ;
+    border: 1px solid #FD6F60  !important;
+    border-radius: 2px
+}
+
+button span {
+    color: #fff;
+    font-size: 1.2vw
+}
+
+.col-4 .panel div {
+    padding: 20% ;
+}
+
+.font-48 {
+    font-size: 48px
+}
+
+.font-16 {
+    font-size: 16px
+
+}

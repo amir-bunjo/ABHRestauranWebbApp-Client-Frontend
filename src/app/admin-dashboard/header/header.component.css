@@ -1,0 +1,31 @@
+.font-family{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600 !important;
+
+}
+
+.header-padding{
+    padding-top: 2%;
+ 
+    margin:1% 
+}
+
+.font-s-16{
+    padding: 0.5%;
+    font-size: 16px;
+ 
+}
+
+.font-size-20{
+    font-size: 20px;
+    font-weight: 600 !important;
+    
+}
+
+.red-text {
+    color: #FD6F60 !important
+}
+
+.black-text {
+    color: black !important
+}

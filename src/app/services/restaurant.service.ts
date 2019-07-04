@@ -54,13 +54,22 @@ export class RestaurantService {
     return this.http.get('http://localhost:8080/api/restaurant/length', { headers });
   }
 
-  getMatchedRestaurants(patern: String,mark: number, price:number, cousines) {
+  getMatchedRestaurants(patern: String,mark: number, price:number, cousines, page: number) {
 
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
-    return this.http.post(`http://localhost:8080/api/restaurant/matchpatern/${patern}/${mark}/${price}`, cousines ,{ headers });
+    return this.http.post(`http://localhost:8080/api/restaurant/matchpatern/${patern}/${mark}/${price}/${page}`, cousines ,{ headers });
   }
+
+  getCountMatchedRestaurants(patern: String,mark: number, price:number, cousines, page: number) {
+
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/restaurant/count/matchpatern/${patern}/${mark}/${price}/${page}`, cousines ,{ headers });
+  }
+
 
   getRestaurantById(id: number) {
     let username = sessionStorage.getItem('username');
@@ -122,6 +131,13 @@ export class RestaurantService {
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
     return this.http.get(`http://localhost:8080/api/reviews/${restaurantId}/${username}`, { headers });
+  }
+
+  getAvailableRestaurants (name,seats, date,  time) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/restaurant/avalable/${name}/${seats}/${date}/${time}`, { headers });
   }
 
 

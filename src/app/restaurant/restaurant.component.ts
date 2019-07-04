@@ -31,6 +31,7 @@ export class RestaurantComponent implements OnInit {
   guestNumber: number;
   dropdownActive: boolean = false;
   isRated: boolean = false;
+  userReview: any;
   rate;
   findClicked = false;
 
@@ -69,7 +70,8 @@ export class RestaurantComponent implements OnInit {
         {
           console.log('nije null');
           this.isRated = true;
-          this.rate = res;
+          this.userReview = res;
+          this.rate = this.userReview.mark;
           return res;
         }
     });
@@ -152,7 +154,7 @@ export class RestaurantComponent implements OnInit {
     let dialogRef = this.dialog.open(RateDialogComponent, {
       height: '500px',
       width: '600px',
-      data: {restaurant:this.restaurantData}
+      data: {restaurant:this.restaurantData,review: this.userReview}
     });
     dialogRef.afterClosed().subscribe(res => {
       console.log('closed');

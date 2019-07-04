@@ -29,6 +29,8 @@ import { ReservationComponent } from './restaurant/reservation/reservation.compo
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component';
 import { MatTooltipModule } from '@angular/material';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { HeaderComponent } from './admin-dashboard/header/header.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { MatTooltipModule } from '@angular/material';
     LeafletMapComponent,
     RateDialogComponent,
     ReservationComponent,
-    SuccesModalComponent
+    SuccesModalComponent,
+    AdminDashboardComponent,
+    HeaderComponent
   ],
 
   imports: [

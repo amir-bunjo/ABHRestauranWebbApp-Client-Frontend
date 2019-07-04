@@ -1,7 +1,7 @@
 <!--CHECK OUT LATER-->
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
-<header >
+<header class="top" >
 
 <!--NAV BAR-->  
     <app-header-navbar class="header-text-color"></app-header-navbar>
@@ -37,7 +37,7 @@
                       <span class="res-type">Italian | International | Mediteran  </span>
                       <br>
                       <br>
-                      <button (click)= "navigateRestaurantSinglePage(restaurant.id)" class="button wide-grey">Reserve now</button>
+                      <button (click)= "navigateReservationPage(restaurant,this)" class="button wide-grey">Reserve now</button>
                       
                   </div>
               </div>
@@ -65,3 +65,8 @@
 <div >
     <app-footer  ></app-footer>
 </div>
+
+
+  <p #alert role="alert" class="alert" *ngIf="dangerAlert" style="position: absolute; top:0;left:0; width:100%">
+    <ngb-alert [type]="danger" (close)="dangerAlert = false" style="background:red; color: black">ERROR with reservation! You have to specified time date and number of guests before reservation!!</ngb-alert>
+  </p>

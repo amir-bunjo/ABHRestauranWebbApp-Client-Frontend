@@ -40,5 +40,9 @@ export class AuthenticationService {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('password')
   }
+
+  getRoles() {
+      return "ADMIN_ROLE";
+  }
   
 }

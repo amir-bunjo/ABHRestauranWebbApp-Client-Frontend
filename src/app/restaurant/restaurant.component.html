@@ -34,7 +34,7 @@
       <span class=" light-mark">Italian | International | Mediterannean </span>
    
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()&& !isRated"
+      <button matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()"
         (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
         <span class="fa fa-star red-mark p-r-5" style="font-size: 14px"></span> <span>Rate this place</span>
       </button>
