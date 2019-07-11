@@ -1,0 +1,28 @@
+.col-md-auto button {
+    background: rgb(161, 158, 158);
+    color: #FFFFFF;
+    border: 1px solid  rgb(161, 158, 158);
+    border-radius: 1px;
+}
+
+.icon-pos {
+    position: absolute; 
+    top: 22%;
+    left:20%; 
+    font-size: 15px; 
+    bottom: 0
+  }
+
+  .row .col-12 select {
+    width: 20%;
+    height:50px;
+    -webkit-appearance: none !important;
+    background: white;
+    border:1px solid rgb(235, 232, 232);
+    border-radius: 0 !important
+  }
+
+  .row .col-12 input {
+      height: 50px;
+        width: 10%
+  }

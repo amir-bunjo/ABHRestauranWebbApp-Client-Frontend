@@ -29,11 +29,26 @@ export class ReservationComponent implements OnInit {
     return this.auth.isUserLoggedIn();
   }
 
-  saveReservation() {
-    console.log(this.reservationModel.time)
+  saveReservation(){
+    console.log(this.reservationModel)
+
+    if(this.reservationModel===undefined){
+      console.log('err')
+      let dialogRef = this.dialog.open(SuccesModalComponent, {
+        height: '150px',
+        width: '400px',
+      });
+      return;
+    }
+  
+   // console.log(this.reservationModel.time)
     this.restaurantService.saveReservation(this.reservationModel).subscribe(
-      res => console.log('succesfull'),
-      error => console.log('error')
+      res => { console.log(res); let dialogRef = this.dialog.open(SuccesModalComponent, {
+        height: '150px',
+        width: '400px',
+        data: { text: 'Successfully reserved'}
+      });  },
+      error => { console.log('error');     }
     )
   }
 
@@ -66,11 +81,10 @@ export class ReservationComponent implements OnInit {
 
 
   completeReservation() {
-    this.saveReservation();
-    let dialogRef = this.dialog.open(SuccesModalComponent, {
-      height: '150px',
-      width: '400px',
-    });
+   this.saveReservation();
+  
+
+    
   }
 
 

@@ -1,0 +1,87 @@
+.row .col-3 select{
+    -webkit-appearance: none;
+    border-radius:0 
+}
+
+.input-frame{
+    border-radius:0 
+}
+
+.panel {
+
+    background:#ffffff;
+
+    border-radius: 2px; 
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+}
+
+.image-box {
+    border: 1px solid rgb(218, 213, 213);
+    height:200px;
+    position: relative;
+    text-align: center;
+    line-height: 200px;
+}
+
+.icon-image {
+    position: absolute;
+    left: 45%;
+    top:40%;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.image-box p {
+    line-height: 1.5;
+    right: 0;left: 0; 
+    margin: auto;
+    position: absolute; 
+    top:60%; 
+    opacity: 0.5;
+}
+
+.light-font {
+    opacity: 0.4;
+}
+
+.col-6 {
+    padding-top:3%;
+}
+
+.red-button {
+     
+    height: calc(3rem + 2px) !important; 
+    background:#FD6F60; 
+    color:#FFF;
+    border:1px solid #FD6F60;
+    border-radius: 1px;
+    font-weight: 600;  
+    font-size:18px
+}
+
+.grey-button {
+     
+    height: calc(3rem + 2px) !important; 
+    background:#FFF; 
+    border:1px solid rgb(218, 213, 213);
+    border-radius: 1px;
+    font-weight: 600;  
+    font-size:18px
+}
+
+.map-size {
+    height: 250px;
+    width: 100%;
+}
+
+.row .col-3 {
+    padding-top:3%
+}
+
+.icon-pos {
+    position: absolute; 
+    top: 70%;
+    right:13%; 
+    font-size: 15px; 
+    bottom: 0
+}

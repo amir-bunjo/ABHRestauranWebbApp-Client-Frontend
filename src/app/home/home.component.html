@@ -25,23 +25,39 @@
     </div>
     <div class="m-b-10">
         <div >
-            <div class="container">
-              <div class="row" >
-                  <div class="col-lg-4 col-md-6 col-xs-12 " *ngFor="let restaurant of restaurantsFromDB; let i=index">
-                      <img (click)= "navigateRestaurantSinglePage(restaurant.id)" class="img-size" src="{{restaurant.promophoto}}" >
-                      <br>
-                       <span class="res-name">{{restaurant.name}}</span>
-                       <br>
-                      <span [hidden]="false"><app-rating [rate]="restaurant.mark"></app-rating>(1745) $$$$</span> 
-                      <hr>
-                      <span class="res-type">Italian | International | Mediteran  </span>
-                      <br>
-                      <br>
-                      <button (click)= "navigateReservationPage(restaurant,this)" class="button wide-grey">Reserve now</button>
-                      
-                  </div>
-              </div>
-            </div>
+                <div class="container gallery-padd">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-6 col-xs-12 img-width" *ngFor="let restaurant of restaurantsFromDB; let i=index">
+                            <div class="row">
+                              <div class="col-12">
+                                <img class="img-size" src="{{restaurant.promophoto}}" (click)="navigateRestaurantSinglePage(restaurant.id)">
+                                <span class="res-name">{{restaurant.name}}</span>
+                              </div>
+                              <div class="col-md-auto p-r-0 " style="padding-right: 0">
+                                <app-rating [rate]="restaurant.mark"></app-rating>
+                              </div>
+                              <div class="col-6 p-0 " >
+                                <p style="padding-left:3%  !important; padding-top:1% " class=""> <!--temporarly-->
+                                  <span>({{restaurant.votes}}) </span>
+                                  <span  class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,1)">$</span>
+                                  <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,2)" >$</span>
+                                  <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,3)" >$</span>
+                                  <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,4)" >$</span>
+                                </p>
+                              </div>
+                              <div class="col-12 pt-0">
+                                <hr class="hr-pos">
+                                <span class="res-type">{{restaurant.foodTypes}} </span>
+                              </div>
+                              <div class="col-12">
+                                <button (click)="navigateRestaurantSinglePage(restaurant.id)" class="button wide-grey">Reserve
+                                  now</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                
           </div>
     </div>
 </div>

@@ -49,26 +49,33 @@ export class RateDialogComponent implements OnInit {
   save() {
     console.log('iz review') 
     console.log(this.data.review)
-    if(this.data.review !== null){
-     this.data.restaurant.votes++;
+    this.data.restaurant.votes++;
+    if(this.data && this.data.review){
+     this.data.restaurant.votes--;
+     this.data.restaurant
+     
      console.log('nije rejtano')
     }
 
 
     console.log('rate before: '+  this.data.restaurant.mark )
-    this.data.restaurant.mark = (this.data.restaurant.mark * (this.data.restaurant.votes-1) + this.restaurantRating)/this.data.restaurant.votes ;
     console.log('comment: '+  this.rateForm.value.comment + " of user " + this.userName )
     //this.restaurantService.updateRestaurant(this.data.restaurant).subscribe(res => console.log(res));
     var review: Review = new Review();
     review.id = this.data && this.data.review ? this.data.review.id : undefined ;
     review.comment= this.rateForm.value.comment;
+    console.log('aaa///// ' + this.restaurantData.id)
     review.restaurantId = this.restaurantData.id;
     review.mark = this.restaurantRating; 
     this.restaurantService.saveReview(review).subscribe(res =>{var s:any=res; console.log(s)},
     error => {
       console.log('error status is: ' + error.status)
-      if(error.status===200)
-        this.restaurantService.updateRestaurant(this.data.restaurant).subscribe(res => console.log(res));
+      if(error.status===200) {
+        this.restaurantService.getRestaurantRating(this.restaurantData.id).subscribe(res => {
+          this.data.restaurant.mark = res;
+          this.restaurantService.updateRestaurant(this.data.restaurant).subscribe(res => console.log(res));
+        });
+      }
       else
        alert('Unsuccesfully rated restaurant');  
     });
@@ -78,7 +85,7 @@ export class RateDialogComponent implements OnInit {
 }
 
 export class Review {
-  id: number
+  id: number;
   comment: number;
   restaurantId: number;
   mark: number

@@ -1,33 +1,8 @@
-.font-family{
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-.grey-back{
-    background-color: #F7F7F7;
-    height: 100%;
-    background-size: cover;
-    width: 100%
-}
-
-.pt-10 {
-    padding-top : 10% !important
-}
-
 .panel {
     background: #ffffff;  
     width: auto;
     border-radius: 2px; 
     box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
-}
-
-.light-font {
-    opacity: 0.4;
-    cursor: pointer
-}
-
-.red-font {
-    color: #FD6F60 !important;
-    opacity: 100 !important;
 }
 
 .col-4 .panel {
@@ -62,4 +37,18 @@ button span {
 .font-16 {
     font-size: 16px
 
+}
+
+.pt-10 {
+    padding-top : 10% !important
+}
+
+.light-font {
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.red-font {
+    color: #FD6F60 !important;
+    opacity: 100 !important;
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { post } from 'selenium-webdriver/http';
+import { Observable } from 'rxjs';
 
 var user = 3
 
@@ -15,16 +16,15 @@ export class RestaurantService {
   constructor(private http: HttpClient) { }
 
   saveReservation(reservation) {
-    const formData = new FormData()
-    formData.append('time', reservation.time);
-    formData.append('date', reservation.date);
-    formData.append('guest', reservation.guest)
-
+   
+     
+    
     let reservationModel = {
       'time': reservation.time + ":00",
       'date': reservation.date,
       'guestNumber': parseInt(reservation.guest)
     }
+  
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     //
@@ -47,7 +47,7 @@ export class RestaurantService {
   }
 
   getRestaurantsTableLength() {
-
+  
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
@@ -141,4 +141,17 @@ export class RestaurantService {
   }
 
 
+  getRestaurantRating(restaurantId) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/reviews/average/${restaurantId}`, { headers });
+  }
+
+  getRestaurantsNameAndId(startIndex) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/restaurant/name/id/${startIndex}`, { headers });
+  }
 }

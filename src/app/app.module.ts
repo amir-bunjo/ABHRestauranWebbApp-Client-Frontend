@@ -29,8 +29,18 @@ import { ReservationComponent } from './restaurant/reservation/reservation.compo
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component';
 import { MatTooltipModule } from '@angular/material';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { HeaderComponent } from './admin-dashboard/header/header.component';
+import { AdminComponent } from './admin/admin.component';
+import { HeaderAdminComponent } from './admin/header-admin/header-admin.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { RestaurantsComponent } from './admin/restaurants/restaurants.component';
+import { LocationsComponent } from './admin/locations/locations.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+import { UsersComponent } from './admin/users/users.component';
+import { BasicDetailsComponent } from './admin/restaurants/basic-details/basic-details.component';
+import { MenuComponent } from './admin/restaurants/menu/menu.component';
+import { GalleryComponent } from './admin/restaurants/gallery/gallery.component';
+import { TablesComponent } from './admin/restaurants/tables/tables.component';
+import { ConfirmDialogComponent } from './admin/shared/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -52,8 +62,18 @@ import { HeaderComponent } from './admin-dashboard/header/header.component';
     RateDialogComponent,
     ReservationComponent,
     SuccesModalComponent,
-    AdminDashboardComponent,
-    HeaderComponent
+    AdminComponent,
+    HeaderAdminComponent,
+    DashboardComponent,
+    RestaurantsComponent,
+    LocationsComponent,
+    CategoriesComponent,
+    UsersComponent,
+    BasicDetailsComponent,
+    MenuComponent,
+    GalleryComponent,
+    TablesComponent,
+    ConfirmDialogComponent
   ],
 
   imports: [
@@ -74,7 +94,7 @@ import { HeaderComponent } from './admin-dashboard/header/header.component';
     MatTooltipModule
   ],
 
-  entryComponents: [RateDialogComponent, SuccesModalComponent],
+  entryComponents: [RateDialogComponent, SuccesModalComponent, ConfirmDialogComponent],
   providers: [{ provide: NgbCalendar, useClass: NgbCalendarGregorian }],
   bootstrap: [AppComponent]
 })

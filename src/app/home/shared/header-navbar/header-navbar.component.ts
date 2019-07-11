@@ -16,6 +16,10 @@ export class HeaderNavbarComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = this.loginService.isUserLoggedIn();
   }
+
+  admin() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   
   login() {
     this.router.navigate(['/login']);

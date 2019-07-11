@@ -1,0 +1,56 @@
+<!--
+     <div class="panel p-2 "  >
+            <div class="row pl-2">
+                <div class="col-md-auto light-font"  [class.red-font]="clickedNav==='Dashboard'" (click)="clickedNav='Dashboard'">
+                    Dashboard
+                </div>
+  
+                <div class="col-md-auto light-font " [class.red-font]="clickedNav==='Restaurants'" (click)="clickedNav='Restaurants'">
+                    Restaurants
+                </div>
+                <div  class="col-md-auto light-font" [class.red-font]="clickedNav==='Locations'" (click)="clickedNav='Locations'">
+                    Locations
+                </div>
+                <div class="col-md-auto light-font" [class.red-font]="clickedNav==='Categories'" (click)="clickedNav='Categories'">
+                    Categories
+                </div>
+  
+                <div class="col-md-auto light-font" [class.red-font]="clickedNav==='Users'" (click)="clickedNav='Users'">
+                    Users
+                </div>
+  
+            </div>
+        </div>
+        -->
+  <div class="row pt-10" style="padding-bottom: 10%" >
+    <div class="col-4">
+        <div class="panel  ">
+            <div class="row">
+                <div class="col-12 font-48 pb-0">{{totalRestaurants}}</div>
+                <div class="col-12 font-16 pt-0">Restaurants</div>
+            </div>
+            <button (click)="addNewRestaurant()" ><span >Add new restaurant</span></button>                    
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="panel ">
+            <div class="row">
+                <div class="col-12 font-48 pb-0">312</div>
+                <div class="col-12 font-16 pt-0">Locations</div>
+            </div>
+            <button (click)="addNewLocation()"  ><span >Add new location</span></button>                    
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="panel  " >
+            <div class="row">
+                <div class="col-12 font-48 pb-0">432</div>
+                <div class="col-12 font-16 pt-0">Users</div>
+            </div>
+            <button (click)="addNewUser()" ><span >Add new user</span></button>                    
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,48 @@
+.panel {
+
+    background:#ffffff;
+    border-radius: 2px; 
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+}
+
+.red-font {
+    color: #FD6F60 !important;
+    opacity: 100 !important;
+}
+
+.menu-types {
+    color: #FD6F60;
+    text-align: center;
+    font-size: 15px;
+}
+
+.active-menu {
+    color: #FFFFFF !important;
+    background: #FD6F60;
+    border-radius: 2px;
+}
+
+.col-md-auto button {
+    background: rgb(161, 158, 158);
+    color: #FFFFFF;
+    border: 1px solid  rgb(161, 158, 158);
+    border-radius: 1px;
+}
+
+.light-font {
+    opacity: 0.4;
+}
+
+.row .col-12 input {
+    font-style: italic;
+    width: 50%;
+    font-size: 13px;
+    height: calc(2rem + 2px);
+    padding-left: 5px;
+    border: 1px solid  rgb(202, 198, 198);
+    border-radius:3px
+}
+
+.row .col-2 p {
+    cursor: pointer;
+}

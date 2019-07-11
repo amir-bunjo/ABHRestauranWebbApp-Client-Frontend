@@ -39,8 +39,13 @@ export class RestaurantListComponent implements OnInit {
 
     this.createSearchForm();
     this.getRestaurantData();
-
+    
    
+  }
+
+  searchRestaurant() {
+    this.selectedPageIndex = 1;
+    this.getRestaurantData();
   }
 
   isPriceActive(priceRange, index) {

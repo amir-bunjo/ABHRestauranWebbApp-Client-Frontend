@@ -1,5 +1,5 @@
-import { Component, OnInit, Optional } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,15 @@ import { Router } from '@angular/router';
 })
 export class SuccesModalComponent implements OnInit {
 
-  constructor(@Optional() public dialogRef: MatDialogRef<SuccesModalComponent>, private router: Router) { }
+  title: string;
+
+  constructor(@Optional() public dialogRef: MatDialogRef<SuccesModalComponent>, private router: Router,@Inject(MAT_DIALOG_DATA) public data:any) {
+
+   }
 
   ngOnInit() {
+
+    this.title = this.data ? this.data.text : 'Unsuccesfully reserved !!!';
     this.dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.navigateRestaurantsList();

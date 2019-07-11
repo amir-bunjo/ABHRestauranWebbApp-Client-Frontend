@@ -1,0 +1,38 @@
+.icon-image {
+    position: absolute;
+    left: 45%;
+    top:40%;
+    opacity: 0.4;
+}
+
+.image-box {
+    border: 1px solid rgb(218, 213, 213);
+    height: 350px;
+    position: relative;
+    text-align: center;
+    line-height: 200px;
+    background: #F9F9F9 
+}
+
+.image-box p {
+    line-height: 1.5;
+    right: 0;left: 0; 
+    margin: auto;
+    position: absolute; 
+    top:55%; 
+    opacity: 0.5;
+    font-size: 12px;
+    
+}
+
+.red-font {
+    color: #FD6F60 ;
+   opacity: 100% !important; 
+}
+
+.col-md-auto button {
+    background: rgb(161, 158, 158);
+    color: #FFFFFF;
+    border: 1px solid  rgb(161, 158, 158);
+    border-radius: 1px;
+}

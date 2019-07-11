@@ -1,0 +1,89 @@
+<div [hidden]="addClicked" class="pt-5 pb-5">
+  <table class="table table-bordered " style="background:#fff;  box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10); ">
+    <thead>
+      <tr>
+        <th scope="col" style="width:46%">First Name</th>
+        <th scope="col" style="width:46%">Email</th>
+        <th scope="col" style="width:7%">Options </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row" colspan="1">{{user}}</th>
+        <th scope="row">example@gmail.com</th>
+        <td><span><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img
+              (click)="openDialog()" class="icon" src="/assets/trash.svg" alt="An example icon" /></span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+
+  <form [formGroup]="registerForm" *ngIf="addClicked" class="pt-5 pb-5 ">
+    
+  <div  class="panel mt-5 pb-5 ">
+      <p class="pl-5 pt-3">Add User</p>
+    <div class="row pl-5 pt-2" style="width: 60%">
+      <div class="col-12 mb-3 ">
+        <input formControlName="firstname" type="text" class="form-control font-family input-frame"
+          placeholder="First Name">
+      </div>
+      <div class="col-12 mb-3 ">
+        <input formControlName="lastname" type="text" class="form-control font-family input-frame"
+          placeholder="Last Name">
+      </div>
+      <div class="col-12 mb-3 ">
+        <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Email">
+      </div>
+      <div class="col-12 mb-3 ">
+        <input formControlName="phone" type="text" class="form-control font-family input-frame"
+          placeholder="Phone Number">
+      </div>
+      <div class="col-6 mb-3 select-padd-left ">
+        <div class="box" style="position: relative;">
+          <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
+          <select class="font-family form-control select-frame " formControlName="city">
+            <option>Bosna i Hercegovina</option>
+            <option>Example option one</option>
+            <option>Example option two</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6 mb-3 select-padd-right">
+        <div class="box" style="position: relative;">
+          <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
+          <select class="font-family form-control select-frame"  formControlName="country">
+            <option>Sarajevo</option>
+            <option>Example option one</option>
+            <option>Example option two</option>
+          </select>
+        </div>
+      </div>
+      <!-- change style later for select-->
+      <div class="col-12 mb-3">
+        <input formControlName="password" type="password" class="form-control font-family input-frame"
+          placeholder="Password">
+      </div>
+      <div class="col-12 m-bottom-3">
+        <input formControlName="confirmpass" type="password" class="form-control font-family input-frame"
+          placeholder="Confirm Password">
+      </div>
+      <div class="col-12 mb-3">
+        <span *ngIf="checkPassword()" class="error-text">Invalid confirmation password</span>
+        <span *ngIf="!checkPassword() && isConfirmNull()" class="succes-text">Valid password</span>
+      </div>
+
+    </div>
+    <div class="row  pt-3 pl-5">
+        <div class="col-md-auto pr-1">
+          <button class="grey-button" (click)="cancel()"> Cancel</button>
+        </div>
+        <div class="col-md-auto ">
+          <button class="red-button"> Add user </button>
+        </div>
+      </div>
+
+  </div>
+</form>

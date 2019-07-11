@@ -1,0 +1,144 @@
+.panel {
+
+    background:#ffffff;
+    border-radius: 2px; 
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+}
+
+.panel .row .col-md-auto {
+    cursor: pointer;
+}
+
+.w-30 {
+    width: 32%
+}
+
+.icon {
+    width:24px;
+    height:24px;
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.red-font {
+    color: #FD6F60 !important;
+    opacity: 100 !important;
+}
+
+@media only screen and (max-width: 768.5px) {
+.col-xs-2 button {
+
+    width:20% !important;
+}
+}
+
+.search-icon {
+    position: absolute !important; 
+    right:80px ; 
+    top:18%;
+    opacity: 0.4;
+}
+
+.icon-pos {
+    color:red !important
+}
+
+.light-font {
+    opacity: 0.4;
+}
+
+.image-box {
+    border: 1px solid rgb(218, 213, 213);
+    height:200px;
+    position: relative;
+    text-align: center;
+    line-height: 200px;
+}
+
+.icon-image {
+    position: absolute;
+    left: 45%;
+    top:40%;
+    opacity: 0.4;
+}
+
+.image-box p {
+    line-height: 1.5;
+    right: 0;left: 0; 
+    margin: auto;
+    position: absolute; 
+    top:60%; 
+    opacity: 0.5;
+}
+
+.col-6 {
+    padding-top:3%;
+}
+
+.red-button {
+     
+    height: calc(3rem + 2px) !important; 
+    background:#FD6F60; 
+    color:#FFF;
+    border:1px solid #FD6F60;
+    border-radius: 1px;
+    font-weight: 600;  
+    font-size:18px
+}
+
+.grey-button {
+     
+    height: calc(3rem + 2px) !important; 
+    background:#FFF; 
+    border:1px solid rgb(218, 213, 213);
+    border-radius: 1px;
+    font-weight: 600;  
+    font-size:18px
+}
+
+.map-size {
+    height: 250px;
+    width: 100%;
+}
+
+.row .col-3 {
+    padding-top:3%
+}
+
+
+
+
+/* PAGINATION STYLES*/
+.number-box {
+    width: 30px;
+    height: 30px;
+    background: #ffffff;
+    font-size: 14px;
+    border-style: solid;
+    border-color: rgb(214, 210, 210);
+    border-width: 0.5px;
+    border-radius: 5%;
+    cursor: pointer
+}
+
+.active-box{
+    background: #FD6F60 100% !important;
+    color: #ffffff !important;
+    opacity: 100 !important;
+    border: none !important;
+    width: 32px;
+    height: 32px;
+}
+.page-number {
+    padding-top: 16%;
+    text-align: center;
+    margin: auto;
+}
+
+.page-font {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    opacity: 0.4;
+    cursor: pointer;
+}

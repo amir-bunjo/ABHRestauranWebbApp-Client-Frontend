@@ -1,0 +1,65 @@
+.grey-back{
+    background-color: #F7F7F7;
+    
+
+
+}
+
+.font-family{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+}
+
+.panel {
+    background: #ffffff;  
+    width: auto;
+    border-radius: 2px; 
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+}
+
+.light-font {
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.red-font {
+    color: #FD6F60 !important;
+    opacity: 100 !important;
+}
+
+.w-80 {
+    width: 85%
+}
+
+.w-13 {
+    width:13%
+}
+
+.icon-pos {
+    position: absolute; 
+    right:83px ; 
+    top:18%;
+    opacity: 0.4;
+}
+
+.red-button {
+    width: 100%;  
+    height: calc(3rem + 2px) !important; 
+    background:#FD6F60; 
+    color:#FFF;
+    border:1px solid #FD6F60;
+    border-radius: 4px;
+    font-weight: 600;  
+    font-size:18px
+}
+
+@media only screen and (max-width: 1200px) {
+    .w-80 {
+    
+        width:100% !important;
+    }
+
+    .w-13 {
+        width: 150px;
+    }
+}

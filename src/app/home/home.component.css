@@ -131,8 +131,16 @@ header {
 
 }
 
+.grey-font {
+    color: rgb(214, 212, 212);
+}
 
+.dolar-sign {
+    font-family: 'Source Sans Pro', sans-serif; 
+    font-size: 15px;
+    font-weight: 600;
 
+}
 
 
 

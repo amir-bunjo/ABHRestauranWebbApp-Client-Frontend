@@ -160,5 +160,13 @@ export class HomeComponent implements OnInit {
     const element = elementList[0] as HTMLElement;
     element.scrollIntoView({ behavior: 'smooth' });
  }
+
+
+ isPriceActive(priceRange, index) {
+  if (index > priceRange)
+    return true;
+  return false;
+
+}
   
 }

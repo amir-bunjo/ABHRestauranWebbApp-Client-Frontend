@@ -1,0 +1,60 @@
+<div [hidden]="addClicked" class="pt-5 pb-5">
+  <table class="table table-bordered " style="background:#fff;  box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10); ">
+    <thead>
+      <tr>
+        <th scope="col" colspan="5" style="width: 120%">Name</th>
+        <th scope="col">Options </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of locations">
+        <th scope="row" colspan="5">{{location}}</th>
+       
+        <td><span><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img
+              (click)="openDialog()" class="icon" src="/assets/trash.svg" alt="An example icon" /></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="pb-5" *ngIf="addClicked">
+  <div class="panel mt-5 pb-5 ">
+
+    <div class="row pt-5 ">
+
+      <div class="col-md-auto ml-4">Location</div>
+
+
+    </div>
+
+
+    <div class="row ml-2 light-font pt-2">
+      <div class="col-12 pb-3">
+        1.
+        <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
+        <select type="text" class=" pl-3 ml-2 mb-2" placeholder="Name">
+          <option style="display: none">Select Country</option>
+          <option>Bosnia </option>
+          <option>Croatia</option>
+          <option>Serbia</option>
+        </select>
+        <input type="text" placeholder="City name" class="ml-2">
+
+        <span class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
+      </div>
+
+    </div>
+
+    <div class="row  pt-5 ml-3">
+      <div class="col-md-auto pr-1">
+        <button class="grey-button" (click)="cancel()"> Cancel</button>
+      </div>
+      <div class="col-md-auto ">
+        <button class="red-button"> Add location </button>
+      </div>
+    </div>
+
+
+  </div>
+</div>

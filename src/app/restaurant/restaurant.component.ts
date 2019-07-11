@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ɵConsole, Input } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { RestaurantService } from '../services/restaurant.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +19,6 @@ declare let L;
 })
 export class RestaurantComponent implements OnInit {
   model;
-
   restaurantId: number;
   restaurantData: any;
   restaurantPriceFilter: number = 3;
@@ -68,7 +67,7 @@ export class RestaurantComponent implements OnInit {
     this.restaurantService.getReviewMark(this.restaurantId).subscribe(res => {
       if(res!==null)
         {
-          console.log('nije null');
+          console.log('nije null' );
           this.isRated = true;
           this.userReview = res;
           this.rate = this.userReview.mark;

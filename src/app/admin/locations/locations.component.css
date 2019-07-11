@@ -1,0 +1,51 @@
+
+
+.icon-pos {
+    position: absolute; 
+    top: 22%;
+    left:20%; 
+    font-size: 15px; 
+    bottom: 0
+  }
+
+  .row .col-12 select {
+    width: 20%;
+    height:50px;
+    -webkit-appearance: none !important;
+    background: white;
+    border:1px solid rgb(235, 232, 232);
+    border-radius: 0 !important
+  }
+
+  .row .col-12 input {
+      height: 50px;
+        width: 20%
+  }
+
+  .panel {
+
+    background:#ffffff;
+    border-radius: 2px; 
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+}
+
+.red-button {
+     
+    height: calc(3rem + 2px) !important; 
+    background:#FD6F60; 
+    color:#FFF;
+    border:1px solid #FD6F60;
+    border-radius: 1px;
+    font-weight: 600;  
+    font-size:18px
+}
+
+.grey-button {
+     
+    height: calc(3rem + 2px) !important; 
+    background:#FFF; 
+    border:1px solid rgb(218, 213, 213);
+    border-radius: 1px;
+    font-weight: 600;  
+    font-size:18px
+}

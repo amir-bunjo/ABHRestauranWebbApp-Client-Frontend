@@ -17,30 +17,36 @@
     <div class="col-12  " style="margin-bottom: -1%">
       <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p>
     </div>
-    <div  [style.margin-top.%]="!isRated ? 0.8:0" class="col-md-auto   " >
+    <div  [style.margin-top.%]="0" class="col-md-auto   " >
       <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="16"></app-rating>
     </div>
-    <div class="col-10 p-0">
-<p>
-      <span class="light-mark ">(1754)</span>
-      <span style="padding-left:4px" class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
-        (click)="restaurantPriceFilter = 1">$</span>
-      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) "
-        (click)="restaurantPriceFilter = 2">$</span>
-      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) "
-        (click)="restaurantPriceFilter = 3">$</span>
-      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) "
-        (click)="restaurantPriceFilter = 4">$</span>
-      <span class=" light-mark">Italian | International | Mediterannean </span>
-   
+    <div class="col-md-auto pl-0 pr-1">
+        <span class="light-mark ">(1754)</span>
+
+      </div>
+
+      <div class="col-md-auto pl-0">
+          <span style="padding-left:4px" class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
+          (click)="restaurantPriceFilter = 1">$</span>
+        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) "
+          (click)="restaurantPriceFilter = 2">$</span>
+        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) "
+          (click)="restaurantPriceFilter = 3">$</span>
+        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) "
+          (click)="restaurantPriceFilter = 4">$</span>   
+          <span class=" light-mark">Italian | International | Mediterannean </span>
+        
+        </div>
+    <div class="col-md-auto ">
+      <button class="button-rate " [hidden]="true" ><span class="fa fa-star red-mark   p-r-5" style="font-size: 14px"></span></button>
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()"
-        (click)="rateRestaurant()" type="button" class="btn font-family button-rate">
-        <span class="fa fa-star red-mark p-r-5" style="font-size: 14px"></span> <span>Rate this place</span>
+      <button  matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()"
+        (click)="rateRestaurant()" type="button" class="btn font-family  button-rate" style="width: 150px">
+        <span class="fa fa-star red-mark   p-r-5" style="font-size: 14px"></span> <span>Rate this place</span>
       </button>
-    </p>
+
     </div>
-    <div [hidden]="!isRated" class="col-md-auto ">
+    <div [hidden]="!isRated" class="col-12 ">
       You've already rated this restaurant with {{rate}} stars !
     </div>
   </div>

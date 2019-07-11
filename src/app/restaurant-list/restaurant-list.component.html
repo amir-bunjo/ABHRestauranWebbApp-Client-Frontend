@@ -23,7 +23,7 @@
               </select>
             </div>
             <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 p-0">
-              <button type="button" class="btn font-family find-search" (click)="getRestaurantData()">Search</button>
+              <button type="button" class="btn font-family find-search" (click)="searchRestaurant()">Search</button>
             </div>
           </div>
         </div>
@@ -43,8 +43,8 @@
             <app-rating [rate]="restaurant.mark"></app-rating>
           </div>
           <div class="col-6 p-0 " >
-            <div style="padding-left:3% !important "> <!--temporarly-->
-              <span>(1745) </span>
+            <div style="padding-left:3% !important; padding-top:1% "> <!--temporarly-->
+              <span>({{restaurant.votes}}) </span>
               <span  class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,1)">$</span>
               <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,2)" >$</span>
               <span class="dolar-sign" [class.grey-font]="isPriceActive(restaurant.priceRange,3)" >$</span>

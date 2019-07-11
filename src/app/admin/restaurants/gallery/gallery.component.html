@@ -1,0 +1,33 @@
+<div class="p-3">
+<div *ngIf="!addPhotos">
+    <div class="row">
+
+        <div class="col-md-auto">Photos</div>
+        <div class="col-md-auto ml-auto">
+          <button class="font-family" (click)="addPhotos=true">Add photos</button>
+        </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="col-2 p-1" *ngFor="let photo of photosArray">
+          <img height="150px" width="100%" style="background: #F9F9F9 ;    border: 1px solid  #D3D3D3;border-radius: 2px;  ">
+        </div>
+        <div class="col-2 p-1 text-center" style="position: relative">
+            <img height="150px" width="100%"  style="background: white; border: 1px solid   #D3D3D3;border-radius: 2px;">
+            <p style="position:absolute;top:35%;left:45%;width: 10%;font-size:35px;font-weight: 300" class="red-font">+</p>
+        </div>
+      </div>
+</div>
+
+<div *ngIf="addPhotos"> 
+ Add Photos
+  <div class="image-box ">
+    <img class="icon-image " src="assets/upload.svg" width="10%" height="50px" alt="assets/img/Bitmap.png">
+
+    <p>Drag and drop photos here <br> or <br> <span class="red-font">Upload Photos</span> </p>
+
+
+  </div>
+</div>
+</div>

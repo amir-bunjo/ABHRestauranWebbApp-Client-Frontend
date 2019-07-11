@@ -1,0 +1,55 @@
+
+    <div [hidden]="false" class="row pt-2">
+      <div class="col-6">
+        <span class="pl-3 pt-2">Logo</span>
+        <div class="image-box ml-3 " style="">
+            <input hidden type="file" #uploadLogo (change)="onUploadChange($event,'logo')" >
+            <img class="p-0" *ngIf="logoImageString !==undefined" src="{{logoImageString}}" height="103%" width="100%" > 
+          <img class="icon-image" (click)="openUploadLogo()"  src="assets/upload.svg" width="10%" height="50px" alt="assets/img/Bitmap.png">
+          <p>Upload</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <span class=" pt-2">Cover</span>
+        <div class="image-box mr-3 " style="">
+          <input hidden type="file" #uploadCover (change)="onUploadChange($event,'cover')" >
+          <img class="p-0" *ngIf="coverImageString !==undefined" src="{{coverImageString}}" height="103%" width="100%" > 
+          <img class="icon-image"  role="button" (click)="openUploadCover()"  src="assets/upload.svg" width="10%" height="50px" alt="assets/img/Bitmap.png">
+          <p>Upload</p>
+        </div>
+      </div>
+      <div class="col-6 pr-4">
+        <span class="pt-2 pl-3 ">Name</span>
+        <input class="form-control input-frame ml-3 mr-3" style="margin-right:10%" type="text">
+      </div>
+      <div class="col-3 pr-4 " style="position: relative"  >
+        <span class=" ">Price range</span>
+        <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
+        <select class="form-control  pr-5" type="text">
+          <option>First</option>
+        </select>
+      </div>
+      <div class="col-3 pr-4 " style="position: relative" >
+        <span class=" ">Category</span>
+        <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
+        <select  class="form-control  pr-5" type="text">
+          <option>First</option>
+        </select>
+      </div>
+ 
+      <div class="col-6 "  >
+       <span class="pl-3 ">Location</span>
+        <div class="map-size ml-3 " id="map"></div>
+      </div>
+      <div class="col-6 pr-4 ">
+        <span class="pt-2  ">Description</span>
+        <textarea class="map-size light-font " ></textarea>
+      </div>
+
+
+
+    </div>
+
+
+
+ 
