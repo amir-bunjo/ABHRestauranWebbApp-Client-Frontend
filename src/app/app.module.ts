@@ -28,7 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReservationComponent } from './restaurant/reservation/reservation.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { SuccesModalComponent } from './restaurant/reservation/succes-modal/succes-modal.component';
-import { MatTooltipModule } from '@angular/material';
+import { MatTooltipModule, MatAutocompleteModule } from '@angular/material';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './admin/header-admin/header-admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
@@ -91,7 +91,8 @@ import { ConfirmDialogComponent } from './admin/shared/confirm-dialog/confirm-di
     ReactiveFormsModule,
     HttpClientModule,
     AmazingTimePickerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule
   ],
 
   entryComponents: [RateDialogComponent, SuccesModalComponent, ConfirmDialogComponent],

@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { BasicDetailsComponent } from './basic-details/basic-details.component';
+import { HereService } from 'src/app/shared/here/here.service';
 
 
 
@@ -15,6 +17,9 @@ export class RestaurantsComponent implements OnInit {
 
   @Input() addClicked = false;
   @Output() cancelClick = new EventEmitter();
+  @ViewChild(BasicDetailsComponent) basicDetails;
+  
+
   pages = [1,2,3,4]; //temporarly
   selectedPageIndex = 1;
   maxPageNumber ;
@@ -24,13 +29,24 @@ export class RestaurantsComponent implements OnInit {
 
   addTab = 'Basic Details';
   
+  restaurantBasicDetails = '';
 
-  constructor(private dialog: MatDialog,private restaurantService: RestaurantService) { }
+  constructor(private dialog: MatDialog,private restaurantService: RestaurantService,private cdr: ChangeDetectorRef, private hereService: HereService) { }
 
   ngOnInit() {
     this.getRestaurantsData(0);
     this.createSearchForm();
     this.setMaxPageNumber();
+  }
+
+  receiveBasicDetailsData(event) {
+    this.restaurantBasicDetails = event;
+  }
+
+  ngAfterViewInit() {
+    this.restaurantBasicDetails = this.basicDetails.message;
+    this.cdr.detectChanges();
+
   }
 
   createSearchForm(){
@@ -47,10 +63,23 @@ export class RestaurantsComponent implements OnInit {
     this.cancelClick.emit();
   }
 
-  openDialog() {
+  deleteRestaurant(restaurantId) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       height: '150px',
       width: '400px',
+      data: {title: 'Are you sure to delete this restaurant'}
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+      if(res)
+        this.restaurantService.deleteRestaurant(restaurantId).subscribe(res => {
+          console.log(res);
+          let startIndex = (this.selectedPageIndex-1)*9;
+          this.getRestaurantsData(startIndex)
+          this.loadNumberOfPages();
+
+        });
+
     });
   }
 
@@ -80,8 +109,82 @@ export class RestaurantsComponent implements OnInit {
   previousPage() {
     this.selectedPageIndex !== this.minPageNumber ? this.setPageIndex(this.selectedPageIndex - 1) : 0;
   }
+
+  addRestaurant() {
+    console.log('clicked add')
+
+    let name = this.basicDetails.basicDetailForm.value.name;
+    let pricerange = this.basicDetails.basicDetailForm.value.pricerange;
+    let category = this.basicDetails.basicDetailForm.value.category;
+    let description = this.basicDetails.basicDetailForm.value.description;
+    let coverImage = this.basicDetails. coverImageString;
+    let logoImage = this. basicDetails.logoImageString;
+    let latitude = sessionStorage.getItem('latitude')
+    let longitude = sessionStorage.getItem('longitude')
+    let coverName = this.basicDetails.imageNames.get('cover');
+    let logoName = this.basicDetails.imageNames.get('logo');
+
+    var restaurantModel: Restaurant = new Restaurant();
+
+
+    restaurantModel.cityId = 1;
+    restaurantModel.description = description;
+    restaurantModel.name = name;
+    restaurantModel.promophoto = logoImage;
+    restaurantModel.coverphoto = coverImage;
+    restaurantModel.priceRange = pricerange;
+    restaurantModel.latitude = latitude;
+    restaurantModel.longitude = longitude;
+    restaurantModel.foodTypes = category;
+
+    console.log('name: ' + name);
+    console.log('pricerange: ' + pricerange)
+    console.log('category: ' + category)
+    console.log('description: ' + description)
+    console.log('latitude: ' + latitude )
+    console.log('longitude: ' + longitude)
+    console.log('cover image name: ' + this.basicDetails.imageNames.get('cover'))
+    console.log('logo image name: ' + this.basicDetails.imageNames.get('logo'))
+
+    this.hereService.getAddressFromLatLng(latitude + ',' + longitude).then(result => {
+      let location = result[0].Location.Address.Label;
+      console.log(location)
+      restaurantModel.street = location;
+    //  this.restaurantService.saveImageToCloudinary(1,coverImage).subscribe(res => console.log(res))
+      this.restaurantService.saveRestaurant(restaurantModel,coverName,logoName).subscribe(res => console.log(res))
+
+    });
+  
+
+   console.log('cover image ispod: ');
+   console.log(coverImage);
+
+   console.log('logo image ispod: ');
+   console.log(logoImage);
+
+ 
+  }
+
+
  
 
 
 
+}
+
+export class Restaurant {
+
+  cityId;
+  name;
+  street;
+  priceRange;
+  description;
+  promophoto;
+  coverphoto;
+  latitude;
+  longitude;
+  mark = 1;
+  foodTypes;
+  votes= 0;
+  
 }

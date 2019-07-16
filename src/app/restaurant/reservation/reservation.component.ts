@@ -38,7 +38,7 @@ export class ReservationComponent implements OnInit {
         height: '150px',
         width: '400px',
       });
-      return;
+     // return;
     }
   
    // console.log(this.reservationModel.time)
@@ -48,7 +48,10 @@ export class ReservationComponent implements OnInit {
         width: '400px',
         data: { text: 'Successfully reserved'}
       });  },
-      error => { console.log('error');     }
+      error => { console.log('error');let dialogRef = this.dialog.open(SuccesModalComponent, {
+        height: '150px',
+        width: '400px'
+      });      }
     )
   }
 

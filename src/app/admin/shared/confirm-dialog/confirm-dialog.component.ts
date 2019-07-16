@@ -9,13 +9,15 @@ import { Router } from '@angular/router';
 })
 export class ConfirmDialogComponent implements OnInit {
 
+  title;
+
   constructor(@Optional() public dialogRef: MatDialogRef<ConfirmDialogComponent>, private router: Router,@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit() {
+
+    this.title = this.data && this.data.title ? this.data.title: 'Confirm modal';
   }
 
 
-  close() {
-    this.dialogRef.close();
-  }
+
 }

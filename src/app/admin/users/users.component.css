@@ -56,3 +56,13 @@
     font-weight: 600;  
     font-size:18px
 }
+
+.select-frame option {
+    -webkit-appearance: none !important;
+    appearance: none  !important;
+    -moz-appearance: none;
+
+    background-color:red !important;
+    color: green;
+    width: 300px !important;
+}

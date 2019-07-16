@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  navigateReservationPage(restaurantData,document) {
+  navigateReservationPage(restaurantData) {
 
     if(this.navigationExtras=== undefined  ){
       alert('You have to specified time,date and guest number!!!')

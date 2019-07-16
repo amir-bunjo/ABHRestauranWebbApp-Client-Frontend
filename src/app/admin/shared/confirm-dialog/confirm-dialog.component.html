@@ -1,5 +1,12 @@
-<<h3 class="text-center">{{title}} </h3>
+<h3 class="text-center ">{{title}} ? </h3>
 
-<div class="button-padd">
-  <button class="red-btn" [mat-dialog-close]="true">OK</button>
+
+<div class="row">
+  <div class="col-6 ">
+    <button class="confirm-btn" [mat-dialog-close]="true">OK</button>
+  </div>
+
+  <div class="col-6 ">
+    <button class="confirm-btn grey-button"  [mat-dialog-close]="false">Cancel</button>
+  </div>
 </div>

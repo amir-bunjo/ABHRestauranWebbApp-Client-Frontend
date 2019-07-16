@@ -1,12 +1,9 @@
-.red-btn{
+.confirm-btn{
 
     background:#FD6F60 100% !important;
     border-color: #FD6F60 100%;
     border-radius:  1%;
-    
-    top:50%;
-    left: 40%;
-    right:40%;
+
     width:100%;
 
     color: #ffff;
@@ -17,4 +14,14 @@
     padding-top:5%; 
     padding-right:5%;
     padding-left:5%
+}
+
+.grey-button {
+     
+    background: none !important;
+    color: black 
+}
+
+.text-center {
+    font-size: 22px
 }

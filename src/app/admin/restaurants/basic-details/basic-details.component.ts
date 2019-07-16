@@ -1,8 +1,14 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, NgModule } from '@angular/core';
 import 'node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
+import { FormGroup, FormControl } from '@angular/forms';
+import { HereService } from 'src/app/shared/here/here.service';
+//import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 declare let L;
+
+
 
 @Component({
   selector: 'app-basic-details',
@@ -12,33 +18,121 @@ declare let L;
 export class BasicDetailsComponent implements OnInit {
   @ViewChild('uploadLogo') inputFieldLogo: ElementRef;
   @ViewChild('uploadCover') inputFieldCover: ElementRef;
-
+  @Output() dataEmitter = new EventEmitter();
+  optionsAutocomplete = [];
+  message;
   logoImageString;
   coverImageString;
+  imageNames = new FormData();
   selectedupload;
+  coordinates: Coordinates = new Coordinates();
+  map:any;
+  myMarker: any;
 
-  constructor() { }
+  basicDetailForm: FormGroup
+
+  constructor(private hereService: HereService) { }
 
   ngOnInit() {
+    
+    this.basicDetailForm = new FormGroup({
+      'name': new FormControl(null),
+      'pricerange': new FormControl(null),
+      'category': new FormControl(null),
+      'description': new FormControl(null),
+      'searchAdress': new FormControl(null)
 
-    this.loadMap(45.8616156, 17.417399);
+
+    })
+
+    this.loadMap(45.8616156, 17.417399,'map');
   }
 
-  loadMap(latitude, longitude) {
-    var icon = {
-      icon: L.icon({
-        iconSize: [50, 60],
-        iconAnchor: [20, 20],
-        iconUrl: './assets/img/map-marker.png'
-      })
-    };
-    const map = new L.map('map').setView([latitude, longitude], 16);
+  valuechange() {
+    console.log('clicked search' + this.basicDetailForm.value.searchAdress);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    const marker = L.marker([latitude, longitude], icon).addTo(map);
-    marker.bindPopup("<b>Here is location of restaurant!</b>").openPopup();
+    let searchString = this.basicDetailForm.value.searchAdress;
+
+    this.hereService.getAddress(searchString).then(result => { 
+      var coordinates = new Coordinates();
+      let adress = result;
+      coordinates.latitude = adress[0].Location.DisplayPosition.Latitude;
+      coordinates.longitude = adress[0].Location.DisplayPosition.Longitude;
+      console.log( coordinates );
+      document.getElementById('map').innerHTML = "<div id='newmap' style='width: 100%; height: 100%;'></div>";
+      this.loadMap(coordinates.latitude,coordinates.longitude,'newmap');
+      
+    });
+    }
+
+  newInput(event){
+    var textInput: string = event.target.value;
+    if(textInput !== "")
+      this.optionsAutocomplete = this.hereService.findSuggestion(textInput);
+    else
+      this.optionsAutocomplete = [];
+    //this.searchAddres = event.target.value;
+  }
+
+  changeMapCenter(lat,longt){
+
+    document.getElementById('map').innerHTML = "<div id='newmap' style='width: 100%; height: 100%;'></div>";
+    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    osmAttribution = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,' +
+                        ' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+    osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttribution});
+    this.map = new L.Map('newmap');
+    this.map.setView(new L.LatLng(lat,longt), 15 );
+    this.map.addLayer(osmLayer);
+  
+    // this.loadMapMarkers(lat,longt);
+   
+  }
+  
+
+
+
+
+  loadMap(latitude, longitude, mapId) {
+    //this.coordinates = new Coordinates();
+    var LeafIcon = L.Icon.extend({
+      options: {
+        iconSize: [50, 60],
+        shadowSize: [50, 64],
+        iconAnchor: [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor: [-3, -76]
+      }
+    });
+
+    var markerIcon = new LeafIcon({
+      iconUrl: './assets/img/map-marker.png'
+    });
+    
+    this.map = new L.map(mapId).setView([latitude, longitude], 16);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      { attribution: 'OSM' }
+    ).addTo(this.map);
+  
+    var myMarker = L.marker([latitude, longitude], { icon: markerIcon, draggable: true })
+      .addTo(this.map)
+      .on('dragend', function () {
+        var coord = String(myMarker.getLatLng()).split(',');
+        console.log(coord);
+        var lat = coord[0].split('(')[1];
+        console.log(lat);
+        var lng = coord[1].split(')')[0];        
+        console.log(lng);
+        sessionStorage.setItem('latitude',lat);
+        sessionStorage.setItem('longitude',lng);
+        myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+      });
+
+    // marker.bindPopup("<b>Here is location of restaurant!</b>").openPopup();
+  }
+
+  setCoordinates() {
+    console.log('should set coord');
   }
 
   openUploadLogo(): void {
@@ -51,7 +145,10 @@ export class BasicDetailsComponent implements OnInit {
   }
 
 
-  onUploadChange(evt: any,type) {
+  onUploadChange(evt: any, type) {
+    this.dataEmitter.emit('test');
+    this.imageNames.append(type,evt.target.files[0].name);
+    console.log(evt.target.files[0].name + ' type: ' + type);
     const file = evt.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -62,15 +159,21 @@ export class BasicDetailsComponent implements OnInit {
   }
 
   handleReaderLoaded(e) {
-    
-    if(this.selectedupload === 'logo')
+
+    if (this.selectedupload === 'logo')
       this.logoImageString = 'data:image/png;base64,' + btoa(e.target.result);
-    else if(this.selectedupload === 'cover')
+    else if (this.selectedupload === 'cover')
       this.coverImageString = 'data:image/png;base64,' + btoa(e.target.result);
 
 
-   // console.log('type' + type)  
-   // console.log(this.coverImageString);
+    // console.log('type' + type)  
+    // console.log(this.coverImageString);
   }
 
+}
+
+
+export class Coordinates {
+  latitude: any;
+  longitude: any;
 }

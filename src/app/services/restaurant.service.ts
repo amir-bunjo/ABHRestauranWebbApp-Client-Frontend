@@ -154,4 +154,27 @@ export class RestaurantService {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
     return this.http.get(`http://localhost:8080/api/restaurant/name/id/${startIndex}`, { headers });
   }
+
+  saveRestaurant(restaurantModel,coverName,logoName) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/save/restaurant/${coverName}/${logoName}`, restaurantModel, { headers });
+  }
+
+  deleteRestaurant(restaurantId: number) {
+
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.delete(`http://localhost:8080/api/restaurant/${restaurantId}`, { headers });
+
+  }
+
+  saveImageToCloudinary(restaurantId: number, imgString) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/restaurant/image/upload/${restaurantId}`, imgString, { headers });
+  }
 }

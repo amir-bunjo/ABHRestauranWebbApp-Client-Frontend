@@ -1,5 +1,5 @@
 <div class="pt-5 pb-5">
-  <div *ngIf="addClicked">
+  <div [hidden]="!addClicked">
     <div class="panel w-30" style="border-bottom: none">
       <div class="row p-1 pl-3">
         <div class="col-md-auto light-font" [class.red-font]="addTab==='Basic Details'"
@@ -13,7 +13,7 @@
 
     </div>
     <div class="panel pb-5">
-      <app-basic-details *ngIf="addTab==='Basic Details'"></app-basic-details>
+      <app-basic-details (dataEmitter)="receiveBasicDetailsData($event)" [hidden]="addTab!=='Basic Details'"></app-basic-details>
       <app-menu *ngIf="addTab==='Menu'"></app-menu>
       <app-gallery *ngIf="addTab==='Gallery'"></app-gallery>
       <app-tables *ngIf="addTab==='Tables'"></app-tables>
@@ -22,7 +22,7 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button class="red-button"> Add restaurant </button>
+          <button class="red-button" (click)="addRestaurant()" > Add restaurant </button>
         </div>
       </div>
     </div>
@@ -31,14 +31,14 @@
     style="background:#fff;  box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10); ">
     <thead>
       <tr>
-        <th scope="col" colspan="5" style="width: 120%">Name</th>
+        <th scope="col" colspan="5" style="width: 120%">Name{{restaurantBasicDetails}}</th>
         <th scope="col">Options </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let restaurantData of restaurantsData">
         <th scope="row" colspan="5">{{restaurantData[1]}}</th>
-        <td><span><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img (click)="openDialog()" class="icon"
+        <td><span><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img (click)="deleteRestaurant(restaurantData[0])" class="icon"
               src="/assets/trash.svg" alt="An example icon" /></span></td>
       </tr>
     </tbody>

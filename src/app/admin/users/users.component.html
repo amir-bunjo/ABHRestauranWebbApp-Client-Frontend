@@ -27,31 +27,37 @@
       <p class="pl-5 pt-3">Add User</p>
     <div class="row pl-5 pt-2" style="width: 60%">
       <div class="col-12 mb-3 ">
+          First Name
         <input formControlName="firstname" type="text" class="form-control font-family input-frame"
-          placeholder="First Name">
+          placeholder="Required">
       </div>
       <div class="col-12 mb-3 ">
+          Last Name
         <input formControlName="lastname" type="text" class="form-control font-family input-frame"
-          placeholder="Last Name">
+          placeholder="Required">
       </div>
       <div class="col-12 mb-3 ">
-        <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Email">
+        Email
+        <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Required">
       </div>
       <div class="col-12 mb-3 ">
+        Phone Number
         <input formControlName="phone" type="text" class="form-control font-family input-frame"
-          placeholder="Phone Number">
+          placeholder="Required">
       </div>
       <div class="col-6 mb-3 select-padd-left ">
+          Select country
         <div class="box" style="position: relative;">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
           <select class="font-family form-control select-frame " formControlName="city">
-            <option>Bosna i Hercegovina</option>
+            <option >Bosna i Hercegovina</option>
             <option>Example option one</option>
             <option>Example option two</option>
           </select>
         </div>
       </div>
       <div class="col-6 mb-3 select-padd-right">
+          Select city
         <div class="box" style="position: relative;">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
           <select class="font-family form-control select-frame"  formControlName="country">
@@ -63,12 +69,14 @@
       </div>
       <!-- change style later for select-->
       <div class="col-12 mb-3">
+        Password
         <input formControlName="password" type="password" class="form-control font-family input-frame"
-          placeholder="Password">
+          placeholder="Required">
       </div>
       <div class="col-12 m-bottom-3">
+        Confirm Password
         <input formControlName="confirmpass" type="password" class="form-control font-family input-frame"
-          placeholder="Confirm Password">
+          placeholder="Required">
       </div>
       <div class="col-12 mb-3">
         <span *ngIf="checkPassword()" class="error-text">Invalid confirmation password</span>
