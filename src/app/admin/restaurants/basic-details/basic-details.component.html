@@ -25,7 +25,7 @@
       <div class="col-3 pr-4 " style="position: relative"  >
         <span class=" ">Price range</span>
         <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-        <select class="form-control  pr-5" type="text" formControlName="pricerange"  >
+        <select class="form-control  pr-5" type="text" formControlName="pricerange"   >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -52,7 +52,7 @@
         <mat-option *ngFor="let option of optionsAutocomplete" [value]="option">{{option}} </mat-option>
      </mat-autocomplete>
  
-        <div class="map-size ml-3 " id="map"></div>
+        <div class="map-size ml-3 " id="map" >    </div>
       </div>
       <div class="col-6 pr-4 ">
         <span class="pt-2  ">Description</span>
@@ -64,5 +64,21 @@
     </form>
 
 
-
- 
+<!--
+    <div class="multiselect" >
+      <div class="selectBox" (click)="showCheckboxes()">
+        <select>
+          <option>Select an option</option>
+        </select>
+        <div class="overSelect"></div>
+      </div>
+      <div id="checkboxes">
+        <label for="one">
+          <input type="checkbox" id="one" />First checkbox</label>
+        <label for="two">
+          <input type="checkbox" id="two" />Second checkbox</label>
+        <label for="three">
+          <input type="checkbox" id="three" />Third checkbox</label>
+      </div>
+    </div>
+-->

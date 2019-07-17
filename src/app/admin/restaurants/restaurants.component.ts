@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { BasicDetailsComponent } from './basic-details/basic-details.component';
 import { HereService } from 'src/app/shared/here/here.service';
+import { Subject } from 'rxjs';
 
 
 
@@ -14,7 +15,7 @@ import { HereService } from 'src/app/shared/here/here.service';
   styleUrls: ['./restaurants.component.css']
 })
 export class RestaurantsComponent implements OnInit {
-
+  //private eventsSubject: Subject<void> = new Subject<void>();
   @Input() addClicked = false;
   @Output() cancelClick = new EventEmitter();
   @ViewChild(BasicDetailsComponent) basicDetails;
@@ -37,6 +38,36 @@ export class RestaurantsComponent implements OnInit {
     this.getRestaurantsData(0);
     this.createSearchForm();
     this.setMaxPageNumber();
+
+
+  }
+
+  edit(restaurantId) {
+
+    this.restaurantService.getRestaurantById(restaurantId).subscribe(res => this.createBasicDetailsEditForm(<any> res) )
+
+
+  }
+
+  createBasicDetailsEditForm(restaurantData) {
+    this.basicDetails.basicDetailForm = new FormGroup({
+      'name': new FormControl(restaurantData.name),
+      'pricerange': new FormControl(restaurantData.priceRange),
+      'category': new FormControl('Vegeterian'),
+      'description': new FormControl(restaurantData.description),
+      'searchAdress': new FormControl(null)
+    })
+
+    this.basicDetails.restaurantId = restaurantData.id;
+    this.basicDetails.logoImageString = restaurantData.promophoto;
+    this.basicDetails.category;
+    this.addClicked = true;
+    let that = this;
+    setTimeout(function(){
+      console.log('iz tajmera')
+      that.basicDetails.loadMap(restaurantData.latitude, restaurantData.longitude,'newmap');
+    },1);
+
   }
 
   receiveBasicDetailsData(event) {
@@ -126,7 +157,9 @@ export class RestaurantsComponent implements OnInit {
 
     var restaurantModel: Restaurant = new Restaurant();
 
+    console.log('restaurant id: ' + this.basicDetails.restaurantId )
 
+    restaurantModel.id = this.basicDetails.restaurantId;
     restaurantModel.cityId = 1;
     restaurantModel.description = description;
     restaurantModel.name = name;
@@ -173,7 +206,7 @@ export class RestaurantsComponent implements OnInit {
 }
 
 export class Restaurant {
-
+  id;
   cityId;
   name;
   street;

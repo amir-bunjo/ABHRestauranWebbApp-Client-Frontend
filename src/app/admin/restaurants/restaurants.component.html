@@ -38,7 +38,7 @@
     <tbody>
       <tr *ngFor="let restaurantData of restaurantsData">
         <th scope="row" colspan="5">{{restaurantData[1]}}</th>
-        <td><span><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img (click)="deleteRestaurant(restaurantData[0])" class="icon"
+        <td><span (click)="edit(restaurantData[0])" ><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img (click)="deleteRestaurant(restaurantData[0])" class="icon"
               src="/assets/trash.svg" alt="An example icon" /></span></td>
       </tr>
     </tbody>

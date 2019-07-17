@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, NgModule } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, NgModule, Input } from '@angular/core';
 import 'node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
 import { FormGroup, FormControl } from '@angular/forms';
 import { HereService } from 'src/app/shared/here/here.service';
+import { Observable } from 'rxjs';
 //import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
@@ -16,9 +17,14 @@ declare let L;
   styleUrls: ['./basic-details.component.css']
 })
 export class BasicDetailsComponent implements OnInit {
+  expanded: boolean = false;
   @ViewChild('uploadLogo') inputFieldLogo: ElementRef;
   @ViewChild('uploadCover') inputFieldCover: ElementRef;
   @Output() dataEmitter = new EventEmitter();
+  private eventsSubscription: any
+  @Input() events: Observable<any>;
+  
+  restaurantId;
   optionsAutocomplete = [];
   message;
   logoImageString;
@@ -28,7 +34,7 @@ export class BasicDetailsComponent implements OnInit {
   coordinates: Coordinates = new Coordinates();
   map:any;
   myMarker: any;
-
+  
   basicDetailForm: FormGroup
 
   constructor(private hereService: HereService) { }
@@ -44,6 +50,7 @@ export class BasicDetailsComponent implements OnInit {
 
 
     })
+   // this.eventsSubscription = this.events.subscribe(({data}) => this.loadMap(data.latitude,data.longitude,'newmap'))
 
     this.loadMap(45.8616156, 17.417399,'map');
   }
@@ -59,7 +66,6 @@ export class BasicDetailsComponent implements OnInit {
       coordinates.latitude = adress[0].Location.DisplayPosition.Latitude;
       coordinates.longitude = adress[0].Location.DisplayPosition.Longitude;
       console.log( coordinates );
-      document.getElementById('map').innerHTML = "<div id='newmap' style='width: 100%; height: 100%;'></div>";
       this.loadMap(coordinates.latitude,coordinates.longitude,'newmap');
       
     });
@@ -95,6 +101,8 @@ export class BasicDetailsComponent implements OnInit {
 
   loadMap(latitude, longitude, mapId) {
     //this.coordinates = new Coordinates();
+    if(mapId==='newmap')
+      document.getElementById('map').innerHTML = "<div id='newmap' style='width: 100%; height: 100%;'></div>";
     var LeafIcon = L.Icon.extend({
       options: {
         iconSize: [50, 60],
@@ -109,11 +117,11 @@ export class BasicDetailsComponent implements OnInit {
       iconUrl: './assets/img/map-marker.png'
     });
     
-    this.map = new L.map(mapId).setView([latitude, longitude], 16);
+    this.map = new L.map(mapId).setView([latitude, longitude],mapId==='newmap' ?16:3);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       { attribution: 'OSM' }
     ).addTo(this.map);
-  
+    if(mapId==='newmap')
     var myMarker = L.marker([latitude, longitude], { icon: markerIcon, draggable: true })
       .addTo(this.map)
       .on('dragend', function () {
@@ -127,6 +135,7 @@ export class BasicDetailsComponent implements OnInit {
         sessionStorage.setItem('longitude',lng);
         myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
       });
+
 
     // marker.bindPopup("<b>Here is location of restaurant!</b>").openPopup();
   }
@@ -168,6 +177,21 @@ export class BasicDetailsComponent implements OnInit {
 
     // console.log('type' + type)  
     // console.log(this.coverImageString);
+  }
+
+  showCheckboxes() {
+
+    {
+      var checkboxes = document.getElementById("checkboxes");
+      if (!this.expanded) {
+        checkboxes.style.display = "block";
+        this.expanded = true;
+      } else {
+        checkboxes.style.display = "none";
+        this.expanded = false;
+      }
+    }
+
   }
 
 }
