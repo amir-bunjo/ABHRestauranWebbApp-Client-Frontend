@@ -20,7 +20,8 @@ export class HereService {
     public constructor() {
         this.platform = new H.service.Platform({
             "app_id": this.APP_ID,// QCGjWJRx6Fe2QW7B0XPv
-            "app_code": this.APP_CODE // 0bK1wYuZnXcEMGmY4uD9Kw
+            "app_code": this.APP_CODE, // 0bK1wYuZnXcEMGmY4uD9Kw
+            useHTTPS: true
         });
         this.geocoder = this.platform.getGeocodingService();
        

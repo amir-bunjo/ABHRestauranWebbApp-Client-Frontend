@@ -158,7 +158,7 @@ export class RestaurantsComponent implements OnInit {
     var restaurantModel: Restaurant = new Restaurant();
 
     console.log('restaurant id: ' + this.basicDetails.restaurantId )
-
+    
     restaurantModel.id = this.basicDetails.restaurantId;
     restaurantModel.cityId = 1;
     restaurantModel.description = description;

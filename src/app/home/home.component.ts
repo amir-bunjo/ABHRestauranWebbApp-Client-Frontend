@@ -104,6 +104,7 @@ export class HomeComponent implements OnInit {
 
     for(let table of tableList){
       if(table.reservations.length>0){
+        counter =0;
         for(let reservation of table.reservations){
           console.log(reservation);
           if(this.isReservationInSelectedScope(reservation.date,reservation.time))

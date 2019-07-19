@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
 
@@ -8,15 +8,36 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
+  @ViewChild("name") inputField: ElementRef;
   @Output() valueChange = new EventEmitter();
   counter = 0;
   searchForm: FormGroup;
-  
+  guestNumber: number;
+  dropdownActive = false;
+  date: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.createSearchForm();
+  }
+
+  autoCloseForDropdown(event) {
+    var target = event.target;
+    if (!target.closest(".dropdown")) {
+      if (this.dropdownActive)
+        this.dropdownActive = false;
+    }
+  }
+
+  onDateSelect($event) {
+    this.date = this.dateToString($event);
+    //this.searchForm.controls['date'].patchValue('sss');
+  }
+
+  setGuestNumber(num) {
+    this.guestNumber = num;
+    this.searchForm.controls['guest'].patchValue(num);
   }
 
   valueChanged() { // You can give any function name
@@ -28,8 +49,8 @@ export class SearchBarComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       state: {
         name: this.searchForm.value.name,
-        date: this.searchForm.value.date,
-        time: this.searchForm.value.time,
+        date: this.date,
+        time: this.searchForm.value.time  + ':00',
         guest: this.searchForm.value.guest,
       }
     };
@@ -53,8 +74,8 @@ export class SearchBarComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       state: {
         tableId: tableId,
-        date: this.searchForm.value.date,
-        time: this.searchForm.value.time,
+        date: this.date,
+        time: this.searchForm.value.time + ':00',
         guest: this.searchForm.value.guest,
         restaurant: restaurantData
       }
@@ -67,9 +88,13 @@ export class SearchBarComponent implements OnInit {
     let month = date.month < 10 ? '0' + date.month : date.month;
     let day = date.day < 10 ? '0' + date.day : date.day;
 
-    return (year + '-' + month + '-' + day);
+    return <string> (year + '-' + month + '-' + day);
   }
 
+
+  editFormInput(): void {
+    this.inputField.nativeElement.focus();
+  }
 
 
 }

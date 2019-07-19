@@ -174,7 +174,7 @@ export class BasicDetailsComponent implements OnInit {
     else if (this.selectedupload === 'cover')
       this.coverImageString = 'data:image/png;base64,' + btoa(e.target.result);
 
-
+    console.log(this.coverImageString)
     // console.log('type' + type)  
     // console.log(this.coverImageString);
   }

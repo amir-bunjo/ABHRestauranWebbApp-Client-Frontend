@@ -73,7 +73,8 @@ export class RateDialogComponent implements OnInit {
       if(error.status===200) {
         this.restaurantService.getRestaurantRating(this.restaurantData.id).subscribe(res => {
           this.data.restaurant.mark = res;
-          this.restaurantService.updateRestaurant(this.data.restaurant).subscribe(res => console.log(res));
+          this.restaurantService.updateRestaurant(this.data.restaurant).subscribe(res =>{ console.log(res);this.dialogRef.close()});
+         
         });
       }
       else
