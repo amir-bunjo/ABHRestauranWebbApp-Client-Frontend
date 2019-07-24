@@ -14,7 +14,7 @@
     </div>
     <div class="panel pb-5">
       <app-basic-details (dataEmitter)="receiveBasicDetailsData($event)" [hidden]="addTab!=='Basic Details'"></app-basic-details>
-      <app-menu *ngIf="addTab==='Menu'"></app-menu>
+      <app-menu [hidden]="addTab!=='Menu'"></app-menu>
       <app-gallery *ngIf="addTab==='Gallery'"></app-gallery>
       <app-tables *ngIf="addTab==='Tables'"></app-tables>
       <div class="row  pt-5 ml-3">
@@ -22,7 +22,7 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button class="red-button" (click)="addRestaurant()" > Add restaurant </button>
+          <button class="red-button" (click)="print()" (click)="addRestaurant()" > {{buttonType}} restaurant </button>
         </div>
       </div>
     </div>

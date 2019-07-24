@@ -17,31 +17,32 @@
     <div class="col-12  " style="margin-bottom: -1%">
       <p *ngIf="restaurantData" class="font-family font-30">Restaurant {{restaurantData.name}}</p>
     </div>
-    <div  [style.margin-top.%]="0" class="col-md-auto   " >
+    <div [style.margin-top.%]="0" class="col-md-auto   ">
       <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="16"></app-rating>
     </div>
     <div class="col-md-auto pl-0 pr-1">
-        <span class="light-mark ">(1754)</span>
+      <span class="light-mark ">(1754)</span>
 
-      </div>
+    </div>
 
-      <div class="col-md-auto pl-0">
-          <span style="padding-left:4px" class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
-          (click)="restaurantPriceFilter = 1">$</span>
-        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) "
-          (click)="restaurantPriceFilter = 2">$</span>
-        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) "
-          (click)="restaurantPriceFilter = 3">$</span>
-        <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) "
-          (click)="restaurantPriceFilter = 4">$</span>   
-          <span class=" light-mark">Italian | International | Mediterannean </span>
-        
-        </div>
+    <div class="col-md-auto pl-0">
+      <span style="padding-left:4px" class="light-mark dolar-sign " [class.white-mark]="isPriceFilterRed(1) "
+        (click)="restaurantPriceFilter = 1">$</span>
+      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(2) "
+        (click)="restaurantPriceFilter = 2">$</span>
+      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(3) "
+        (click)="restaurantPriceFilter = 3">$</span>
+      <span class="light-mark dolar-sign" [class.white-mark]="isPriceFilterRed(4) "
+        (click)="restaurantPriceFilter = 4">$</span>
+      <span class=" light-mark">Italian | International | Mediterannean </span>
+
+    </div>
     <div class="col-md-auto ">
-      <button class="button-rate " [hidden]="true" ><span class="fa fa-star red-mark   p-r-5" style="font-size: 14px"></span></button>
+      <button class="button-rate " [hidden]="true"><span class="fa fa-star red-mark   p-r-5"
+          style="font-size: 14px"></span></button>
       <!-- maybe should restyle code  RATE PLACE BUTTON-->
-      <button  matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()"
-        (click)="rateRestaurant()" type="button" class="btn font-family  button-rate" style="width: 150px">
+      <button matTooltip="Rate this place and leave a comment" *ngIf="isUserLoggedIn()" (click)="rateRestaurant()"
+        type="button" class="btn font-family  button-rate" style="width: 150px">
         <span class="fa fa-star red-mark   p-r-5" style="font-size: 14px"></span> <span>Rate this place</span>
       </button>
 
@@ -177,8 +178,19 @@
             </div>
           </div>
           <hr>
-          <p class="font-family" style="padding-left: 4.5%">APPETIZERS</p>
-          <div class="row font-family" style="padding-top:0%;padding-left: 7%">
+          <p [hidden]="true" class="font-family" style="padding-left: 4.5%">APPETIZERS</p>
+          <span *ngIf="restaurantData">
+          <div class="row font-family" style="padding-top:0%;padding-left: 7%" *ngFor="let meal of restaurantData.meals">
+          
+              <div class="col-10  p-0 "  >
+                <div class="menu-product font-family"> {{meal.name}}</div>
+                <p style="font-size: 15px !important" class="product-info">{{meal.description}}</p>
+              </div>
+              <div class="col-2 " >
+                <div>$ {{meal.price | number:'1.2' }}<span ></span></div>
+              </div>
+            
+            <!--
             <div class="col-10  p-0 ">
               <div class="menu-product font-family"> Brocoli</div>
               <p class="product-info">With grilled saussage,olive..</p>
@@ -207,13 +219,16 @@
             <div class="col-2 ">
               <div> $ 8.95</div>
             </div>
+            -->
           </div>
+        </span>
           <div class="row p-r-5 ">
             <div class="col">
               <div class="col-5 font-family" style="padding-left: 4.5%;padding-bottom:-10%">SALADS</div>
               <div class="float-right price-type">small</div>
               <div class="float-right price-type">large </div>
             </div>
+            
           </div>
           <div class="row font-family menu-salad">
             <div class="col-9 p-0 padd-bott">
@@ -312,10 +327,10 @@
 
     <div class="col-md-auto">
       <p>
-      <span class=" light-mark" style="color: brown">
-      Italian | International | Mediterannean 
-      </span>
-    </p>
+        <span class=" light-mark" style="color: brown">
+          Italian | International | Mediterannean
+        </span>
+      </p>
     </div>
 
     <div class="col-2">

@@ -10,31 +10,37 @@
       <p class="menu-types" (click)="menuType='Dinner'" [class.active-menu]="menuType==='Dinner'">Dinner</p>
     </div>
     <div class="col-md-auto ml-auto">
-      <button class="font-family">Add new item</button>
+      <button class="font-family" (click)="addMenuItem()">Add new item</button>
     </div>
   </div>
+  <app-breakfast [hidden]="menuType!=='Breakfast'"></app-breakfast>
+  <app-lunch [hidden]="menuType!=='Lunch'" ></app-lunch>
+  <app-dinner [hidden]="menuType!=='Dinner'"></app-dinner>
 
-  <div class="row ml-2 light-font">
-    <div class="col-12 pb-3" >
-      1.
-      <input type="text"  class="ml-2 mb-2" placeholder="Name" > <input type="text" style="width:5% !important" placeholder="$ Price" class="ml-2">
-      <span class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
-      <div><input style="position: relative" type="text" width="100 px !important"  class="ml-4" placeholder="Description" ></div>
+<button (click)="printBreakfast()">breakfat</button>
+<button (click)="printDinner()">dinner</button>
+<button (click)="printLunch()">lunch</button>
+
+<button (click)="saveMeal()">save menu</button>
+
+<button (click)="printbb()">editdinn</button>
+
+  <!--
+  <div class="row ml-2 light-font" >
+    <div class="col-12 pb-3" *ngFor="let menuItem of menuItemArray" [hidden]="isDeleted(menuItem)" >
+      {{menuItem}}.
+      <input type="text"  class="ml-2 mb-2" placeholder="Name" (change)="setMealName($event,menuItem)" > <input type="number" min="0" (change)="setMealPrice($event,menuItem)" style="width:10% !important" placeholder="$ Price" class="ml-2">
+      <span (click)=" deleteMenuItem(menuItem)" class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
+      <div><input style="position: relative" type="text" width="100 px !important"  class="ml-4" placeholder="Description" (change)="setMealDesc($event,menuItem)" ></div>
     </div>
 
-    <div class=" col-12 pb-3">
-      2.
-      <input type="text"  class="ml-2 mb-2" placeholder="Name" > <input type="text" style="width:5% !important" placeholder="$ Price" class="ml-2">
-      <span class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
-      <div><input type="text"  class="ml-4" placeholder="Description" ></div>    </div>
+  
 
-    <div class="col-12 pb-3">
-      3.
-      <input type="text"  class="ml-2 mb-2" placeholder="Name" > <input type="text" style="width:5% !important" placeholder="$ Price" class="ml-2">
-      <span class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
-      <div><input type="text"  class="ml-4" placeholder="Description" ></div>    </div>
+<button (click)="printMealArray()">save menu</button>
 
   </div>
+ -->
+  
 
   
 

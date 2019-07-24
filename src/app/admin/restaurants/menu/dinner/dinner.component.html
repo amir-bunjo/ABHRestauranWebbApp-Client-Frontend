@@ -1,0 +1,13 @@
+<div class="row ml-2 light-font">
+  <div class="col-12 pb-3" *ngFor="let menuItem of menuItemArray" [hidden]="isDeleted(menuItem)">
+    {{menuItem}}.
+    <input type="text" class="ml-2 mb-2" placeholder="Name" (change)="setMealName($event,menuItem)" value="{{getNameValue(menuItem)}}"> 
+    <input type="number" min="0" (change)="setMealPrice($event,menuItem)" style="width:10% !important" placeholder="$ Price" value="{{getPriceValue(menuItem)}}"
+      class="ml-2" >
+    <span (click)=" deleteMenuItem(menuItem)" class="ml-3 "><img class="icon" src="/assets/trash.svg"
+        alt="An example icon" /></span>
+    <div><input style="position: relative" type="text" width="100 px !important" class="ml-4" placeholder="Description" value="{{getDescriptionValue(menuItem)}}"
+        (change)="setMealDesc($event,menuItem)"></div>
+  </div>
+
+</div>

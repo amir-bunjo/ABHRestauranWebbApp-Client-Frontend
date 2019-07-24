@@ -50,8 +50,13 @@ export class RegisterComponent implements OnInit {
     accountModel.accountrole = 'USER';
 
     let rawFormValue = this.registerForm.getRawValue();
+    this.userService.saveUser(accountModel).subscribe(res => this.router.navigate(['/login']),error => {
+      if(error.status==200)
+        this.router.navigate(['/login']);
+      else
+        alert('Unsuccesfully reserved'); 
+    });
 
-    this.userService.saveUser(accountModel).subscribe(res => console.log(res));
   }
 
 

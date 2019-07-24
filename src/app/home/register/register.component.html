@@ -10,6 +10,7 @@
         
         <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="login()" >Login</div>
       </div>  
+      <span class="font-14">*All fields are required</span>
       <div class="row">
           <div class="col-12 m-bottom-6 ">
             <input formControlName="firstname" type="text" class="form-control font-family input-frame"  placeholder="First Name">
@@ -26,7 +27,8 @@
           <div class="col-6 m-bottom-2 select-padd-left ">
               <div class="box" style="position: relative;" >
                 <span class="icon-pos">   <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
-                <select  class="font-family form-control  " style="height: 100%;" formControlName="city">   
+                <select  class="font-family form-control  " [class.light-font]="registerForm.value.country===null" style="height: 100%;" formControlName="country">
+                  <option  value="null" style="display: none" >Select country</option>   
                   <option>Bosna i Hercegovina</option>
                   <option>Example option one</option>
                   <option>Example option two</option>
@@ -36,7 +38,8 @@
           <div class="col-6 m-bottom-2 select-padd-right">
               <div class="box" style="position: relative;" >
                 <span class="icon-pos">   <i class="fa fa-angle-down" aria-hidden="true">  </i> </span>
-                <select  class="font-family form-control " style="height: 100%; " formControlName="country" >   
+                <select  class="font-family form-control " [class.light-font]="registerForm.value.city===null"  style="height: 100%; " formControlName="city" >   
+                  <option value="null" style="display: none">Select city</option>
                   <option>Sarajevo</option>
                   <option>Example option one</option>
                   <option>Example option two</option>

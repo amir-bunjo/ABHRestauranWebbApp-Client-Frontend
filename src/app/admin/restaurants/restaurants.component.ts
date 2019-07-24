@@ -6,6 +6,8 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.
 import { BasicDetailsComponent } from './basic-details/basic-details.component';
 import { HereService } from 'src/app/shared/here/here.service';
 import { Subject } from 'rxjs';
+import { MenuComponent } from './menu/menu.component';
+import { Meal } from './menu/dinner/dinner.component';
 
 
 
@@ -19,20 +21,22 @@ export class RestaurantsComponent implements OnInit {
   @Input() addClicked = false;
   @Output() cancelClick = new EventEmitter();
   @ViewChild(BasicDetailsComponent) basicDetails;
-  
+  @ViewChild(MenuComponent) menuComponent;
 
-  pages = [1,2,3,4]; //temporarly
+
+  buttonType = 'Add'
+  pages = [1, 2, 3, 4]; //temporarly
   selectedPageIndex = 1;
-  maxPageNumber ;
+  maxPageNumber;
   minPageNumber = 1;
-  restaurantsData:any;
-  searchForm : FormGroup;
+  restaurantsData: any;
+  searchForm: FormGroup;
 
   addTab = 'Basic Details';
-  
+
   restaurantBasicDetails = '';
 
-  constructor(private dialog: MatDialog,private restaurantService: RestaurantService,private cdr: ChangeDetectorRef, private hereService: HereService) { }
+  constructor(private dialog: MatDialog, private restaurantService: RestaurantService, private cdr: ChangeDetectorRef, private hereService: HereService) { }
 
   ngOnInit() {
     this.getRestaurantsData(0);
@@ -42,11 +46,56 @@ export class RestaurantsComponent implements OnInit {
 
   }
 
+  print() {
+    this.menuComponent.dinnerComponent.print();
+  }
+
   edit(restaurantId) {
+    // this.menuComponent.dinnerComponent.m
+    this.cancel(); ///ovdje staooo pogledati jos
+    this.buttonType = 'Update'
+    this.restaurantService.getRestaurantById(restaurantId).subscribe(res => {
 
-    this.restaurantService.getRestaurantById(restaurantId).subscribe(res => this.createBasicDetailsEditForm(<any> res) )
+      this.loadRestaurantsFormData(<any>res);
+    });
 
 
+  }
+
+  loadRestaurantsFormData(restaurantData) {
+    this.createBasicDetailsEditForm(restaurantData);
+    this.createMenuEditForm(restaurantData);
+  }
+
+  createMenuEditForm(restaurantData) {
+    console.log(restaurantData.meals);
+
+
+    this.menuComponent.breakfastComponent.mealsArray = [];
+    this.menuComponent.lunchComponent.mealsArray = [];
+    this.menuComponent.dinnerComponent.mealsArray = [];
+
+    for (let meal of restaurantData.meals) {
+      if (meal.mealType === "BreakFast")
+        this.menuComponent.breakfastComponent.mealsArray.push(meal)
+      if (meal.mealType === "Lunch")
+        this.menuComponent.lunchComponent.mealsArray.push(meal)
+      if (meal.mealType === "Dinner")
+        this.menuComponent.dinnerComponent.mealsArray.push(meal)
+    }
+
+    this.menuComponent.breakfastComponent.menuItemCount = this.menuComponent.breakfastComponent.mealsArray.length !== 0 ?  this.menuComponent.breakfastComponent.mealsArray.length !== 0 : 3;
+    this.menuComponent.lunchComponent.menuItemCount =    this.menuComponent.lunchComponent.mealsArray.length !== 0 ?  this.menuComponent.lunchComponent.mealsArray.length !== 0 : 3;
+    this.menuComponent.dinnerComponent.menuItemCount = this.menuComponent.dinnerComponent.length !== 0 ?  this.menuComponent.dinnerComponent.mealsArray.length !== 0 : 3;
+
+    this.menuComponent.breakfastComponent.mealsEditArray = this.menuComponent.breakfastComponent.mealsArray;
+    this.menuComponent.breakfastComponent.setMenuItemArray();
+    this.menuComponent.lunchComponent.mealsEditArray = this.menuComponent.lunchComponent.mealsArray;
+    this.menuComponent.lunchComponent.setMenuItemArray();
+    this.menuComponent.dinnerComponent.mealsEditArray = this.menuComponent.dinnerComponent.mealsArray;
+    this.menuComponent.dinnerComponent.setMenuItemArray();
+
+    console.log(restaurantData.meals.length)
   }
 
   createBasicDetailsEditForm(restaurantData) {
@@ -60,13 +109,13 @@ export class RestaurantsComponent implements OnInit {
 
     this.basicDetails.restaurantId = restaurantData.id;
     this.basicDetails.logoImageString = restaurantData.promophoto;
+    this.basicDetails.coverImageString = restaurantData.coverphoto;
     this.basicDetails.category;
-    this.addClicked = true;
     let that = this;
-    setTimeout(function(){
+    setTimeout(function () {
       console.log('iz tajmera')
-      that.basicDetails.loadMap(restaurantData.latitude, restaurantData.longitude,'newmap');
-    },1);
+      that.basicDetails.loadMap(restaurantData.latitude !== undefined ? restaurantData.latitude : 45.8616156, restaurantData.longitude !== undefined ? restaurantData.longitude : 17.417399, 'newmap');
+    }, 1);
 
   }
 
@@ -80,17 +129,17 @@ export class RestaurantsComponent implements OnInit {
 
   }
 
-  createSearchForm(){
+  createSearchForm() {
     this.searchForm = new FormGroup({
       'name': new FormControl(null)
     })
   }
 
   getRestaurantsData(startIndex) {
-    this.restaurantService.getRestaurantsNameAndId(startIndex).subscribe(res => { this.restaurantsData = res; console.log(res)})
+    this.restaurantService.getRestaurantsNameAndId(startIndex).subscribe(res => { this.restaurantsData = res; console.log(res) })
   }
 
-  cancel () {
+  cancel() {
     this.cancelClick.emit();
   }
 
@@ -98,14 +147,14 @@ export class RestaurantsComponent implements OnInit {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       height: '150px',
       width: '400px',
-      data: {title: 'Are you sure to delete this restaurant'}
+      data: { title: 'Are you sure to delete this restaurant' }
     });
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
-      if(res)
+      if (res)
         this.restaurantService.deleteRestaurant(restaurantId).subscribe(res => {
           console.log(res);
-          let startIndex = (this.selectedPageIndex-1)*9;
+          let startIndex = (this.selectedPageIndex - 1) * 9;
           this.getRestaurantsData(startIndex)
           this.loadNumberOfPages();
 
@@ -129,7 +178,7 @@ export class RestaurantsComponent implements OnInit {
 
   setPageIndex(i) {
     this.selectedPageIndex = i;
-    let startIndex = (this.selectedPageIndex-1)*9;
+    let startIndex = (this.selectedPageIndex - 1) * 9;
     this.getRestaurantsData(startIndex);
   }
 
@@ -148,17 +197,20 @@ export class RestaurantsComponent implements OnInit {
     let pricerange = this.basicDetails.basicDetailForm.value.pricerange;
     let category = this.basicDetails.basicDetailForm.value.category;
     let description = this.basicDetails.basicDetailForm.value.description;
-    let coverImage = this.basicDetails. coverImageString;
-    let logoImage = this. basicDetails.logoImageString;
+    let coverImage = this.basicDetails.coverImageString;
+    let logoImage = this.basicDetails.logoImageString;
     let latitude = sessionStorage.getItem('latitude')
     let longitude = sessionStorage.getItem('longitude')
     let coverName = this.basicDetails.imageNames.get('cover');
     let logoName = this.basicDetails.imageNames.get('logo');
+    let meals = this.menuComponent.saveMeal();
+
+
 
     var restaurantModel: Restaurant = new Restaurant();
 
-    console.log('restaurant id: ' + this.basicDetails.restaurantId )
-    
+    console.log('restaurant id: ' + this.basicDetails.restaurantId)
+
     restaurantModel.id = this.basicDetails.restaurantId;
     restaurantModel.cityId = 1;
     restaurantModel.description = description;
@@ -169,37 +221,43 @@ export class RestaurantsComponent implements OnInit {
     restaurantModel.latitude = latitude;
     restaurantModel.longitude = longitude;
     restaurantModel.foodTypes = category;
+    console.log('meals:   ')
+    console.log(meals)
+    restaurantModel.meals = meals;
 
+    console.log('iz rest:')
+    console.log(restaurantModel.meals)
     console.log('name: ' + name);
     console.log('pricerange: ' + pricerange)
     console.log('category: ' + category)
     console.log('description: ' + description)
-    console.log('latitude: ' + latitude )
+    console.log('latitude: ' + latitude)
     console.log('longitude: ' + longitude)
     console.log('cover image name: ' + this.basicDetails.imageNames.get('cover'))
     console.log('logo image name: ' + this.basicDetails.imageNames.get('logo'))
 
     this.hereService.getAddressFromLatLng(latitude + ',' + longitude).then(result => {
       let location = result[0].Location.Address.Label;
+      console.log(result)
       console.log(location)
       restaurantModel.street = location;
-    //  this.restaurantService.saveImageToCloudinary(1,coverImage).subscribe(res => console.log(res))
-      this.restaurantService.saveRestaurant(restaurantModel,coverName,logoName).subscribe(res => console.log(res))
+      //  this.restaurantService.saveImageToCloudinary(1,coverImage).subscribe(res => console.log(res))
+      this.restaurantService.saveRestaurant(restaurantModel, coverName, logoName).subscribe(res => console.log(res))
 
     });
-  
 
-   console.log('cover image ispod: ');
-   console.log(coverImage);
 
-   console.log('logo image ispod: ');
-   console.log(logoImage);
+    console.log('cover image ispod: ');
+    console.log(coverImage);
 
- 
+    console.log('logo image ispod: ');
+    console.log(logoImage);
+
+
   }
 
 
- 
+
 
 
 
@@ -218,6 +276,6 @@ export class Restaurant {
   longitude;
   mark = 1;
   foodTypes;
-  votes= 0;
-  
+  votes = 0;
+  meals = [];
 }

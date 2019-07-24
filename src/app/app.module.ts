@@ -41,6 +41,9 @@ import { MenuComponent } from './admin/restaurants/menu/menu.component';
 import { GalleryComponent } from './admin/restaurants/gallery/gallery.component';
 import { TablesComponent } from './admin/restaurants/tables/tables.component';
 import { ConfirmDialogComponent } from './admin/shared/confirm-dialog/confirm-dialog.component';
+import { BreakfastComponent } from './admin/restaurants/menu/breakfast/breakfast.component';
+import { LunchComponent } from './admin/restaurants/menu/lunch/lunch.component';
+import { DinnerComponent } from './admin/restaurants/menu/dinner/dinner.component';
 
 
 @NgModule({
@@ -73,7 +76,10 @@ import { ConfirmDialogComponent } from './admin/shared/confirm-dialog/confirm-di
     MenuComponent,
     GalleryComponent,
     TablesComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    BreakfastComponent,
+    LunchComponent,
+    DinnerComponent,
   ],
 
   imports: [

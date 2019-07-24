@@ -116,7 +116,6 @@ export class BasicDetailsComponent implements OnInit {
     var markerIcon = new LeafIcon({
       iconUrl: './assets/img/map-marker.png'
     });
-    
     this.map = new L.map(mapId).setView([latitude, longitude],mapId==='newmap' ?16:3);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       { attribution: 'OSM' }

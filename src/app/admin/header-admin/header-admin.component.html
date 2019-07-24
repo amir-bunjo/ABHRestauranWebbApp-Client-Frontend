@@ -6,16 +6,16 @@
       <div [ngClass]="{'show' : navbarOpen}" class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link black-text" href="#">ABH Restaurant <span class="sr-only">(current)</span></a>
+            <a class="nav-link black-text" (click)="navigateHome()">ABH Restaurant <span class="sr-only">(current)</span></a>
           </li>
   
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link black-text" href="#">Home</a>
+                <a class="nav-link black-text" (click)="navigateHome()">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link black-text" href="#">Restaurants</a>
+                <a class="nav-link black-text" (click)="navigateRestaurants()">Restaurants</a>
               </li>
               <div class="mt-1 mr-0">
                   <span  class="navbar-text black-text">
@@ -25,10 +25,10 @@
               </div>
               <li class="nav-item ml-0">
                 
-                  <a class="nav-link black-text" href="#">Amir</a>
+                  <a class="nav-link black-text" >Amir</a>
                 </li>
               <li class="nav-item">
-                  <a class="nav-link red-text" href="#">Administration</a>
+                  <a class="nav-link red-text" >Administration</a>
                 </li>
         </ul>
       </div>

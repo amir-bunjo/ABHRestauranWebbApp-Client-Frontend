@@ -36,14 +36,14 @@
          
       </div>
       <div [hidden]="clickedNav=='Dashboard' || add===true " class="col-md-auto ml-auto pt-1 pl-1 pr-0  w-13"  >
-      <button class="red-button" (click)="add=!add" > Add {{clickedNav | lowercase}}</button>
+      <button class="red-button" (click)="addButton()" > Add {{clickedNav | lowercase}}</button>
     </div>
     </div>
       
 
       <app-dashboard *ngIf="clickedNav==='Dashboard'" (addRestaurant)="addRestaurant($event)"  ></app-dashboard>
 
-      <app-restaurants [addClicked]="add"  *ngIf="clickedNav==='Restaurants'" (cancelClick)="add=false"></app-restaurants>
+      <app-restaurants [addClicked]="add"  [hidden]="clickedNav!=='Restaurants'" (cancelClick)="add=!add"></app-restaurants>
 
       <app-locations [addClicked]="add" *ngIf="clickedNav==='Locations'" (cancelClick)="add=false"></app-locations>
 
