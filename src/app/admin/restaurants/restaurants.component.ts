@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { RestaurantService } from 'src/app/services/restaurant.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { BasicDetailsComponent } from './basic-details/basic-details.component';
@@ -76,7 +76,7 @@ export class RestaurantsComponent implements OnInit {
     this.menuComponent.dinnerComponent.mealsArray = [];
 
     for (let meal of restaurantData.meals) {
-      if (meal.mealType === "BreakFast")
+      if (meal.mealType === "Breakfast")
         this.menuComponent.breakfastComponent.mealsArray.push(meal)
       if (meal.mealType === "Lunch")
         this.menuComponent.lunchComponent.mealsArray.push(meal)
@@ -84,9 +84,9 @@ export class RestaurantsComponent implements OnInit {
         this.menuComponent.dinnerComponent.mealsArray.push(meal)
     }
 
-    this.menuComponent.breakfastComponent.menuItemCount = this.menuComponent.breakfastComponent.mealsArray.length !== 0 ?  this.menuComponent.breakfastComponent.mealsArray.length !== 0 : 3;
-    this.menuComponent.lunchComponent.menuItemCount =    this.menuComponent.lunchComponent.mealsArray.length !== 0 ?  this.menuComponent.lunchComponent.mealsArray.length !== 0 : 3;
-    this.menuComponent.dinnerComponent.menuItemCount = this.menuComponent.dinnerComponent.length !== 0 ?  this.menuComponent.dinnerComponent.mealsArray.length !== 0 : 3;
+    this.menuComponent.breakfastComponent.menuItemCount = this.menuComponent.breakfastComponent.mealsArray.length !== 0 ?  this.menuComponent.breakfastComponent.mealsArray.length : 3;
+    this.menuComponent.lunchComponent.menuItemCount =    this.menuComponent.lunchComponent.mealsArray.length !== 0 ?  this.menuComponent.lunchComponent.mealsArray.length : 3;
+    this.menuComponent.dinnerComponent.menuItemCount = this.menuComponent.dinnerComponent.mealsArray.length !== 0 ?  this.menuComponent.dinnerComponent.mealsArray.length : 3;
 
     this.menuComponent.breakfastComponent.mealsEditArray = this.menuComponent.breakfastComponent.mealsArray;
     this.menuComponent.breakfastComponent.setMenuItemArray();
@@ -100,10 +100,10 @@ export class RestaurantsComponent implements OnInit {
 
   createBasicDetailsEditForm(restaurantData) {
     this.basicDetails.basicDetailForm = new FormGroup({
-      'name': new FormControl(restaurantData.name),
-      'pricerange': new FormControl(restaurantData.priceRange),
-      'category': new FormControl('Vegeterian'),
-      'description': new FormControl(restaurantData.description),
+      'name': new FormControl(restaurantData.name, Validators.required),
+      'pricerange': new FormControl(restaurantData.priceRange , Validators.required),
+      'category': new FormControl('Vegeterian', Validators.required),
+      'description': new FormControl(restaurantData.description, Validators.required),
       'searchAdress': new FormControl(null)
     })
 
@@ -111,6 +111,8 @@ export class RestaurantsComponent implements OnInit {
     this.basicDetails.logoImageString = restaurantData.promophoto;
     this.basicDetails.coverImageString = restaurantData.coverphoto;
     this.basicDetails.category;
+    sessionStorage.setItem('latitude',restaurantData.latitude);
+    sessionStorage.setItem('longitude',restaurantData.longitude);
     let that = this;
     setTimeout(function () {
       console.log('iz tajmera')
@@ -199,8 +201,8 @@ export class RestaurantsComponent implements OnInit {
     let description = this.basicDetails.basicDetailForm.value.description;
     let coverImage = this.basicDetails.coverImageString;
     let logoImage = this.basicDetails.logoImageString;
-    let latitude = sessionStorage.getItem('latitude')
-    let longitude = sessionStorage.getItem('longitude')
+    let latitude = sessionStorage.getItem('latitude'); // this.basicDetails.coordinates.latitude
+    let longitude =sessionStorage.getItem('longitude'); //this.basicDetails.coordinates.latitude;  
     let coverName = this.basicDetails.imageNames.get('cover');
     let logoName = this.basicDetails.imageNames.get('logo');
     let meals = this.menuComponent.saveMeal();
@@ -256,6 +258,12 @@ export class RestaurantsComponent implements OnInit {
 
   }
 
+  isFormValid() {
+    if(sessionStorage.getItem('latitude')=== undefined || this.basicDetails.logoImageString=== undefined || this.basicDetails.coverImageString === undefined || !this.basicDetails.basicDetailForm.valid)
+      return true;
+    else
+      return false
+  }
 
 
 

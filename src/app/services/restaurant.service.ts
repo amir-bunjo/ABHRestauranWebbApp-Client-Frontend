@@ -184,4 +184,11 @@ export class RestaurantService {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
     return this.http.post(`http://localhost:8080/api/save/meals`, listOfMeals, { headers });
   }
+
+  saveTables(listOfTables) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/save/tables`, listOfTables, { headers });
+  }
 }

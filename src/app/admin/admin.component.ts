@@ -49,6 +49,8 @@ export class AdminComponent implements OnInit {
   }
 
   addButton(){
+    this.restaurantsComponent.buttonType = 'Add';
+
     this.add = !this.add;
 
   }

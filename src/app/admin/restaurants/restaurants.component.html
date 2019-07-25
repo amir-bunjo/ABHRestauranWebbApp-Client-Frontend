@@ -22,7 +22,7 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button class="red-button" (click)="print()" (click)="addRestaurant()" > {{buttonType}} restaurant </button>
+          <button [disabled]="isFormValid()"  class="red-button" (click)="print()" (click)="addRestaurant()" > {{buttonType}} restaurant </button>
         </div>
       </div>
     </div>

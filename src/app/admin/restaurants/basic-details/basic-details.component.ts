@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, NgModule, Input } from '@angular/core';
 import 'node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HereService } from 'src/app/shared/here/here.service';
 import { Observable } from 'rxjs';
 //import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -42,10 +42,10 @@ export class BasicDetailsComponent implements OnInit {
   ngOnInit() {
     
     this.basicDetailForm = new FormGroup({
-      'name': new FormControl(null),
-      'pricerange': new FormControl(null),
-      'category': new FormControl(null),
-      'description': new FormControl(null),
+      'name': new FormControl(null,Validators.required),
+      'pricerange': new FormControl(null,Validators.required),
+      'category': new FormControl(null,Validators.required),
+      'description': new FormControl(null,Validators.required),
       'searchAdress': new FormControl(null)
 
 
@@ -112,7 +112,7 @@ export class BasicDetailsComponent implements OnInit {
         popupAnchor: [-3, -76]
       }
     });
-
+    let that = this;
     var markerIcon = new LeafIcon({
       iconUrl: './assets/img/map-marker.png'
     });
@@ -130,6 +130,8 @@ export class BasicDetailsComponent implements OnInit {
         console.log(lat);
         var lng = coord[1].split(')')[0];        
         console.log(lng);
+        that.coordinates.latitude =lat;
+        that.coordinates.longitude + lng;
         sessionStorage.setItem('latitude',lat);
         sessionStorage.setItem('longitude',lng);
         myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
