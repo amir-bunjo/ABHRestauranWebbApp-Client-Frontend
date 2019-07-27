@@ -44,5 +44,12 @@ export class AuthenticationService {
   getRoles() {
       return "ADMIN_ROLE";
   }
+
+  getUserByUsername(username) {
+    // let username = sessionStorage.getItem('username');
+     let password = sessionStorage.getItem('password');
+     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+     return this.http.get(`http://localhost:8080/api/user/byemail/${username}`, { headers });
+   }
   
 }

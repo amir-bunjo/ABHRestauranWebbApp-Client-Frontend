@@ -8,6 +8,7 @@ import { HereService } from 'src/app/shared/here/here.service';
 import { Subject } from 'rxjs';
 import { MenuComponent } from './menu/menu.component';
 import { Meal } from './menu/dinner/dinner.component';
+import { TablesComponent } from './tables/tables.component';
 
 
 
@@ -22,6 +23,8 @@ export class RestaurantsComponent implements OnInit {
   @Output() cancelClick = new EventEmitter();
   @ViewChild(BasicDetailsComponent) basicDetails;
   @ViewChild(MenuComponent) menuComponent;
+  @ViewChild(TablesComponent) tableComponent;
+  tablesInDB;
 
 
   buttonType = 'Add'
@@ -57,6 +60,7 @@ export class RestaurantsComponent implements OnInit {
     this.restaurantService.getRestaurantById(restaurantId).subscribe(res => {
 
       this.loadRestaurantsFormData(<any>res);
+      this.tablesInDB =(<any> res).tables;
     });
 
 
@@ -142,6 +146,8 @@ export class RestaurantsComponent implements OnInit {
   }
 
   cancel() {
+
+    this.addTab = "Basic Details";
     this.cancelClick.emit();
   }
 
@@ -205,7 +211,8 @@ export class RestaurantsComponent implements OnInit {
     let longitude =sessionStorage.getItem('longitude'); //this.basicDetails.coordinates.latitude;  
     let coverName = this.basicDetails.imageNames.get('cover');
     let logoName = this.basicDetails.imageNames.get('logo');
-    let meals = this.menuComponent.saveMeal();
+    
+      let meals = this.menuComponent.saveMeal();
 
 
 
@@ -243,8 +250,19 @@ export class RestaurantsComponent implements OnInit {
       console.log(result)
       console.log(location)
       restaurantModel.street = location;
+      if(this.tableComponent!==undefined)
+       restaurantModel.tables = this.tableComponent.saveTable();
+      console.log(restaurantModel);
       //  this.restaurantService.saveImageToCloudinary(1,coverImage).subscribe(res => console.log(res))
-      this.restaurantService.saveRestaurant(restaurantModel, coverName, logoName).subscribe(res => console.log(res))
+      this.restaurantService.saveRestaurant(restaurantModel, coverName, logoName).subscribe(res => {
+        console.log(res);
+        this.selectedPageIndex = 1;
+        let startIndex = (this.selectedPageIndex - 1) * 9;
+        this.getRestaurantsData(startIndex)
+        this.loadNumberOfPages();
+        this.addClicked = false;
+        this.cancel();
+      })
 
     });
 
@@ -286,4 +304,5 @@ export class Restaurant {
   foodTypes;
   votes = 0;
   meals = [];
+  tables = [];
 }

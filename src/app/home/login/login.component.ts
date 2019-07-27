@@ -37,6 +37,14 @@ export class LoginComponent implements OnInit {
     (this.loginService.authenticate(email, pass).subscribe(
       data => {
         this.router.navigate(['/restaurantlist'])
+        console.log('should be getted user: '+ email)
+        this.loginService.getUserByUsername(email).subscribe(res => {
+          if((<any>res).accountrole==='ADMIN'){  
+            sessionStorage.setItem('role', 'ADMIN')
+            this.admin();
+          }
+          console.log(res)
+        })
         this.invalidLogin = false
       },
       error => {
@@ -45,6 +53,20 @@ export class LoginComponent implements OnInit {
       }
     )
     );
+  }
+
+  admin() {
+    this.router.navigate(['/admin/dashboard']);
+  }
+
+
+  userHasRoleAdmin(email){
+    this.loginService.getUserByUsername(email).subscribe(res => {
+      if((<any>res).accountrole==='ADMIN')
+        return true;
+      return false;  
+      console.log(res)
+    })
   }
 
 }

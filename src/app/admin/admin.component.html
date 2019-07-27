@@ -1,6 +1,7 @@
 <app-header-admin></app-header-admin>
 
 <div class="grey-back font-family" >
+  
   <div class="container mb-10 pt-5" >
       <div class="row pl-3 pr-3"> 
       <div class="panel col-md-auto p-2  w-80 "  [class.w-100]="clickedNav==='Dashboard' || add===true "  >
@@ -38,16 +39,17 @@
       <div [hidden]="clickedNav=='Dashboard' || add===true " class="col-md-auto ml-auto pt-1 pl-1 pr-0  w-13"  >
       <button class="red-button" (click)="addButton()" > Add {{clickedNav | lowercase}}</button>
     </div>
+    
     </div>
       
-
+        
       <app-dashboard *ngIf="clickedNav==='Dashboard'" (addRestaurant)="addRestaurant($event)"  ></app-dashboard>
 
       <app-restaurants [addClicked]="add"  [hidden]="clickedNav!=='Restaurants'" (cancelClick)="add=!add"></app-restaurants>
 
-      <app-locations [addClicked]="add" *ngIf="clickedNav==='Locations'" (cancelClick)="add=false"></app-locations>
+      <app-locations [addClicked]="add" *ngIf="clickedNav==='Locations'"  (cancelClick)="add=false"></app-locations>
 
-      <app-categories [addClicked]="add" *ngIf="clickedNav==='Categories'" (cancelClick)="add=false" ></app-categories>
+      <app-categories [addClicked]="add" *ngIf="clickedNav==='Categories'" (editClick)="add=true" (cancelClick)="add=false" ></app-categories>
 
       <app-users [addClicked]="add" *ngIf="clickedNav==='Users'" (cancelClick)="add=false"  ></app-users>
 

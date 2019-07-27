@@ -1,5 +1,6 @@
 <div class="d-flex font-family header-padding">
-  <div class="mr-auto p-2 font-size-20" (click)="admin()" >ABH Restaurants</div>
+  <div class="mr-auto p-2 font-size-20" (click)="home()" >ABH Restaurants</div>
+  <div class="p-2"  *ngIf="userHasRoleAdmin()" (click)="admin()" >Admin panel </div>
   <div class="p-2" (click)="home()">Home</div>
   <div class="p-2" (click)="restaurants()">Restaurants</div>
   <div class="p-2" [hidden]="isLoggedIn" (click)="login()">Login </div>

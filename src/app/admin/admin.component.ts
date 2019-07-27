@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RestaurantsComponent, Restaurant } from './restaurants/restaurants.component';
+import { TablesComponent } from './restaurants/tables/tables.component';
+import { RestaurantService } from '../services/restaurant.service';
+import { HttpClient } from '@angular/common/http';
+import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +16,18 @@ export class AdminComponent implements OnInit {
   clickedNav = 'Dashboard';
   searchForm: FormGroup;
   add=false;
-  constructor(private cdr: ChangeDetectorRef) { }
+  showLoadingIndicator = true;
+
+  constructor(private cdr: ChangeDetectorRef, private _router: Router) {
+    this._router.events.subscribe((routerEvent: Event)=> {
+      if(routerEvent instanceof NavigationStart){
+        this.showLoadingIndicator = true;
+      }
+      if(routerEvent instanceof NavigationEnd){
+        this.showLoadingIndicator = false;
+      }
+    })
+   }
 
   ngOnInit() {
 
@@ -45,12 +60,13 @@ export class AdminComponent implements OnInit {
   
 
     this.add=false;
+    this.restaurantsComponent.addTab = "Basic Details";
     this.clickedNav = clicked;
   }
 
   addButton(){
     this.restaurantsComponent.buttonType = 'Add';
-
+    this.restaurantsComponent.tablesInDB = [];
     this.add = !this.add;
 
   }
@@ -58,5 +74,6 @@ export class AdminComponent implements OnInit {
   addRestaurant(event) {
     this.clickedNav = event;
     this.add = true;
+    
   }
 }

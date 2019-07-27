@@ -16,7 +16,7 @@
       <app-basic-details (dataEmitter)="receiveBasicDetailsData($event)" [hidden]="addTab!=='Basic Details'"></app-basic-details>
       <app-menu [hidden]="addTab!=='Menu'"></app-menu>
       <app-gallery *ngIf="addTab==='Gallery'"></app-gallery>
-      <app-tables *ngIf="addTab==='Tables'"></app-tables>
+      <app-tables [tablesInDB]="tablesInDB" *ngIf="addTab==='Tables'" ></app-tables>
       <div class="row  pt-5 ml-3">
         <div class="col-md-auto pr-1">
           <button class="grey-button" (click)="cancel()"> Cancel</button>
@@ -31,7 +31,7 @@
     style="background:#fff;  box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10); ">
     <thead>
       <tr>
-        <th scope="col" colspan="5" style="width: 120%">Name{{restaurantBasicDetails}}</th>
+        <th scope="col" colspan="5" style="width: 120%">Name</th>
         <th scope="col">Options </th>
       </tr>
     </thead>
@@ -45,8 +45,8 @@
   </table>
 </div>
 
-<div class="container d-flex justify-content-center">
-    <div class="row ">
+<div  class="container d-flex justify-content-center">
+    <div [hidden]="addClicked" class="row ">
       <div class="col-md-auto p-1  p-r-10" (click)="previousPage()">
         <p class="page-font">PREVIOUS</p>
       </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RestaurantService } from 'src/app/services/restaurant.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tables',
@@ -15,7 +15,12 @@ export class TablesComponent implements OnInit {
   deletedItemArray = new Array<TableForm>();
   restaurantId:number;
 
-  constructor(private restaurantService: RestaurantService) { }
+  @Input() tablesInDB = [];
+
+  
+
+  constructor(private location: Location) { }
+  
 
   ngOnInit() {
   }
@@ -79,8 +84,8 @@ export class TablesComponent implements OnInit {
     }
 
     console.log(array);
-
-    this.restaurantService.saveTables(array).subscribe(res => console.log(res));
+    return array;
+    //this.restaurantService.saveTables(array).subscribe(res => console.log(res));
   }
 
 }

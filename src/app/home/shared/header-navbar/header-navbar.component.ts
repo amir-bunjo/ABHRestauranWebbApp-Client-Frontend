@@ -34,8 +34,18 @@ export class HeaderNavbarComponent implements OnInit {
   }
 
   logOut() {
+    this.isLoggedIn = false
     this.loginService.logOut();
+    sessionStorage.removeItem('role');
     this.router.navigate([""]);
+  }
+
+  userHasRoleAdmin(){
+    let user: string = sessionStorage.getItem('role');
+    if(user==='ADMIN')
+      return true;
+    return false;    
+
   }
 
 }

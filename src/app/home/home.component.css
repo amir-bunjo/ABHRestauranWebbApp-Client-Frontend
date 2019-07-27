@@ -67,7 +67,7 @@ hr{
 
 /* Header with backround image */
 header {
-    background: url(/assets/img/Bitmap.png) no-repeat center center;
+    background: url(https://res.cloudinary.com/dacid3ish/image/upload/v1564056556/abh/restaurants/Bitmap.png) no-repeat center center;
     width: 100%;
     height: 100vh;
     overflow: hidden;

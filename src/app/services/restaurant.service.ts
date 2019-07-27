@@ -129,8 +129,9 @@ export class RestaurantService {
   getReviewMark(restaurantId) {
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
+    if (username == null) username = '-';
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
-    return this.http.get(`http://localhost:8080/api/reviews/${restaurantId}/${username}`, { headers });
+    return this.http.get(`http://localhost:8080/api/reviews/${restaurantId}/${username}`);
   }
 
   getAvailableRestaurants (name,seats, date,  time) {
@@ -191,4 +192,43 @@ export class RestaurantService {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
     return this.http.post(`http://localhost:8080/api/save/tables`, listOfTables, { headers });
   }
+
+  saveCategory(category) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/save/category`, category, { headers });
+  }
+
+  getAllCategory() {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/allcategories`, { headers });
+  }
+
+  getCategoryById(categoryId) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/category/${categoryId}`, { headers });
+  }
+
+  deleteCategoryById(categoryId) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.delete(`http://localhost:8080/api/delete/category/${categoryId}`, { headers });
+  }
+
+
+  getAllUsers() {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/allusers`, { headers });
+  }
+
+
+  
 }

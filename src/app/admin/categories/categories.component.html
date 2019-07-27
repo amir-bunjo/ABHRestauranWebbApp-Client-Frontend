@@ -8,9 +8,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let category of categories">
-          <th scope="row" colspan="5">{{category}}</th>
-          <td><span><img class="icon" src="/assets/pencil.svg" alt="An example icon" /></span><span><img
-                (click)="openDialog()" class="icon" src="/assets/trash.svg" alt="An example icon" /></span></td>
+          <th scope="row" colspan="5">{{category.name}}</th>
+          <td><span><img class="icon" src="/assets/pencil.svg" (click)="getCategoryById(category.id)" alt="An example icon" /></span><span><img
+                (click)="deleteCategory(category.id)" class="icon" src="/assets/trash.svg" alt="An example icon" /></span></td>
         </tr>
       </tbody>
     </table>
@@ -31,7 +31,7 @@
       <div class="row ml-2 light-font pt-2">
         <div class="col-12 pb-3">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <input type="text" placeholder="Category name" class="ml-2">
+          <input type="text" (change)="setCategoryName($event)" value="{{categoryForEdit.name}}" placeholder="Category name" class="ml-2">
   
           <span class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
         </div>
@@ -43,7 +43,7 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button class="red-button"> Add category </button>
+          <button class="red-button" (click)="saveCategory()"> {{buttonType}} category </button>
         </div>
       </div>
   
