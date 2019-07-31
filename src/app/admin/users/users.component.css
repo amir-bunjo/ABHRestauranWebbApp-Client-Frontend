@@ -28,12 +28,30 @@
     
 }
 
+.light-font {
+    color:rgb(124, 116, 116) !important;
+}
+
+.light-button {
+    opacity: 0.4;
+}
+
 .icon-pos {
     position: absolute; 
     top: 30%;
     right:10%; 
     font-size: 15px; 
     bottom: 0
+}
+
+.error-text{
+    color: red; 
+    font-size:12px
+}
+
+.succes-text{
+    color: green; 
+    font-size:12px
 }
 
 .red-button {

@@ -13,12 +13,23 @@ import { parseIsoWeekday } from 'ngx-bootstrap/chronos/units/day-of-week';
 })
 export class RegisterComponent implements OnInit {
 
+  emailErrorMessage:string = '';
   registerForm: FormGroup;
+  listOfCreatedEmails = new Array<string>();
 
   constructor(private router: Router, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit() {
     this.createRegisterForm();
+    this.getAllUsersEmails();
+  }
+
+  getAllUsersEmails() {
+
+    this.userService.getAllEmails().subscribe(res=> {
+      console.log(res);
+      this.listOfCreatedEmails=<any>res;
+    });
   }
 
   login() {
@@ -29,7 +40,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       'firstname': new FormControl(null, Validators.required),
       'lastname': new FormControl(null, Validators.required),
-      'email': new FormControl(null, Validators.required),
+      'email': new FormControl(null,[ Validators.required, Validators.email]),
       'country': new FormControl(null, Validators.required),
       'city': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
@@ -61,11 +72,37 @@ export class RegisterComponent implements OnInit {
 
 
   checkPassword() {
+
     if (this.registerForm.value.password === this.registerForm.value.confirmpass)
       return false;
 
     return true;
 
+  }
+
+  checkEmaiilRegexForm() {
+
+    let text = this.registerForm.value.email!==null ? this.registerForm.value.email : '';
+    var regExp = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$');
+     
+    console.log(regExp.test(text));
+    return regExp.test(text);
+  }
+
+  checkEmail(){
+      let text = this.registerForm.value.email!==null ? this.registerForm.value.email : '';
+     var regExp = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$');
+      
+     console.log(regExp.test(text))
+
+    
+        this.emailErrorMessage = regExp.test(text) ? '' : 'Invalid Email';
+
+    if(this.registerForm.value.email!==null || this.registerForm.value.email !== ""  )
+      if(this.listOfCreatedEmails.includes(<string>this.registerForm.value.email))
+        return true;
+        
+       // var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   }
 
   isConfirmNull() {
@@ -79,6 +116,7 @@ export class RegisterComponent implements OnInit {
 
 
 export class AccountModel {
+  id: number;
   firstname: String;
   lastname: String;
   email: String;

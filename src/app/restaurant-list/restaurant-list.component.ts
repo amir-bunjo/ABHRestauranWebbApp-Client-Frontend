@@ -43,6 +43,8 @@ export class RestaurantListComponent implements OnInit {
    
   }
 
+
+
   searchRestaurant() {
     this.selectedPageIndex = 1;
     this.getRestaurantData();

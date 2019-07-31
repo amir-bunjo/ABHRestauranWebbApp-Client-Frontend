@@ -11,8 +11,8 @@
       <tr *ngFor="let user of users">
         <th scope="row" colspan="1">{{user.firstname}}</th>
         <th scope="row">{{user.email}}</th>
-        <td><span  ><img class="icon" (click)="getUserById(user.email)" src="/assets/pencil.svg" alt="An example icon" /></span><span><img
-              (click)="openDialog()" class="icon" src="/assets/trash.svg" alt="An example icon" /></span></td>
+        <td><span  ><img class="icon" (click)="getUserById(user.id)" src="/assets/pencil.svg" alt="An example icon" /></span><span><img
+              (click)="deleteUser(user.id,user.email)" class="icon" src="/assets/trash.svg" alt="An example icon" /></span></td>
       </tr>
 
     </tbody>
@@ -38,7 +38,14 @@
       </div>
       <div class="col-12 mb-3 ">
         Email
-        <input formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Required">
+        <input *ngIf="buttonType==='Edit'" disabled value="{{registerForm.value.email}}" class="form-control font-family input-frame" > 
+        <input *ngIf="buttonType==='Add'"  formControlName="email" type="text" class="form-control font-family input-frame" placeholder="Required">
+      </div>
+      <div *ngIf="checkEmail()" class="col-12 mb-1 ">
+        <span  class="error-text">Email is already taken</span>
+      </div>
+      <div *ngIf="registerForm.value.email !== null && registerForm.value.email !== ''  "  class="col-12 mb-1 ">
+        <span  class="error-text">{{emailErrorMessage}}</span>
       </div>
       <div class="col-12 mb-3 ">
         Phone Number
@@ -49,8 +56,9 @@
           Select country
         <div class="box" style="position: relative;">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <select class="font-family form-control select-frame " formControlName="city">
-            <option >Bosna i Hercegovina</option>
+          <select [class.light-font]="registerForm.value.country===null" class="font-family form-control select-frame " formControlName="country">
+            <option value="null" style="display: none">Required</option>
+            <option value="1" >Bosna i Hercegovina</option>
             <option>Example option one</option>
             <option>Example option two</option>
           </select>
@@ -60,8 +68,9 @@
           Select city
         <div class="box" style="position: relative;">
           <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <select class="font-family form-control select-frame"  formControlName="country">
-            <option>Sarajevo</option>
+          <select [class.light-font]="registerForm.value.city===null"  class="font-family form-control select-frame"  formControlName="city">
+            <option  value="null" style="display: none">Required</option>
+            <option value="1">Sarajevo</option>
             <option>Example option one</option>
             <option>Example option two</option>
           </select>
@@ -89,7 +98,7 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button class="red-button" (click)="createAccount()"> Add user </button>
+          <button class="red-button" [class.light-button]="!registerForm.valid || checkPassword() || checkEmail() || !checkEmaiilRegexForm()  " [disabled]="!registerForm.valid || checkPassword()" (click)="createAccount()"> {{buttonType}} user </button>
         </div>
       </div>
 

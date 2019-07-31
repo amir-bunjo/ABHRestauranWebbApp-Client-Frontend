@@ -111,7 +111,7 @@
   <!--PAGINATION -->
   <div class="container d-flex justify-content-center">
     <div class="row ">
-      <div class="col-3 p-1  p-r-10" (click)="previousPage()">
+      <div class="col-3 p-1  p-r-10" (click)="previousPage()" *ngIf="pages.length>1">
         <p class="page-font">PREVIOUS</p>
       </div>
       <div class=" col-2 " *ngFor="let page of pages; let i=index" id="box">
@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-      <div class="col-2 p-1 page-font p-l-8" (click)="nextPage()">NEXT</div>
+      <div *ngIf="pages.length>1" class="col-2 p-1 page-font p-l-8" (click)="nextPage()">NEXT</div>
     </div>
   </div>
   <!--POPULAR LOCATION

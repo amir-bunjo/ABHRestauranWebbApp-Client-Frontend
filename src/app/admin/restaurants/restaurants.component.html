@@ -22,7 +22,7 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button [disabled]="isFormValid()"  class="red-button" (click)="print()" (click)="addRestaurant()" > {{buttonType}} restaurant </button>
+          <button [class.light-font]="isFormValid()" [disabled]="isFormValid()"  class="red-button" (click)="print()" (click)="addRestaurant()" > {{buttonType}} restaurant </button>
         </div>
       </div>
     </div>
@@ -45,9 +45,9 @@
   </table>
 </div>
 
-<div  class="container d-flex justify-content-center">
+<div  class="container d-flex justify-content-center" > <!--should make better condition-->
     <div [hidden]="addClicked" class="row ">
-      <div class="col-md-auto p-1  p-r-10" (click)="previousPage()">
+      <div class="col-md-auto p-1  p-r-10" (click)="previousPage()" *ngIf="pages.length>1">
         <p class="page-font">PREVIOUS</p>
       </div>
       <div class=" col-md-auto " *ngFor="let page of pages; let i=index" id="box">
@@ -57,6 +57,6 @@
           </div>
         </div>
       </div>
-      <div class="col-md-auto p-1 page-font p-l-8" (click)="nextPage()">NEXT</div>
+      <div *ngIf="pages.length>1" class="col-md-auto p-1 page-font p-l-8" (click)="nextPage()">NEXT</div>
     </div>
   </div>

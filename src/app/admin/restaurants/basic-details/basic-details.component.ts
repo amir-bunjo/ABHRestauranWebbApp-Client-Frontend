@@ -134,11 +134,11 @@ export class BasicDetailsComponent implements OnInit {
         that.coordinates.longitude + lng;
         sessionStorage.setItem('latitude',lat);
         sessionStorage.setItem('longitude',lng);
-        myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+
       });
 
-
-    // marker.bindPopup("<b>Here is location of restaurant!</b>").openPopup();
+    if(myMarker!==undefined)
+     myMarker.bindPopup("<b>Move a marker to set location of restaurant!</b>").openPopup();
   }
 
   setCoordinates() {

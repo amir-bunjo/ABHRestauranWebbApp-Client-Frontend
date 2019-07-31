@@ -230,5 +230,36 @@ export class RestaurantService {
   }
 
 
+  //locations
+
+  getAllLocation() {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/alllocations`, { headers });
+  }
+
+  getLocationById(locationId) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.get(`http://localhost:8080/api/get/location/${locationId}`, { headers });
+  }
+
+  deleteLocationById(locationId) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.delete(`http://localhost:8080/api/delete/location/${locationId}`, { headers });
+  }
+
+  saveLocation(location) {
+    let username = sessionStorage.getItem('username');
+    let password = sessionStorage.getItem('password');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
+    return this.http.post(`http://localhost:8080/api/save/location`, location, { headers });
+  }
+
+
   
 }

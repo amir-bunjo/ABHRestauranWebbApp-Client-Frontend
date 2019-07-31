@@ -49,6 +49,11 @@ export class RestaurantsComponent implements OnInit {
 
   }
 
+  getPagesLength() {
+    console.log(this.pages.length)
+    return this.pages.length;
+  }
+
   print() {
     this.menuComponent.dinnerComponent.print();
   }
@@ -155,7 +160,7 @@ export class RestaurantsComponent implements OnInit {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       height: '150px',
       width: '400px',
-      data: { title: 'Are you sure to delete this restaurant' }
+      data: { title: 'Are you sure to delete this restaurant?' }
     });
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
@@ -205,8 +210,8 @@ export class RestaurantsComponent implements OnInit {
     let pricerange = this.basicDetails.basicDetailForm.value.pricerange;
     let category = this.basicDetails.basicDetailForm.value.category;
     let description = this.basicDetails.basicDetailForm.value.description;
-    let coverImage = this.basicDetails.coverImageString;
-    let logoImage = this.basicDetails.logoImageString;
+    let coverImage = this.basicDetails.coverImageString ? this.basicDetails.coverImageString : '';
+    let logoImage = this.basicDetails.logoImageString ? this.basicDetails.logoImageString : '';
     let latitude = sessionStorage.getItem('latitude'); // this.basicDetails.coordinates.latitude
     let longitude =sessionStorage.getItem('longitude'); //this.basicDetails.coordinates.latitude;  
     let coverName = this.basicDetails.imageNames.get('cover');
@@ -277,7 +282,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   isFormValid() {
-    if(sessionStorage.getItem('latitude')=== undefined || this.basicDetails.logoImageString=== undefined || this.basicDetails.coverImageString === undefined || !this.basicDetails.basicDetailForm.valid)
+    if(sessionStorage.getItem('latitude')=== undefined ||  !this.basicDetails.basicDetailForm.valid)
       return true;
     else
       return false

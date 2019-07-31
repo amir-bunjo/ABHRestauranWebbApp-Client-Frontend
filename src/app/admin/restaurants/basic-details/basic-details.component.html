@@ -3,8 +3,8 @@
       <div class="col-6">
         <span class="pl-3 pt-2">Logo</span>
         <div class="image-box ml-3 " style="">
-            <input hidden type="file" #uploadLogo (change)="onUploadChange($event,'logo')" >
-            <img class="p-0" *ngIf="logoImageString !==undefined" src="{{logoImageString}}" height="103%" width="100%" > 
+            <input hidden type="file" accept="image/x-png,image/gif,image/jpeg" #uploadLogo (change)="onUploadChange($event,'logo')" >
+            <img class="p-0" *ngIf="logoImageString !==undefined && logoImageString !=='' && logoImageString !==null" src="{{logoImageString}}" height="103%" width="100%" > 
           <img class="icon-image" (click)="openUploadLogo()"  src="assets/upload.svg" width="10%" height="50px" alt="assets/img/Bitmap.png">
           <p>Upload</p>
         </div>
@@ -12,8 +12,8 @@
       <div class="col-6">
         <span class=" pt-2">Cover</span>
         <div class="image-box mr-3 " style="">
-          <input hidden type="file" #uploadCover (change)="onUploadChange($event,'cover')" >
-          <img class="p-0" *ngIf="coverImageString !==undefined" src="{{coverImageString}}" height="103%" width="100%" > 
+          <input hidden  type="file" accept="image/x-png,image/gif,image/jpeg" #uploadCover (change)="onUploadChange($event,'cover')" >
+          <img class="p-0" *ngIf="coverImageString !==undefined && coverImageString !=='' && coverImageString !==null" src="{{coverImageString}}" height="103%" width="100%" > 
           <img class="icon-image"  role="button" (click)="openUploadCover()"  src="assets/upload.svg" width="10%" height="50px" alt="assets/img/Bitmap.png">
           <p>Upload</p>
         </div>

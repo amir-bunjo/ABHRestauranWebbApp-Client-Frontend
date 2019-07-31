@@ -5,6 +5,8 @@ import { TablesComponent } from './restaurants/tables/tables.component';
 import { RestaurantService } from '../services/restaurant.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { UsersComponent } from './users/users.component';
+import { LocationsComponent } from './locations/locations.component';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +15,8 @@ import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   @ViewChild(RestaurantsComponent) restaurantsComponent;
+  @ViewChild(UsersComponent) usersComponent;
+  @ViewChild(LocationsComponent) locationsComponent;
   clickedNav = 'Dashboard';
   searchForm: FormGroup;
   add=false;
@@ -67,6 +71,11 @@ export class AdminComponent implements OnInit {
   addButton(){
     this.restaurantsComponent.buttonType = 'Add';
     this.restaurantsComponent.tablesInDB = [];
+    if(this.usersComponent!==undefined)
+     this.usersComponent.createRegisterForm();
+
+     if(this.locationsComponent!==undefined)
+     this.locationsComponent.createLocationAddForm(); 
     this.add = !this.add;
 
   }

@@ -47,11 +47,11 @@
 
       <app-restaurants [addClicked]="add"  [hidden]="clickedNav!=='Restaurants'" (cancelClick)="add=!add"></app-restaurants>
 
-      <app-locations [addClicked]="add" *ngIf="clickedNav==='Locations'"  (cancelClick)="add=false"></app-locations>
+      <app-locations [addClicked]="add" *ngIf="clickedNav==='Locations'" (editClick)="add=true"  (cancelClick)="add=false"></app-locations>
 
       <app-categories [addClicked]="add" *ngIf="clickedNav==='Categories'" (editClick)="add=true" (cancelClick)="add=false" ></app-categories>
 
-      <app-users [addClicked]="add" *ngIf="clickedNav==='Users'" (cancelClick)="add=false"  ></app-users>
+      <app-users [addClicked]="add" *ngIf="clickedNav==='Users'"  (cancelClick)="add=!add"  ></app-users>
 
 
     </div>

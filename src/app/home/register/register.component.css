@@ -25,6 +25,10 @@
     color:rgb(124, 116, 116) !important;
 }
 
+.light-button {
+    opacity: 0.4;
+}
+
 .box select {
     background:#FFFFFF;
     color: black;

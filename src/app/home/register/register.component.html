@@ -10,7 +10,7 @@
         
         <div class="red-text font-family font-18 font-semi-bold p-b-1" (click)="login()" >Login</div>
       </div>  
-      <span class="font-14">*All fields are required</span>
+      <span class="font-14" class="error-text">*All fields are required</span>
       <div class="row">
           <div class="col-12 m-bottom-6 ">
             <input formControlName="firstname" type="text" class="form-control font-family input-frame"  placeholder="First Name">
@@ -19,7 +19,13 @@
             <input formControlName="lastname" type="text" class="form-control font-family input-frame"  placeholder="Last Name">
           </div>
           <div class="col-12 m-bottom-6 ">
-            <input formControlName="email" type="text" class="form-control font-family input-frame"  placeholder="Email">
+            <input required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" formControlName="email" type="text" class="form-control font-family input-frame"  placeholder="Email"  >
+          </div>
+          <div *ngIf="checkEmail()" class="col-12 mb-1 ">
+            <span  class="error-text">Email is already taken</span>
+          </div>
+          <div *ngIf="registerForm.value.email !== null && registerForm.value.email !== ''  "  class="col-12 mb-1 ">
+            <span  class="error-text">{{emailErrorMessage}}</span>
           </div>
           <div class="col-12 m-bottom-6 ">
             <input formControlName="phone" type="text" class="form-control font-family input-frame"  placeholder="Phone Number">
@@ -58,7 +64,7 @@
             <span *ngIf="!checkPassword() && isConfirmNull()" class="succes-text">Valid password</span>
           </div>
           <div class="col-12 ">
-            <button type="button" class="btn font-family wide-red" [disabled]="!registerForm.valid || checkPassword()" (click)="createAccount()">Create Account</button>
+            <button type="button"  class="btn font-family wide-red"  [disabled]="!registerForm.valid || checkPassword() || checkEmail() || !checkEmaiilRegexForm() " (click)="createAccount()">Create Account</button>
           </div>
         </div>
     </div>

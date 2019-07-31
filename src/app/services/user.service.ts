@@ -39,7 +39,7 @@ export class UserService {
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
-    return this.http.get(`http://localhost:8080/api/user/${userId}`, { headers });
+    return this.http.get(`http://localhost:8080/api/get/user/${userId}`, { headers });
   }
 
   getUserByEmail(username) {
@@ -47,5 +47,10 @@ export class UserService {
      let password = sessionStorage.getItem('password');
      const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + btoa(password)) });
      return this.http.get(`http://localhost:8080/api/user/byemail/${username}`, { headers });
+   }
+
+   getAllEmails() {
+
+    return this.http.get(`http://localhost:8080/api/get/allemails`);
    }
 }

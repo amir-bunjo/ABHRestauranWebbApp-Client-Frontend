@@ -113,7 +113,7 @@
             </div>
           </div>
           <div *ngIf="findClicked " class="font-family dropdown-table info">
-            <h5 class="p-0">Availibilty on {{date}} arround {{time}} for {{guestNumber}} people </h5>
+            <h5 class="p-0">Availabilty on {{date}} arround {{time}} for {{guestNumber}} people </h5>
             <div class="row extra-info">
               <div class="col-md-auto p-0">
                 <div class="row">
@@ -315,30 +315,3 @@
 <app-footer></app-footer>
 
 
-<div class="container">
-  <div class="row">
-    <div *ngIf="restaurantData" class="col-12">
-      {{restaurantData.name}}
-    </div>
-
-    <div class="col-2">
-      <app-rating *ngIf="restaurantData" [rate]="restaurantData.mark" [fontSize]="22"></app-rating>
-    </div>
-
-    <div class="col-md-auto">
-      <p>
-        <span class=" light-mark" style="color: brown">
-          Italian | International | Mediterannean
-        </span>
-      </p>
-    </div>
-
-    <div class="col-2">
-      <button>
-        Rate this restaurant
-      </button>
-
-    </div>
-  </div>
-
-</div>

@@ -16,7 +16,7 @@
     </table>
   
   </div>
-  
+  <form [formGroup]="categoryForm"> 
   <div class="pb-5" *ngIf="addClicked">
     <div class="panel mt-5 pb-5 ">
   
@@ -30,10 +30,7 @@
   
       <div class="row ml-2 light-font pt-2">
         <div class="col-12 pb-3">
-          <span class="icon-pos"> <i class="fa fa-angle-down" aria-hidden="true"> </i> </span>
-          <input type="text" (change)="setCategoryName($event)" value="{{categoryForEdit.name}}" placeholder="Category name" class="ml-2">
-  
-          <span class="ml-3 "><img class="icon" src="/assets/trash.svg" alt="An example icon" /></span>
+          <input formControlName="name" type="text" (change)="setCategoryName($event)"  placeholder="Category name" class="ml-2">
         </div>
   
       </div>
@@ -43,10 +40,11 @@
           <button class="grey-button" (click)="cancel()"> Cancel</button>
         </div>
         <div class="col-md-auto ">
-          <button class="red-button" (click)="saveCategory()"> {{buttonType}} category </button>
+          <button class="red-button" [disabled]="!categoryForm.valid" (click)="saveCategory()"> {{buttonType}} category </button>
         </div>
       </div>
   
   
     </div>
   </div>
+</form>
